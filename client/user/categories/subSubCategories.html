@@ -1,0 +1,20 @@
+<template name="subSubCategories">
+    {{#if isNull}}
+    {{else}}
+        {{#if noChild}}
+            <ul id="category-listing" class="category root-category category-bracket">
+                <li class="parent-name" id="{{this}}">no subcategory yet.</li>
+                {{#sortable items=subSubCategories options=subCategoryOptions ghostClass="sortable-ghost"}}
+                    {{> categoryItem}}
+                {{/sortable}}
+            </ul>
+        {{else}}
+            <ul id="category-listing" class="category root-category category-bracket">
+                <li class="parent-name" id="{{this}}">{{parentName}}.</li>
+                {{#sortable items=subSubCategories options=subCategoryOptions ghostClass="sortable-ghost"}}
+                    {{> categoryItem}}
+                {{/sortable}}
+            </ul>
+        {{/if}}
+    {{/if}}
+</template>

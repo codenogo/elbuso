@@ -1,0 +1,60 @@
+<template name="editCompanyProfile">
+	<div class="data-container">
+		
+		<h1>update PROFILE <a href="/change-password" class="btn btn-sm btn-default pull-right">change your password</a><a href="/change-phone" class="btn btn-sm btn-default pull-right">change your phone number</a></h1>
+		
+		{{#if SellerCompleteProfile}}
+			<p class="please-note"><strong>Please Note: </strong>This step is crucial for a business. You cannot transact on Elbuso until you finish your profile and get verified by the Elbuso Team.</p>
+		{{/if}}
+
+		{{#autoForm collection="Meteor.users" id="profileUpdateId" doc=currentUser type="update" autosave=true}}
+		    <fieldset>
+		    	<div class="required">
+		    		{{> afQuickField name='image' label="upload the company logo"}}
+		    	</div>
+		    	<div class="required">
+		    		{{> afQuickField name='profile.firstname' label="first name"}}
+		    	</div>
+		    	<div class="required">
+					{{> afQuickField name='profile.lastname' label="last name"}}
+				</div>
+				<div class="email-edit">
+					{{> afQuickField name="emails"}}
+				</div>
+		        {{#if hasSubmitted}}
+			        <div class="form-group">
+					    <label for="yLbdS4k2k9EnWvPQT" class="control-label">Company Name <span data-tooltip="{{whyCompanyName}}" tabindex="0" data-side="top" class="help-out">why can't I edit?</span></label>
+					    <input type="text" disabled value="{{currentUser.profile.company.companyName}}" class="form-control">
+					    <span class="help-block"></span>
+					</div>
+					<div class="form-group">
+					    <label for="yLbdS4k2k9EnWvPQT" class="control-label">Company Registration <span data-tooltip="{{whyCompanyReg}}" tabindex="0" data-side="top" class="help-out">why can't I edit?</span></label>
+					    <input type="text" disabled value="{{currentUser.profile.company.companyRegistration}}" class="form-control">
+					    <span class="help-block"></span>
+					</div>
+			    {{else}}
+			    	<div class="required">
+			    		{{> afQuickField name='profile.company.companyName'}}
+			    	</div>
+			        <div class="required">
+			        	{{> afQuickField name='profile.company.companyRegistration'}}
+			        </div>
+		        {{/if}}
+		        <div class="required">
+		        	{{> afQuickField name='profile.company.companyWebsite'}}
+		        </div>
+		        <div class="required">
+		        	{{> afQuickField name='profile.company.companyPhone'}}
+		        </div>
+				{{> afObjectField name='profile.country'}}
+				{{> afQuickField name='profile.country.name.postalCode'}}
+		    </fieldset>
+		    <button type="submit" class="btn btn-primary btn-sm update-profile">Update profile</button> 
+		    <a href="/profile" class="btn btn-sm btn-default">back to my profile</a>
+		    {{#if hasSubmitted}}
+		    	<a class="btn change-request btn-sm btn-primary" href="/support">place a change request</a>
+		    {{/if}}
+	    {{/autoForm}}
+	   
+	</div>
+</template>

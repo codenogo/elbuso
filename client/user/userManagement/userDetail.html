@@ -1,0 +1,169 @@
+<template name="userDetail">
+	<div class="user-detail">
+		<div class="head-section">
+			<table>
+				<tr>
+					<td class="image {{#if isActive}}{{else}}deactivated{{/if}}">
+						{{#with FS.GetFile "userImage" user.image}}
+					        <div class="avatar-image" style="background: url({{url}}) no-repeat;"></div>
+					    {{else}}
+							<div class="avatar-image">
+								<span>{{firstLetter}}</span>
+							</div>
+						{{/with}}
+					</td>
+					<td>
+						<h1>{{firstLetter}} {{user.profile.lastname}}</h1>
+						{{#if isActive}}
+							{{#if isBuyer}}
+								<span>Buyer</span>
+							{{/if}}
+							{{#if isSeller}}
+								{{#if isVerifiedSeller}}
+									<span class="verified">verified seller</span>
+								{{else}}
+									<span>non-verified seller</span>
+								{{/if}}
+							{{/if}}
+							{{#if isAdmin}}
+								<span>Administrator</span>
+							{{/if}}
+						{{else}}
+							<span>DEACTIVATED USER</span>
+						{{/if}}
+					</td>
+					<td>
+						{{#if isAdmin}}
+						{{else}}
+						<!-- <a class="btn btn-sm btn-danger delete-user pull-right">Delete user</a> -->
+							{{#if isActive}}
+								<a class="btn btn-sm btn-danger deactivate-user pull-right">Deactivate user</a>
+							{{else}}
+								<a class="btn btn-sm btn-success deactivate-user pull-right">Activate user</a>
+							{{/if}}
+							{{#if isSeller}}
+								{{#if hasCompletedProfile}}
+									{{#if isVerifiedSeller}}		
+										<a class="pull-right verify-seller btn btn-sm btn-default">unverify this seller</a>
+									{{else}}
+										<a class="pull-right verify-seller btn btn-sm btn-success">verify this seller</a>
+									{{/if}}
+								{{else}}
+									<span class="pull-right btn btn-sm btn-danger">incomplete</span>
+								{{/if}}
+							{{/if}}
+							<a href="/new-support/{{user._id}}" class="btn btn-sm btn-default pull-right">new message</a>
+						{{/if}}
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="row {{#if isActive}}{{else}}deactivated{{/if}}">
+			<div class="col-sm-6">
+				<h1 class="user-details-header">Personal details</h1>
+				<table class="table">
+					<tbody>
+						<tr>
+							<td>Names:</td>
+							<td>{{user.profile.firstname}} {{user.profile.lastname}}</td>
+						</tr>
+						<tr>
+							<td>Phone:</td>
+							<td>+{{user.profile.personalPhone.countryCode}}{{user.profile.personalPhone.phoneNumber}}</td>
+						</tr>
+						<tr>
+							<td>Emails:</td>
+							<td>
+								{{#each user.emails}}
+									{{this.address}}
+								{{/each}}
+							</td>
+						</tr>
+						{{#if isSeller}}
+						{{else}}
+							<tr>
+								<td>Zip:</td>
+								<td>
+									{{#unless user.profile.country.name.postalCode}}
+										.....
+									{{else}}
+										{{user.profile.country.name.postalCode}}
+									{{/unless}}
+								</td>
+							</tr>
+						{{/if}}
+						<tr>
+							<td>Location:</td>
+							<td>
+								{{#unless user.profile.country.name.formattedAddress}}
+									.....
+								{{else}}
+									{{user.profile.country.name.formattedAddress}}
+								{{/unless}}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			{{#if isSeller}}
+				<div class="col-sm-6">
+					<h1 class="user-details-header">Company details</h1>
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Name:</td>
+								<td>
+									{{#unless user.profile.company.companyName}}
+										.....
+									{{else}}
+										{{user.profile.company.companyName}}
+									{{/unless}}
+								</td>
+							</tr>
+							<tr>
+								<td>Registration:</td>
+								<td>
+									{{#unless user.profile.company.companyRegistration}}
+										.....
+									{{else}}
+										{{user.profile.company.companyRegistration}}
+									{{/unless}}
+								</td>
+							</tr>
+							<tr>
+								<td>Phone:</td>
+								<td>
+									{{#unless user.profile.company.companyPhone}}
+										.....
+									{{else}}
+										{{user.profile.company.companyPhone}}
+									{{/unless}}
+								</td>
+							</tr>
+							<tr>
+								<td>Website:</td>
+								<td>
+									{{#unless user.profile.company.companyWebsite}}
+										.....
+									{{else}}
+										{{user.profile.company.companyWebsite}}
+									{{/unless}}
+								</td>
+							</tr>
+							<tr>
+								<td>Zip:</td>
+								<td>
+									{{#unless user.profile.country.name.postalCode}}
+										.....
+									{{else}}
+										{{user.profile.country.name.postalCode}}
+									{{/unless}}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			{{/if}}
+		</div>
+	</div>	
+</template>

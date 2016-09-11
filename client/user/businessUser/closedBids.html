@@ -1,0 +1,21 @@
+<template name="closedBids">
+	<div class="data-container">
+		<h1>closed bids <img src="/img/close.svg" /></h1>
+		<div class="closed-bids-page">
+			{{#if isInRole "admin"}}
+				{{#each closedBids}}
+					{{> closedAuction}}
+				{{else}}
+					<h1 class="centered-placeholder">there's no closed bids yet</h1>
+				{{/each}}
+			{{/if}}
+			{{#if isInRole "seller"}}
+				{{#each sellerClosedBids}}
+					{{> closedAuction}}
+				{{else}}
+					<h1 class="centered-placeholder">there's no closed bids yet</h1>
+				{{/each}}
+			{{/if}}
+		</div>
+	</div>
+</template>

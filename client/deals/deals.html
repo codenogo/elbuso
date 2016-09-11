@@ -1,0 +1,73 @@
+<template name="deals">
+	<div class="filter col-md-3 desktop-only">
+		<h1>filter</h1>
+		{{> dealsFilter}}
+	</div>
+	<div class="col-md-9 pull-right">
+		<h1>ALL DEALS</h1>
+		<div class="previews">
+			<!-- {{#if Template.subscriptionsReady}} -->
+				<div class="preview-data regular">
+					<!-- {{#if isInRole "admin"}}
+						<div class="row">
+							{{#each allDeals}}
+								{{> dealPreviewList}}
+							{{else}}
+								<h1 class="left-placeholder col-xs-12">no live deals yet</h1>
+							{{/each}}
+						</div>
+					{{else}}
+						{{#if isInRole "seller"}}
+							{{#if myDeals}}
+								<h2>MY UNPUBLISHED DEALS</h2>
+								<div class="row my-unpublished-deals">
+									{{#each myDeals}}
+										{{> dealPreviewList}}
+									{{else}}
+										<h1 class="left-placeholder col-xs-12">no live deals yet</h1>
+									{{/each}}
+								</div>
+							{{/if}}
+						{{/if}}
+						{{#if isInRole "sub-user"}}
+							{{#if myDeals}}
+								<h2>MY UNPUBLISHED DEALS</h2>
+								<div class="row my-unpublished-deals">
+									{{#each myDeals}}
+										{{> dealPreviewList}}
+									{{else}}
+										<h1 class="left-placeholder col-xs-12">no live deals yet</h1>
+									{{/each}}
+								</div>
+							{{/if}}
+						{{/if}}
+						<div class="row">
+							{{#each deals}}
+								{{> dealPreviewList}}
+							{{else}}
+								<h1 class="left-placeholder col-xs-12">no live deals yet</h1>
+							{{/each}}
+						</div>
+					{{/if}} -->
+
+					{{#if isLoading}}
+						{{>preloader}}
+					{{/if}}
+					{{#each getPackages}}
+						{{> dealPreviewList}}
+					{{/each}}
+
+				</div>
+				<!-- {{#if deals}}
+					<div class="show-more-bar">
+						<a class="show-more">
+							show more <span class="plus-black-sm"></span>
+						</a>
+					</div>
+				{{/if}} -->
+			<!-- {{else}}
+				{{> preloader}}
+			{{/if}} -->
+		</div>
+	</div>
+</template>

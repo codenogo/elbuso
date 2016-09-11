@@ -1,0 +1,28 @@
+<template name="changePhone">
+	<div class="data-container">
+		<h1>change phone number <a href="/change-password" class="btn btn-sm btn-default pull-right">change your password</a><a href="/profile" class="btn btn-sm btn-default pull-right">back to profile</a></h1>
+		<form id="change-phone" class="change-phone">
+			<div class="row">
+				<div class="form-group col-sm-5">
+			        <label for="country-code">Country code</label>
+			        <select id="country-code" name="countryCode" class="form-control">
+			        	{{#each country}}
+			        		{{#if isCurrentCode}}
+			        			<option selected="selected" value="{{countryCode}}">{{name}} (+{{countryCode}})</option>
+			        		{{else}}
+			        			<option value="{{countryCode}}">{{name}} (+{{countryCode}})</option>
+			        		{{/if}}
+			        	{{/each}}
+			        </select>
+		        </div>
+		        <div class="form-group col-sm-7">
+			        <label for="phone-number">Phone Number</label>
+			        <input type="number" name="phoneNumber" id="phone-number" class="form-control col-sm-7" placeholder="{{currentUser.profile.personalPhone.phoneNumber}}">
+		        </div>
+			</div>			
+			<div class="form-group">
+	        	<input type="submit" class="btn btn-success" value="update your Phone Number">
+	        </div>
+	    </form>
+	</div>
+</template>

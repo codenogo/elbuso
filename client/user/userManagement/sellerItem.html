@@ -1,0 +1,49 @@
+<template name="sellerItem">
+
+	<tr class="{{#if hasCompletedProfile}}{{else}}incomplete-profile{{/if}} {{#if isActive}}{{else}}deactivated{{/if}}">
+		<td>
+			{{#with FS.GetFile "userImage" image}}
+	            <div class="avatar-image" style="background: url({{url}}) no-repeat;"></div>
+	        {{else}}
+				<div class="avatar-image">
+					<span>{{firstLetter}}</span>
+				</div>
+			{{/with}}
+		</td>
+		<td>
+			<span class="username">
+				{{username}}
+				{{#if isVerifiedSeller}}
+					<img src="/img/verification.svg" />
+				{{else}}
+					<img class="null" src="/img/verification-null.svg" />
+				{{/if}}
+			</span><br />
+			<span class="fullnames">{{profile.firstname}} {{profile.lastname}}</span>
+		</td>
+		<td>
+			{{profile.company.companyName}}
+		</td>
+		<td>
+			{{#each emails}}
+				{{this.address}}
+			{{/each}}
+		</td>
+		<td>
+			+{{profile.personalPhone.countryCode}}{{profile.personalPhone.phoneNumber}}
+		</td>
+		<!-- <td>{{#if hasCompletedProfile}}
+				{{#if isVerified}}			
+					<a class="verify-seller btn btn-sm btn-default">unverify</a>
+				{{else}}
+					<a class="verify-seller btn btn-sm btn-success">verify</a>
+				{{/if}}
+			{{else}}
+				<span class="btn btn-sm btn-danger">incomplete</span>
+			{{/if}}
+		</td> -->
+		<td>
+			<a href="/admin/users/{{_id}}" class="edit-user btn btn-sm btn-primary">details</a>
+		</td>
+	</tr>
+</template>

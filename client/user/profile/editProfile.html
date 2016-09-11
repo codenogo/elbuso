@@ -1,0 +1,42 @@
+<template name="editProfile">
+	<div class="data-container">
+		<h1>MY PROFILE <a href="/change-password" class="btn btn-sm btn-default pull-right">change your password</a><a href="/change-phone" class="btn btn-sm btn-default pull-right">change your phone number</a></h1>
+		{{#autoForm collection="Meteor.users" id="profileUpdateId" doc=currentUser type="update" autosave=true}}
+	    <fieldset>
+	    	{{#if isInRole 'buyer'}}
+	    		<div class="toggle-options">
+	    			{{> afQuickField name='profile.buyerType' template="buttonGroup"}}
+	    		</div>
+	    	{{/if}}
+	    	{{#if afFieldValueIs name="profile.buyerType" value="individual"}}
+	    		{{> afQuickField name='image'}}
+	    	{{/if}}
+	    	{{#if afFieldValueIs name="profile.buyerType" value="company"}}
+	    		{{> afQuickField name='image' label="upload the company logo"}}
+			{{/if}}
+	    	{{> afQuickField name='profile.firstname'}}
+			{{> afQuickField name='profile.lastname'}}
+			<div class="email-edit">
+				{{> afQuickField name="emails"}}
+			</div>
+
+			
+			{{#if afFieldValueIs name="profile.buyerType" value="company"}}
+				<h1><br />company details</h1>
+				{{> afQuickField name='profile.company.companyName'}}
+				{{> afQuickField name='profile.company.companyRegistration'}}
+				{{> afQuickField name='profile.company.companyWebsite'}}
+				{{> afQuickField name='profile.company.companyPhone'}}
+		    {{/if}}
+			
+			{{#if isInRole 'sub-user'}}
+			{{else}}
+		        {{> afQuickField name='profile.country'}}
+		        {{> afQuickField name='profile.country.name.postalCode'}}
+	        {{/if}}
+	    </fieldset>
+	    <button type="submit" class="btn btn-primary btn-sm update-profile">Update profile</button>
+	    <a href="/profile" class="btn submit-for-verification btn-sm btn-default">back to my profile</a>
+	    {{/autoForm}}
+	</div>
+</template>

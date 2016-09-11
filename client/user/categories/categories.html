@@ -1,0 +1,37 @@
+<template name="categories">
+	<div class="data-container">
+		{{#if $.Session.get 'newCategory'}}
+			<button class="close-new"><i class="fa fa-close"></i></button>
+			{{> categoryEdit}}
+		{{else}}
+			{{#if categories}}
+				<h1>categories
+				<button class="new-banner-btn pull-right">New Category</button>
+				</h1>
+			{{else}}
+				<button class="new-banner-btn">New Category</button>
+			{{/if}}
+		{{/if}}
+		<div class="category-list">
+			{{#if Template.subscriptionsReady}}
+				{{#unless categories}}
+					<h1 class="centered-placeholder">no categories exist yet</h1>
+				{{else}}
+				<div class="scroll-x">
+					<div class="nested-categories">
+						<ul id="category-listing" class="category root-category category-bracket">
+							{{#sortable items=categories options=categoryOptions ghostClass="sortable-ghost"}}
+								{{> categoryItem}}
+							{{/sortable}}
+						</ul>
+						{{> Template.dynamic template="subCategories" data=subCatData}}
+						{{> Template.dynamic template="subSubCategories" data=subSubCatData}}
+					</div>
+				</div>
+				{{/unless}}
+			{{else}}
+				{{> preloaderInner}}
+			{{/if}}
+		</div>
+	</div>
+</template>

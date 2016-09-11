@@ -1,0 +1,33 @@
+<template name="subUserItem">
+	<tr class="{{#if isActive}}{{else}}deactivated{{/if}}">
+		<td>
+			{{#with FS.GetFile "userImage" image}}
+	            <div class="avatar-image" style="background: url({{url}}) no-repeat;"></div>
+	        {{else}}
+				<div class="avatar-image">
+					<span>{{firstLetter}}</span>
+				</div>
+			{{/with}}
+		</td>
+		<td>
+			<span class="username">
+				{{username}}
+			</span><br />
+			<span class="fullnames">{{profile.firstname}} {{profile.lastname}}</span>
+		</td>
+		<td>
+			{{#each emails}}
+				{{this.address}}
+			{{/each}}
+		</td>
+		<td>
+			+{{profile.personalPhone.countryCode}}{{profile.personalPhone.phoneNumber}}
+		</td>
+		<td>
+			{{roles.__global_roles__}}
+		</td>
+		<td>
+			<a href="/sub-user/{{_id}}" class="edit-user btn btn-sm btn-primary">details</a>
+		</td>
+	</tr>
+</template>

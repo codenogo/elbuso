@@ -1,0 +1,177 @@
+//support page
+.conversations{
+	width:100%;
+	.single-conversation{
+		background:#eee;
+		margin:1em 0;
+		padding:2em;
+		table{
+			width:100%;
+			tbody{
+				tr{
+					td{
+					    vertical-align: middle;
+						.latest-image-preview{
+							width:3em;
+							height:3em;
+							background:#000;
+							border-radius:50%;
+							background-size:cover !important;
+							background-position:50% 50% !important;
+						}
+						.topic{
+							font-size:1.5em;
+							color:#000;
+							text-transform:uppercase;
+						}
+						.message-preview{
+							font-size:.9em;
+							color:#777;
+						}
+						.timestamp{
+							color:#777;
+							font-size:.8em;
+						}
+						img{
+							float:right;
+						}
+					}
+					td:first-child{
+						width:5em;
+					}
+					td:last-child{
+						width:30%;
+					}
+				}
+			}
+		}
+	}
+}
+
+.new-conversation{
+	width:100%;
+	.fieldset{
+		margin: 2em 0;
+		input, textarea{
+			width:100%;
+			padding: .5em;
+		}
+	}
+}
+
+
+.message-box{
+	border:1px solid #ddd;
+	height:50vh;
+	overflow-y:auto;
+	overflow-x:hidden;
+	width:100%;
+	position:relative;
+	.all-messages{
+		height:auto;
+		padding:0 1em;
+		position: relative;
+	    width: 100%;
+	    display: table;
+	    bottom:0;
+		.single-message{
+			width:80%;
+			float:left;
+			margin:1em 0;
+			display:table;
+			.sender-image-preview{
+				width:2em;
+				height:2em;
+				background:#000;
+				border-radius:50%;
+				float:left;
+				background-size:cover !important;
+				background-position:50% 50% !important;
+			}
+			.bubble{
+				background:#ccc;
+				float:right;
+				width: calc(100% - 3em);
+				padding:1em;
+				border-radius:.5em;
+				.time{
+					font-size:.7em;
+					text-align: right;
+					opacity:.4;
+				}
+			}
+		}
+		.single-message.mine{
+			float:right;
+			.sender-image-preview{
+				float:right;
+			}
+			.bubble{
+				background:#1081e1;
+				float:left;
+				p{
+					color:#fff;
+				}
+			}
+		}
+	}
+}
+.add-message{
+	border:1px solid #ddd;
+	border-top:0px solid #ddd;
+	width:100%;
+	z-index:1;
+	bottom:0;
+	left:0;
+	background:#eee;
+	padding:1em;
+	.add-a-message{
+		width:100%;
+		table{
+			width:100%;
+			tbody{
+				tr{
+					td{
+						vertical-align:middle;
+						width:auto;
+						textarea{
+							width:100%;
+						    height: 70px;
+						    max-height: 70px;
+							padding:1em;
+							border:1px solid #ddd;
+						}
+						.btn{
+							height: 70px;
+						}
+					}
+					td:last-child{
+						width:3em;
+					}
+				}
+			}
+		}
+	}
+}
+.unread-count{
+	padding:.5em .7em;
+	// height:1.5em;
+	background:#000;
+	border-radius:2em;
+	font-size:.5em;
+	min-width:2em;
+	color:#fff;
+	// display:table;
+	float:left;
+	margin-right:1em;
+}
+.unread-count-preview{
+	padding:1em;
+	background:#000;
+	border-radius:2em;
+	font-size:.6em;
+	min-width:2em;
+	color:#fff;
+	float:left;
+	margin-right:1em;
+}

@@ -1,0 +1,121 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-base@1.0.4             # Packages every Meteor app needs to have
+mobile-experience@1.0.4       # Packages for a great mobile UX
+mongo@1.1.12                   # The database Meteor supports right now
+blaze-html-templates@1.0.4    # Compile .html files into Meteor Blaze views
+session@1.1.6                 # Client-side reactive dictionary for your app
+jquery@1.11.9                  # Helpful client-side library
+tracker@1.1.0                 # Meteor's client-side reactive programming library
+reactive-var@1.0.10
+
+es5-shim@4.6.14                # ECMAScript 5 compatibility for older browsers.
+ecmascript@0.5.8              # Enable ECMAScript2015+ syntax in app code
+
+accounts-base@1.2.11
+accounts-password@1.3.0
+# accounts-ui
+twbs:bootstrap
+abdj:autoform-google-places-input
+kadira:flow-router
+kadira:blaze-layout
+erasaur:meteor-lodash
+stolinski:stylus-multi
+fortawesome:fontawesome
+spiderable@1.0.13
+fastclick@1.0.12
+raix:handlebar-helpers
+aldeed:collection2
+aldeed:autoform
+matb33:bootstrap-glyphicons
+zimme:active-route
+gwendall:auth-client-callbacks
+meteortoys:allthings
+# datariot:ganalytics
+momentjs:moment
+mrt:modernizr-meteor
+mrt:moment-timezone
+
+
+check@1.2.3
+aldeed:simple-schema
+cfs:autoform
+cfs:standard-packages
+cfs:gridfs
+cfs:ui
+sacha:spin
+chrismbeckett:toastr
+# raix:ui-dropped-event
+# yogiben:autoform-file
+shinn:autoform-file
+mpowaga:autoform-summernote
+# djedi:sanitize-html-client
+cfs:filesystem
+wizonesolutions:underscore-string
+# rajit:bootstrap3-datepicker
+aldeed:autoform-bs-datepicker
+aldeed:autoform-bs-datetimepicker
+
+
+#admin packages
+alanning:roles
+random@1.0.10
+email@1.1.17
+audit-argument-checks@1.0.7
+# browser-policy
+digilord:faker
+meteorhacks:fast-render
+meteorhacks:npm
+meteorhacks:ssr
+reactive-dict@1.1.8
+stevezhu:lodash
+templating@1.2.14
+themeteorchef:bert
+themeteorchef:jquery-validation
+
+npm-container
+aldeed:moment-timezone
+
+# sach:flow-db-admin
+fourseven:scss
+aldeed:autoform-select2
+vazco:universe-autoform-select
+sergeyt:typeahead
+standard-minifier-css@1.2.0
+standard-minifier-js@1.2.0
+tsega:bootstrap3-datetimepicker@=3.1.3_3
+bookmd:autoform-phonenumber
+dispatch:phoneformat.js
+yogiben:autoform-map
+dburles:google-maps
+mdg:geolocation
+kurounin:pagination
+kurounin:pagination-blaze
+tmeasday:publish-counts
+socialize:server-time
+socialize:user-model
+socialize:user-presence
+socialize:messaging
+matb33:collection-hooks
+gunjansoni:notifications
+aldeed:autoform-bs-button-group-input
+aldeed:template-extension
+dburles:mongo-collection-instances
+lai:collection-extensions
+mdg:validation-error
+msavin:jetsetter
+msavin:mongol
+summernote:standalone
+percolate:synced-cron
+rubaxa:sortable
+rcy:nouislider
+patrickml:braintree
+meteorhacks:search-source
+tap:i18n
+tap:i18n-ui
+rzymek:moment-locales
+shell-server

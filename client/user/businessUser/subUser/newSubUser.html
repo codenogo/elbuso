@@ -1,0 +1,20 @@
+<template name="newSubUser">
+	<div class="data-container">
+		<h1>new sub user
+			<a href="/sub-user" class="btn btn-sm btn-default pull-right">back</a>
+		</h1>
+		<div class="new-sub-user">
+			<!-- {{> quickForm collection="SubUserInvitation" type="insert" id="insertSubUser" class="new-sub-user"}} -->
+			
+			{{#autoForm collection="SubUserInvitation" id="insertSubUser" type="insert" class="new-sub-user" validation="blur"}}
+			    <fieldset>
+			    	{{> afQuickField name='firstname'}}
+			    	{{> afQuickField name='lastname'}}
+			    	{{> afQuickField name='email'}}
+			    	{{> afQuickField name='permission'}}
+		    	</fieldset>
+			    <button type="submit" class="btn btn-primary btn-sm">send the invite</button>
+		    {{/autoForm}}
+		</div>
+	</div>
+</template>

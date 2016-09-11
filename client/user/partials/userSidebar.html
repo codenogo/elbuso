@@ -1,0 +1,138 @@
+<template name="userSidebar">
+	<div class="sidebar-content">
+		<!-- {{#if isInRole 'admin'}}
+			<h1>navigation</h1>
+		{{else}}
+			<h1>My account</h1>
+		{{/if}} -->
+		{{#if currentUser}}
+		<ul class="menufy-navigation menufy-single-item-wrapper">
+			<li>
+				<a class="sidebar-link current profile" href="/profile">
+					<img src="/img/user.svg" /> Profile <span class="notification none"></span>
+				</a>
+			</li>
+			<!-- {{#if isInRole 'seller'}}
+				<li>
+					<a class="sidebar-link activity" href="/admin/users/">
+						<img src="/img/users.svg" />users
+					</a>
+				</li>
+			{{/if}} -->
+			{{#if isInRole 'admin'}}
+				<li>
+					<a class="sidebar-link activity" href="/admin/">
+						<img src="/img/stats.svg" />Stats<span class="notification none"></span>
+					</a>
+				</li>
+				<li>
+					<a class="sidebar-link activity" href="/admin/users/">
+						<img src="/img/users.svg" />users
+						<span class="notification {{#if unverifiedSellersAvailable}}yeah{{else}}hidden{{/if}}">{{sellerNo}}</span>
+					</a>
+				</li>
+				<li>
+					<a class="sidebar-link activity" href="/ongoing-bids">
+						<img src="/img/clock.svg" />ongoing bids<span class="notification none"></span>
+					</a>
+				</li>
+				<li>
+					<a class="sidebar-link activity" href="/closed-bids">
+						<img src="/img/close.svg" />closed bids<span class="notification none"></span>
+					</a>
+				</li>
+			{{else}}
+				<li>
+					<a class="sidebar-link favourites" href="/favourites">
+						<img src="/img/fav.svg" />Favourites<span class="notification none"></span>
+					</a>
+				</li>
+				{{#if isInRole 'sub-user'}}
+					<li>
+						<a class="sidebar-link activity" href="/item-collection">
+							<img src="/img/collection.svg" />item collection<span class="notification none"></span>
+						</a>
+					</li>
+					{{#if isInRole 'manager'}}
+						<li>
+							<a class="sidebar-link activity" href="/post-deal">
+								<img src="/img/add.svg" />Post a Deal<span class="notification none"></span>
+							</a>
+						</li>
+					{{/if}}
+				{{else}}
+					<li>
+						<a class="sidebar-link activity" href="/activity">
+							<img src="/img/dark-activity.svg" />My Activity<span class="notification none"></span>
+						</a>
+					</li>
+					<li>
+						<a class="sidebar-link cart" href="/cart">
+							<img src="/img/dark-cart.svg" /> My Cart
+							<span class="notification {{#if cartItem}}yeah{{else}}none{{/if}}">{{#if cartItem}}{{count}}{{/if}}</span>
+						</a>
+					</li>
+				{{/if}}
+			{{/if}}
+			{{#if isInRole 'seller'}}
+				{{#if sellerVerified}}
+				<li>
+					<a class="sidebar-link activity" href="/ongoing-bids">
+						<img src="/img/clock.svg" />ongoing bids<span class="notification none"></span>
+					</a>
+				</li>
+				<li>
+					<a class="sidebar-link activity" href="/closed-bids">
+						<img src="/img/close.svg" />closed bids<span class="notification none"></span>
+					</a>
+				</li>
+				<li>
+					<a class="sidebar-link activity" href="/item-collection">
+						<img src="/img/collection.svg" />item collection<span class="notification none"></span>
+					</a>
+				</li>
+				<li>
+					<a class="sidebar-link activity" href="/post-deal">
+						<img src="/img/add.svg" />Post a Deal<span class="notification none"></span>
+					</a>
+				</li>
+				{{/if}}
+			{{/if}}
+			{{#if isInRole 'admin'}}
+				<li>
+					<a class="sidebar-link cart" href="/admin/new-auction">
+						<img src="/img/add.svg" /> New Auctions<span class="notification none"></span>
+					</a>
+				</li>
+				<li>
+					<a class="sidebar-link cart" href="/admin/banners">
+						<img src="/img/banners.svg" /> Banners<span class="notification none"></span>
+					</a>
+				</li>
+				<li>
+					<a class="sidebar-link cart" href="/admin/categories">
+						<img src="/img/categories.svg" /> Categories<span class="notification none"></span>
+					</a>
+				</li>
+				<li>
+					<a class="sidebar-link cart" href="/countries">
+						<img src="/img/marker.svg" /> Countries<span class="notification none"></span>
+					</a>
+				</li>
+				<li>
+					<a class="sidebar-link cart" href="/language">
+						<img src="/img/language.svg" /> Language<span class="notification none"></span>
+					</a>
+				</li>
+			{{/if}}
+			<li>
+				<a class="sidebar-link activity" href="/support">
+					<img src="/img/support.svg" />
+					Support
+					<span class="notification {{#if hasNewMessage}}yeah{{else}}none hidden{{/if}}">{{newMessageCount}}</span>
+				</a>
+			</li>
+		</ul>
+		{{/if}}
+	</div>
+</template>

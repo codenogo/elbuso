@@ -1,0 +1,32 @@
+<template name="verifiedSellers">
+	<div class="data-container admin-users">
+		<h1>
+			USERS / <span class="user-count">{{sellerNo}}</span>
+			{{> adminUserMenu}}
+		</h1>
+		{{#if verifiedSellersAvailable}}
+		<div class="table-responsive">
+			<table class="table users-table table-hover">
+				<thead>
+					<tr>
+						<th></th>
+						<th>name</th>
+						<th>company</th>
+						<th>company email</th>
+						<th>phone</th>
+						<!-- <th>verify</th> -->
+						<th>details</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each users}}
+						{{> sellerItem}}
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+		{{else}}
+			<h1 class="left-placeholder">no verified sellers yet</h1>
+		{{/if}}
+	</div>
+</template>

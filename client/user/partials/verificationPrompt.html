@@ -1,0 +1,22 @@
+<template name="verificationPrompt">
+{{#if isInRole 'seller'}}
+	{{#if SellerCompleteProfile}}
+		<div class="alert fixed alert-danger complete-profile-warning">
+			<p><!-- <strong>Please complete your profile:</strong> --> You cannot transact as a business before you complete your profile. <a href="/edit-profile/" class="btn btn-danger btn-sm">click here to edit profile</a></p>
+		</div>
+	{{else}}
+		{{#if submitted}}
+			{{#if approved}}
+			{{else}}
+				<div class="alert fixed alert-info complete-profile-primary">
+					<p><!-- <strong>Verification status:</strong> --> Your account will be reviewed by the administrator within 48hrs</p>
+				</div>
+			{{/if}}
+		{{else}}
+			<div class="alert fixed alert-success complete-profile-success">
+				<p><!-- <strong>get verified:</strong> --> Submit your business account for verification. <a href="/profile/" class="btn btn-success btn-sm">go to profile</a></p>
+			</div>
+		{{/if}}
+	{{/if}}
+{{/if}}
+</template>

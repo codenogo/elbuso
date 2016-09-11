@@ -1,0 +1,22 @@
+{
+    "global": {
+        "deals": "deals",
+        "auctions": "auctions",
+        "register": "register",
+        "login": "login",
+        "logout": "logout",
+        "cart": "cart",
+        "my_account": "my account",
+        "no_deals_yet": "no deals yet",
+        "show_more": "show more",
+        "favourites": "favourites",
+        "my_activity": "my activity",
+        "my_cart": "my cart",
+        "support": "support",
+        "checkout": "checkout"
+    },
+    "homepage": {
+        "featured_auctions": "featured auctions",
+        "no_featured_auctions": "no featured auctions yet"
+    }
+}

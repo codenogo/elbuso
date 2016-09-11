@@ -1,0 +1,127 @@
+<template name="biddingAuction">
+		<div class="bidding-item item">
+	        <div class="image-preview col-sm-4">
+	        	{{#if isInRole "seller"}}
+	        		{{#if placedBid}}
+						<div class="rate-bar-standard">
+							<span class="rate">{{myPosition}}</span>
+						</div>
+					{{/if}}
+				{{/if}}
+				<a href="/auction/{{_id}}">
+					{{#with FS.GetFile "auctionImages" image}}
+			        <div class="image-preview-image" style="background: url({{url}});"></div>
+					{{/with}}
+				</a>
+			</div>
+		
+			<div class="info-section col-sm-8">
+				<div class="rates-info col-xs-4">
+					<ul>
+						<li class="bid-name">
+							<a href="/auction/{{_id}}"><h2 class="title"><span data-tooltip="{{name}}" tabindex="0">{{briefName}}</span></h2></a>
+						</li>
+						<li class="min-amount">
+							<span class="value">{{totalPurchaseValue}}$</span><br />
+							<span class="attr">Purchased value</span><br />
+						</li>
+						<li class="purchases">
+							<span class="value">{{reservationNo}}</span><br />
+							<span class="attr">Customers</span>
+						</li>
+					</ul>
+				</div>
+				<div class="details-info col-xs-8">
+					{{#if isInRole "seller"}}
+						{{#if placedBid}}
+							<div class="place-bid">
+								<div class="row">
+									<div class="col-sm-5">
+										{{#if winning}}
+											<span class="btn btn-success btn-sm">you are winning</span>
+										{{else}}
+											<span class="btn btn-danger btn-sm">you are losing</span>
+										{{/if}}
+									</div>
+									<div class="col-sm-7">
+										<form class="myBidUpdate">
+											<table>
+												<tbody>
+													<tr>
+														<td>
+															<input type="number" name="myBid" placeholder="{{StartRate}}" min="{{StartRate}}" value="{{bidPlaced}}" />
+														</td>
+														<td>
+															<button type="submit" class="btn btn-default btn-sm">update your bid</button>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</form>
+									</div>
+								</div>
+							</div>
+						{{else}}
+							<div class="place-bid">
+								<div class="row">
+									<div class="col-sm-5">
+										<span class="btn btn-primary btn-sm">start bidding</span>
+									</div>
+									<div class="col-sm-7">
+										<form class="myBidUpdate">
+											<table>
+												<tbody>
+													<tr>
+														<td>
+															<input type="number" name="myBid" placeholder="{{StartRate}}" min="{{StartRate}}" value="{{bidPlaced}}" />
+														</td>
+														<td>
+															<button type="submit" class="btn btn-default btn-sm">place your bid</button>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</form>
+									</div>
+								</div>
+							</div>
+						{{/if}}
+					{{/if}}
+					<div class="bidding-preview">
+						<table class="table">
+							<tbody>
+								{{#each Bidderss}}
+								<tr class="{{#if bidderIsMe}}bidder-is-me{{/if}}">
+									<td>
+										<span>{{position}}</span>
+									</td>
+									<td>
+										<div class="bidding-icons">
+										{{#with FS.GetFile "userImage" bidderImage}}
+								            <div class="bidder-icon" style="background: url({{url}}) no-repeat;"></div>
+								        {{else}}
+											<div class="bidder-icon">
+												<span>{{bidderLetter}}</span>
+											</div>
+										{{/with}}
+										</div>
+										{{bidderName}}
+									</td>
+									<td>
+										{{#if bidderPlacedBid}}
+											<span class="{{#if winningUser}}winning-rate{{/if}}">
+												{{bidderPlacedBid}}%
+											</span>
+										{{else}}
+											{{originalStartRate}}%
+										{{/if}}	
+									</td>
+								</tr>
+								{{/each}}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+</template>

@@ -1,0 +1,25 @@
+<template name="subUser">
+	<div class="data-container">
+		<h1>sub users
+			<a href="/sub-user/invitations" class="btn btn-sm btn-default pull-right">invitations</a>
+			<a href="/sub-user/new" class="btn btn-sm btn-success pull-right">invite a sub user</a>
+		</h1>
+		<table class="table users-table">
+			<thead>
+				<tr>
+					<th></th>
+					<th>name</th>
+					<th>email</th>
+					<th>phone</th>
+					<th>role</th>
+					<th>details</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each users}}
+					{{> subUserItem}}
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+</template>

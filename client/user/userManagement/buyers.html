@@ -1,0 +1,31 @@
+<template name="buyers">
+	<div class="data-container admin-users">
+		<h1>
+			USERS / <span class="user-count">{{buyerNo}}</span>
+			{{> adminUserMenu}}
+		</h1>
+		{{#if buyersAvailable}}
+		<div class="table-responsive">
+			<table class="table users-table table-hover">
+				<thead>
+					<tr>
+						<th></th>
+						<th>name</th>
+						<th>email</th>
+						<th>phone</th>
+						<th>role</th>
+						<th>details</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each users}}
+						{{> userItem}}
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+		{{else}}
+			<h1 class="left-placeholder">no buyers yet</h1>
+		{{/if}}
+	</div>
+</template>

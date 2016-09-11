@@ -1,0 +1,84 @@
+#sidebar-btn{
+    display: none;
+    width: 20px;
+    height: 15px;
+    cursor: pointer;
+    margin: 17px 0 0 20px;
+    float: left;
+	span{
+		height:2px;
+		background:#fff;
+		margin-bottom:5px;
+		display:block;
+		-webkit-transform: translateZ(0);
+		-webkit-backface-visibility: hidden;
+		-webkit-transition-property: all;
+		-moz-transition-property: all;
+		transition-property: all;
+		-webkit-transition-duration: 0.4s;
+		-moz-transition-duration: 0.4s;
+		transition-duration: 0.4s;
+	}
+	span:nth-child(2){
+		width:75%;
+	}
+	span:nth-child(3){
+		width:50%;
+	}
+}
+
+
+#sidebar-btn.closed-button{
+	span{
+		transform: rotate(45deg) translateY(10px);
+		-webkit-transform: rotate(45deg) translateY(10px);
+		-moz-transform: rotate(45deg) translateY(10px);
+	}
+	span:nth-child(2){
+		opacity:0;
+	}
+	span:nth-child(3){
+		width:100% !important;
+		transform: rotate(135deg) translateY(10px);
+		-webkit-transform: rotate(135deg) translateY(10px);
+		-moz-transform: rotate(135deg) translateY(10px);
+	}
+}
+/* Menu */
+.menu-wrap {
+	position: absolute;
+	z-index: 1001;
+	width: 300px;
+	height: calc(100vh - 50px);
+	background: #eee;
+	padding: .5em 1.5em 0;
+	font-size: 1.15em;
+	-webkit-transform: translate3d(-320px,0,0);
+	transform: translate3d(-320px,0,0);
+	-webkit-transition: -webkit-transform 0.4s;
+	transition: transform 0.4s;
+	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	overflow-y:auto;
+}
+
+
+/* Shown menu */
+.show-menu .menu-wrap {
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+	-webkit-transition: -webkit-transform 0.8s;
+	transition: transform 0.8s;
+	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+}
+
+.show-menu .content::before {
+	opacity: 1;
+	-webkit-transition: opacity 0.8s;
+	transition: opacity 0.8s;
+	-webkit-transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	transition-timing-function: cubic-bezier(0.7,0,0.3,1);
+	-webkit-transform: translate3d(0,0,0);
+	transform: translate3d(0,0,0);
+}

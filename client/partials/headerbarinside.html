@@ -1,0 +1,87 @@
+<template name="headerBarInside">
+	<header class="inside-page-header">
+		<a id="sidebar-btn">
+			<span></span>
+			<span></span>
+			<span></span>
+		</a>
+
+
+		<a id="menufy-logo" href="/">
+			<img src="/img/logo-white.svg" alt="Homepage">
+		</a>
+
+
+		<!-- <div class="search_container">
+			<form class="search">
+		    	<div class="field">
+					<input type="text" class="input-search  search-field" id="input-search" name="search" required>
+					<label for="search">SEARCH</label>
+		    	</div>
+			</form>
+		</div> -->
+
+
+
+		<nav id="menufy-top-nav" class="main-nav">
+			<ul>
+				<li>
+					<a href="/deals/">{{_ 'global.deals'}}</a>
+					{{#if isInRole "admin"}}
+						<span class="{{#if hasNewDeal}}notification-counter{{else}}hidden{{/if}}">
+							{{dealCount}}
+						</span>
+					{{/if}}
+				</li>
+				<li><a href="/auctions/">{{_ 'global.auctions'}}</a></li>
+				{{#if currentUser}}
+					<li class="current-user">
+						<a href="/profile">
+							{{#with FS.GetFile "userImage" currentUser.image}}
+					            <div class="profile-image" style="background: url({{url}}) no-repeat;"></div>
+					        {{else}}
+							<div class="profile-image">
+								<span>{{firstLetter}}</span>
+							</div>
+							{{/with}}
+							<span class="name">
+								{{currentUser.profile.firstname}} {{lastLetter}}
+							</span>
+
+
+							{{#if isInRole "admin"}}
+							<span class="notification-count {{#if hasNotification}}yeah{{else}}hidden{{/if}}">
+								{{notificationsCount}}
+							</span>
+							{{else}}
+							<!--for the moment this will only have the support message count-->
+							<span class="notification-count {{#if hasNewMessage}}yeah{{else}}hidden{{/if}}">
+								{{newMessageCount}}
+							</span>
+							{{/if}}
+						</a>
+					</li>
+				{{else}}
+					<li class="login">
+						<a class="popup-signin">
+							<span>{{_ 'global.login'}}</span>
+							<img class="mobile-only" src="/img/user-light.svg" />
+						</a>
+					</li>
+					<li><a href="/register/">{{_ 'global.register'}}</a></li>
+				{{/if}}
+			</ul>
+		</nav>
+		<!-- {{#if currentUser}} -->
+		<a id="menufy-menu-trigger" class="{{#if currentUser}}{{else}}mobile-only{{/if}}">
+			<span class="menufy-menu-text">Menu</span>
+			<span class="menufy-menu-icon"></span>
+		</a>
+		<!-- {{/if}} -->
+	</header>
+	{{> sideBar}}
+	{{#if currentUser}}
+	{{else}}
+		{{> loginModal}}
+	{{/if}}
+</template>

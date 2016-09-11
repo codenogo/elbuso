@@ -1,0 +1,178 @@
+//selection of catsgories
+//deals
+.select-cat{
+    display:table;
+    width:100%;
+    .select-cat-section{
+        display:table-cell;
+        height:40vh;
+        overflow-y:auto;
+        overflow-x:hidden;
+        border-right:1px solid #333;
+        vertical-align: top;
+        width:33%;
+        .select-cat-list{
+            height:auto;
+            width:100%;
+            .select-cat-item{
+                width:100%;
+                height:auto;
+                .single-cat{
+                    padding:1em;
+                    width:100%;
+                    display:block;
+                    table{
+                        tbody{
+                            tr{
+                                td{
+                                    vertical-align:middle;
+                                    .hilight-circle{
+        								width:1em;
+        								height:1em;
+        								border-radius:50%;
+        								-moz-border-radius:50%;
+        								-webkit-border-radius:50%;
+        								margin-right:1em;
+        								background-color:#333;
+        							}
+                                    .single-cat-name{
+                                        color:#777;
+                                        text-transform:uppercase;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .single-cat:hover{
+                    background:#777;
+                    table{
+                        tbody{
+                            tr{
+                                td{
+                                    .hilight-circle{
+        								background-color:#fff;
+        							}
+                                    .single-cat-name{
+                                        color:#fff;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .single-cat.active-select{
+                    background:#333;
+                    table{
+                        tbody{
+                            tr{
+                                td{
+                                    .hilight-circle{
+        								background-color:#11ce02;
+        							}
+                                    .single-cat-name{
+                                        color:#fff;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.select-category-btn{
+    margin-top:3em;
+    .select-cat-link{
+        text-transform:uppercase;
+        background:#f9690e;
+        width:33%;
+        padding:1em 0;
+        border:0 !important;
+    }
+    .select-cat-link:hover{
+        background:#af4a0a;
+    }
+}
+
+
+
+
+//category preview in deals ans auctions
+.category-choice{
+    width:100%;
+    display:table;
+    margin-bottom:3em;
+    .cat-choice-list{
+        list-style:none;
+        width:100%;
+        opacity:.7;
+        li{
+            width:auto;
+            float:left;
+            display:block;
+            padding: 1em 4em;
+            border-right:1px solid #333;
+            text-transform:uppercase;
+            .label-black{
+                padding:.3em .5em .2em;
+                background:#000;
+                border-radius:0;
+                border:1px solid #000;
+                margin-left:2em;
+            }
+            .label-black:hover{
+                background:#fff;
+                color:#000;
+            }
+        }
+        li:first-child{
+            padding: 1em 4em 1em 0;
+        }
+        li:last-child{
+            border-right:0 !important;
+        }
+    }
+}
+
+
+.reservation-fee{
+    width:100%;
+    display:table;
+    background:#777;
+    background: linear-gradient(270deg, #777777, #222222);
+    background-size: 400% 400%;
+    -webkit-animation: AnimationName 10s ease infinite;
+    -moz-animation: AnimationName 10s ease infinite;
+    animation: AnimationName 10s ease infinite;
+
+    padding:1em;
+    .notes, .fee{
+        display:table-cell;
+        vertical-align:middle;
+        span{
+            color:#fff;
+        }
+    }
+    .fee{
+        span{
+            font-size:2em;
+        }
+    }
+}
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}

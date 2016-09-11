@@ -1,0 +1,27 @@
+<template name="bannerManage">
+	<div class="data-container">
+		{{#if $.Session.get 'newBanner'}}
+			<button class="close-new"><i class="fa fa-close"></i></button>
+			{{> bannerEdit}}
+		{{else}}
+			{{#if banners}}
+				<h1>banners
+				<button class="new-banner-btn pull-right">New Banner</button>
+				</h1>
+			{{else}}
+				<button class="new-banner-btn">New Banner</button>
+			{{/if}}
+		{{/if}}
+		<div class="banners">
+			{{#if Template.subscriptionsReady}}
+				{{#each banners}}
+					{{> singleBanner}}
+				{{else}}
+					<h1 class="centered-placeholder">no banners yet</h1>
+				{{/each}}
+			{{else}}
+				{{> preloaderInner}}
+			{{/if}}
+		</div>
+	</div>
+</template>

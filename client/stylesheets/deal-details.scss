@@ -1,0 +1,338 @@
+.deal-details{
+	.image-section{
+		width:66%;
+		float:left;
+		height:auto;
+		position:relative;
+		.title-bar{
+			width:100%;
+			margin-top:30px;
+			position:absolute;
+			top:0;
+			left:0;
+			z-index: 9;
+			h2.title{
+				text-transform:capitalize;
+				font-size:34px;
+				padding-left:30px;
+			}
+			.liked{
+				.heart{
+					font-size: 36px;
+					float:left;
+					margin-right:px
+				}
+				.heart.unliked{
+					color:#767676;
+				} 
+				.heart.liked{
+					color:#f10404;
+				}
+				.number{
+					font-size:20px;
+					font-family: 'montserratbold';
+					color:#767676;
+				}
+				.val{
+					font-size:12px;
+					color:#767676;
+				}
+			}
+			.days-left{
+				table.times{
+					tbody{
+						tr{
+							td{
+								vertical-align:middle;
+								.clock-icon{
+									margin-right:15px;
+								}
+								.time{
+									color:#767676;
+								}
+							}
+						}
+					}
+				}
+			}
+
+		}
+		.title-bar.edit-mode{
+			width:100%;
+			margin-top:0px;
+			margin-bottom:30px;
+			position:relative;
+			top:0;
+			left:0;
+		}
+		.image-preview{
+			width:100%;
+		}
+		.deal-detail-unpublished-label{
+			width:100%;
+			// margin-top:-1em;
+			margin-top:0;
+		}
+	}
+	.image-section.edit{
+	    padding: 30px;
+	}
+	.right-sidebar{
+		width:33%;
+		float:right;
+		padding:30px 30px 0;
+		.reserve-section{
+			width:100%;
+			display:table;
+			padding-bottom:15px;
+			border-bottom:1px solid #e7e7e7;
+			.amount{
+				width:50%;
+				float:left;
+				.discounted{
+					font-size:42px;
+					color:#000;
+					font-family: 'montserratlight';
+				}
+				.original{
+					color:#767676;
+					text-decoration:line-through;
+					font-family: 'montserratbold';
+					font-weight:bold;
+				}
+			}
+			.reservation{
+				width:50%;
+				float:right;
+				.orange-box{
+					width:100%;
+					padding:10px 20px;
+					background:#f9690e;
+					margin-bottom:5px;
+					border:0;
+					span{
+						color:#ffffff;
+						font-size:16px;
+						text-transform:uppercase;
+						.lower{
+							text-transform:lowercase;
+							font-size:14px;
+						}
+						.big{
+							font-size:20px;
+						}
+					}
+				}
+				.reservation-help{
+					color:#767676;
+					strong{
+						color:#f9690e;
+					}
+				}
+
+			}
+		}
+		.rates{
+			width:100%;
+			display:table;
+			padding-top:15px;
+			padding-bottom:15px;
+			margin-bottom:15px;
+			border-bottom:4px solid #e7e7e7;
+			.discount-rate, .money-saved{
+				width:50%;
+				float:left;
+				span{
+					color:#767676;
+				}
+				.rate{
+					font-size:26px;
+				}
+			}
+		}
+		.offer{
+			width:100%;
+			display:table;
+			padding-bottom:15px;
+			margin-bottom:15px;
+			.get-free{
+				width:calc(40% - 15px);
+				padding:15px;
+				border:1px solid #333;
+				text-align:center;
+				float:left;
+				span{
+					font-size:20px;
+					text-align:center;
+					text-transform:uppercase;
+					span{
+						font-family: 'montserratblack';
+					}
+				}
+			}
+			.invite{
+				width:calc(60% + 15px);
+				float:right;
+				display:block;
+				padding-left:15px;
+				span{
+					color:#767676;
+					font-size:12px;
+				}
+				.social-icon{
+					width:33px;
+					height:24px;
+					border-radius:3px;
+					padding:4px 10px;
+					float:left;
+					margin-right:15px;
+					margin-top:10px;
+					cursor: pointer;
+					i{
+						color:#ffffff;
+						font-size:16px;
+						text-align:center;
+					}
+				}
+				.gplus{
+					background:#de4330;
+				}
+				.twitter{
+					background:#28aae1;
+				}
+				.facebook{
+					background:#3c5a99;
+				}
+			}
+		}
+		.location{
+			.map{
+				width:100%;
+				height:112px;
+				border:1px solid #767676;
+				margin-bottom:.5em;
+			}
+			span{
+				color:#767676;
+				margin-bottom:2em;
+			    width: 100%;
+    			display: table;
+    			text-transform: capitalize;
+			}
+		}
+	}
+	.details{
+		width:66%;
+		float:left;
+		padding:30px;
+		.client-intro-section{
+			width:100%;
+			margin-bottom:30px;
+			.profile-image{
+				width:55px;
+				height:55px;
+				background:black;
+				border-radius:50%;
+				-webkit-border-radius:50%;
+				-moz-border-radius:50%;
+				display:table;
+				float:left;
+				background-size:cover !important;
+				background-position:50% 50%;
+				span{
+					color: #fff;
+					display: table;
+					margin: 13px auto 0;
+					font-size: 30px;
+					text-transform: uppercase;
+				}
+			}
+			.supplier-name{
+				padding:15px 0 10px 20px;
+				display:table;
+				text-transform:capitalize;
+			}
+			.location-based{
+				font-size:12px;
+				color:#9a9a9a;
+				padding:15px 0 0;
+				display:table;
+				i{
+					margin-right:.5em;
+				}
+			}
+		}
+		.description{
+			color:#767676;
+			h1{
+				color:black;
+				text-transform:capitalize;
+			}
+		}
+	}
+}
+
+//standard
+.clear{
+	clear:both;
+}
+strong{
+	font-family: 'montserratbold';
+}
+
+
+
+.add-fee{
+	width:70%;
+	float:right;
+	form{
+		table{
+			tr{
+				td{
+					vertical-align:bottom;
+					.form-group{
+						label{
+							display:block;
+							color:#fff;
+						}
+						input{
+						    border: 2px solid #ddd;
+							background: rgba(255, 255, 255, 1);
+							padding:0.5em 1em;
+						}
+					}
+					.btn{
+						border: 2px solid #337AB7;
+						padding:0.5em 1em;
+					}
+				}
+			}
+		}
+	}
+}
+
+
+table.deal-author{
+	width:100%;
+	tbody{
+		tr{
+			td:first-child{
+				width:70px;
+			}
+			td{
+				vertical-align:middle;
+			}
+		}
+	}
+}
+table.quantity{
+	width:100%;
+	margin-bottom:.5em;
+	td{
+		min-width:40%;
+		.my-units{
+			padding:.5em;
+			border:1px solid #ddd;
+		}
+	}
+}

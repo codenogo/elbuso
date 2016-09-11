@@ -1,0 +1,27 @@
+<template name="favourites">
+	<div class="data-container">
+		<h1>MY FAVOURITES <img src="/img/fav.svg" /></h1>
+		<div class="favourites-page">
+			{{#if favourites}}
+				<div class="favourites">
+					{{#if favAuctionExists}}
+						<div>
+							{{#each favouritedAuction}}
+								{{> auctionListItem}}
+							{{/each}}
+						</div>
+					{{/if}}
+					{{#if favDealExists}}
+						<div class="row">
+							{{#each favouritedDeal}}
+								{{> dealPreviewList}}
+							{{/each}}
+						</div>
+					{{/if}}
+				</div>
+			{{else}}
+				<h1 class="centered-placeholder">there's no favourites yet</h1>
+			{{/if}}
+		</div>
+	</div>
+</template>

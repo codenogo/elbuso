@@ -1,0 +1,278 @@
+body{
+	overflow-y:auto;
+}
+.alert{
+	border-radius:0 !important;
+}
+.alert > p, .alert > ul {
+    line-height: 1.8;
+}
+.alert.fixed{
+	width: 100%;
+    padding: .5em 2em;
+    .btn{
+    	padding: .2em 1em;
+    }
+}
+.dim-alittle{
+	opacity:.4;
+}
+.data-container{
+	width:100%;
+}
+a{
+	text-decoration:none !important;
+}
+.selectize-input{
+	.item{
+		width:auto;
+		display:table;
+		float:left;
+	}
+}
+
+.insidepages{
+	.inside-page-header{
+		background:rgba(0,0,0,0.9);
+		#menufy-top-nav{
+			a{
+				color:#fff !important;
+			}
+			a:hover{
+				color:#eee !important;
+			}
+			li{
+				color: #fff !important;
+			}
+		}
+	}
+}
+
+
+/*BANNER*/
+.banner-bg{
+	width:100%;
+	height:60vh;
+	background:#EEEEEE;
+	/*overflow:hidden;*/
+	.carousel {
+		justify-content: flex-start;
+		overflow: hidden;
+		padding:0;
+		position: relative;
+		width: 100%;
+		.container {
+			display: flex;
+			flex-direction: row;
+			height: 60vh;
+			transform: translate3d(0, 0, 0);
+			transition: transform 600ms;
+			width: 100%;
+			padding: 0;
+			.slide {
+				flex-shrink: 0;
+				line-height: 1.4;
+				text-align: center;
+				width: 100%;
+				position:relative;
+				img{
+					width:100%;
+				}
+				.details{
+					max-width:20%;
+					position:absolute;
+					bottom:10vh;
+					left:10vw;
+					text-align:left;
+					h1{
+						font-size:34px;
+						font-family: 'montserratlight';
+						color:#000 !important;
+					}
+					p{
+						font-size:14px;
+						color:#000;
+						font-family: 'montserratlight';
+					}
+				}
+			}
+		}
+		nav {
+			bottom: 0;
+			left: 0;
+			position: absolute;
+			text-align: center;
+			width: 100%;
+			z-index: 1;
+			a {
+				color: #000;
+				font-size: 34px;
+				opacity: .2;
+				text-decoration: none;
+			}
+			a:hover {
+				opacity: .5;
+			}
+			a.current {
+				opacity: 1;
+			}
+		}
+	}
+
+}
+
+
+
+//favourites
+
+.heart{
+	#twitter-like {
+		cursor: pointer;
+		width: 100px;
+		height: 100px;
+		background-image: url('/img/web_heart_animation.png');
+		background-position: left center;
+	    margin-top: -35px;
+	    margin-right: -20px;
+	    margin-bottom: -40px;
+		&.liked {
+			animation: twit-like 2s steps(28);
+			background-position: right center;
+		}
+	}
+
+	@keyframes twit-like {
+		0% { background-position: 0; }
+		50% { background-position: -2800px; }
+		100% { background-position: -2800px; }
+	}
+}
+
+
+
+
+// BackgroundCheck
+
+.background--light {
+  color: white;
+  background: black;
+}
+
+.background--dark {
+  color: black;
+  background: white;
+}
+
+.background--complex {
+  color: white;
+  background: gray;
+}
+.btn{
+	border-radius:0 !important;
+}
+.please-note{
+	margin-bottom:3em;
+	color:#777;
+}
+.deactivated{
+	color:#777 !important;
+	opacity:0.3;
+	h1, h2, h3, span, strong {
+		color:#777 !important;
+	}
+}
+
+
+@keyframes pulse {
+	0% {
+		box-shadow:0 0 0px 0 #333;
+	}
+	50% {
+		box-shadow:0 0 22px 0 #333;
+	}
+	100% {
+		box-shadow:0 0 0px 0 #333;
+	}
+}
+.pulse {
+	animation: pulse 5s ease-in-out infinite;
+}
+.pulse:hover {
+	animation: none;
+}
+
+
+
+
+
+
+//ATTACHMENT STYLING
+.attachments{
+	margin-top:2em;
+	.desc{
+		margin-bottom:1em;
+	}
+	.attachment-link{
+		margin-bottom:.5em;
+		a{
+			color:#fff;
+		    margin-right: 2em;
+		}
+	}
+}
+
+// the notification badge for the headerbar
+.notification-count{
+	background:#fff;
+	color:#222;
+	font-size: .8em;
+	border-radius:2em;
+    height: 1.5em;
+    display: table;
+    min-width: 1.5em;
+    padding: .25em .5em 0;
+    position: absolute;
+	top: -7px;
+    left: 25px;
+    text-align: center;
+}
+.notification-count.dark{
+	background:#222;
+	color:#fff;
+}
+.full-width{
+	width:100%;
+}
+
+.centered{
+	text-align:center;
+}
+
+
+.disabled-arrow{
+	opacity:.2;
+}
+.no-underline{
+	border-bottom:0px !important;
+}
+.bold{
+	font-family: 'montserratextra_bold';
+}
+
+.fixed-layer{
+	background:rgba(255,255,255,.9);
+	height:100vh;
+	width:100%;
+	position:fixed;
+	z-index:999999999999999999;
+	top:0;
+	left:0;
+	box-sizing:border-box;
+	text-align:center;
+	padding:40vh 35vw 0;
+	p{
+		font-size:2em;
+		line-height:2;
+		font-family: 'montserratlight';
+	}
+}

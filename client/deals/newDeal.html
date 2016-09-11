@@ -1,0 +1,156 @@
+<template name="newDeal">
+	<div class="data-container">
+		<h1>
+			POST A DEAL
+			<img src="/img/add.svg" />
+		</h1>
+		{{#if stepOne}}
+			{{> dealStepOne}}
+		{{else}}
+			<div class="new-deal">
+				<!-- {{> quickForm collection="Deals" type="insert" id="insertDealForm" class="new-deal-form" buttonContent="create this deal"}} -->
+				<h1 class="no-underline">CREATE YOUR DEAL</h1>
+				<div class="category-choice">
+					<ul class="cat-choice-list">
+						{{#if subParentId}}
+							{{#if rootParentId}}
+								<li>{{rootParentName}}</li>
+							{{/if}}
+							<li>{{subParentName}}</li>
+						{{/if}}
+						<li class="bold">{{categoryName}} <a class="label label-sm label-black step-two-trigger">back</a></li>
+					</ul>
+				</div>
+				{{#autoForm collection="Deals" id="insertDealForm" type="insert" class="new-deal-form" validation="blur"}}
+				    <fieldset>
+				    	{{> afQuickField name='name'}}
+						{{> afQuickField name='category' value=selectedCatId}}
+				    	<div class="toggle-options">
+				    		{{> afQuickField name='unitType' template="buttonGroup"}}
+				    	</div>
+
+				    	<h1>pricing and redeeming</h1>
+						<div class="reservation-fee">
+							<div class="notes">
+								<span>The reservation fee rate which will be retained by Elbuso will be :</span>
+							</div>
+							<div class="fee">
+								<span>{{categoryFee}}%</span>
+							</div>
+						</div>
+				    	{{> afQuickField name='currency' defaultValue=myCurr}}
+				    	{{#if afFieldValueIs name="unitType" value="single"}}
+				    		{{> afQuickField name='price' label="A unit's price before discount"}}
+						{{/if}}
+						{{#if afFieldValueIs name="unitType" value="assortment"}}
+				    		{{> afQuickField name='price' label="Maximum value a single user can reserve"}}
+						{{/if}}
+
+				    	{{> afQuickField name='Rate'}}
+
+						{{#if isInRole "admin"}}
+							{{> afQuickField name='reservationFee' value=categoryFee}}
+						{{else}}
+							<div class="hidden">
+								{{> afQuickField name='reservationFee' value=categoryFee}}
+							</div>
+						{{/if}}
+
+				    	<!--same as comment below-->
+				    	{{#if afFieldValueIs name="unitType" value="single"}}
+							{{> afQuickField name='maximumUserUnits'}}
+							{{> afQuickField name='maximumTotalUnits'}}
+							{{> afQuickField name='maximumTotalReservations' min=maxPriceVal value=maxPriceVal class="hidden"}}
+							<div class="form-group">
+							    <input type="number" disabled value="{{maxPriceVal}}" class="form-control">
+							</div>
+					    {{/if}}
+					    {{#if afFieldValueIs name="unitType" value="assortment"}}
+					    	<div class="hidden">
+					    		{{> afQuickField name='maximumUserUnits' value=min}}
+					    		{{> afQuickField name='maximumTotalUnits' label="The maximum number of reservations for this deal" value="9999"}}
+					    	</div>
+					    	{{> afQuickField name='maximumTotalReservations' min=priceVal defaultValue=priceVal}}
+						{{/if}}
+
+				    	<div class="toggle-options">
+				    		{{> afQuickField name='redeemValueToggle' template="buttonGroup"}}
+				    	</div>
+				    	<!--same as comment below-->
+				    	<!-- {{#if afFieldValueIs name="redeemValueToggle" value="yes"}}
+				    		{{> afQuickField name='minRedeemValue' }}
+					    {{/if}} -->
+
+
+						<h1>details</h1>
+
+				    	{{> afQuickField name='image'}}
+				    	{{> afQuickField name='secondaryImage'}}
+				    	{{> afQuickField name='description'}}
+				    	{{> afQuickField name='attachments'}}
+
+
+
+				    	<h1>timelines</h1>
+
+
+
+				    	<div class="toggle-options">
+				    		{{> afQuickField name='selectLive' template="buttonGroup"}}
+				    	</div>
+				    	<!--if the value of the radio group above is custom show the date field for go live-->
+				    	{{#if afFieldValueIs name="selectLive" value="custom"}}
+							<div class="live-date">
+					    		{{> afQuickField name='goingLiveDate' defaultValue=""}}
+					    	</div>
+					    {{/if}}
+					    {{#if afFieldValueIs name="selectLive" value="immediately"}}
+					    	<div class="live-date hidden">
+					    		{{> afQuickField name='goingLiveDate' value=dateNow}}
+					    	</div>
+						{{/if}}
+
+
+
+				    	<div class="closing-date hidden">
+				    		{{> afQuickField name='closingDate'}}
+				    	</div>
+
+
+						<div class="redeem-date hidden">
+					    	<div class="toggle-options">
+					    		{{> afQuickField name='redeemMoreToggle' template="buttonGroup"}}
+					    	</div>
+					    	<!--same as comment above-->
+					    	{{#if afFieldValueIs name="redeemMoreToggle" value="yes"}}
+						    	<div class="">
+						    		{{> afQuickField name='finalRedeemDate' defaultValue=""}}
+						    	</div>
+						    {{/if}}
+						    {{#if afFieldValueIs name="redeemMoreToggle" value="no"}}
+						    	<div class="hidden">
+						    		{{> afQuickField name='finalRedeemDate' value=closeDate}}
+						    	</div>
+							{{/if}}
+						</div>
+
+						<div class="collection-date hidden">
+				    		{{> afQuickField name='finalCollectionDate'}}
+				    	</div>
+
+				    	<h1><br />pick up locations</h1>
+				    	{{#if locationsExist}}
+				    		<div class="hidden">
+				    			{{> afQuickField name='location'}}
+				    		</div>
+				    		{{> afQuickField name='locations'}}
+				    	{{else}}
+				    		{{> afQuickField name='location'}}
+				    	{{/if}}
+				    </fieldset>
+				    <button type="submit" class="btn btn-primary btn-sm">create this deal</button>
+			    {{/autoForm}}
+			</div>
+		{{/if}}
+	</div>
+</template>

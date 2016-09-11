@@ -1,0 +1,9 @@
+<template name="deactivatedUser">
+{{#if currentUser}}
+	{{#if isDeactivated}}
+		<div class="alert alert-danger complete-profile-warning">
+			<p><strong>Your account has been deactivated!</strong></p>
+		</div>
+	{{/if}}
+ {{/if}}
+</template>

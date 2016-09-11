@@ -1,0 +1,11 @@
+<template name="itemCollection">
+	<div class="data-container">
+		<h1>item collection <img src="/img/collection.svg" /></h1>
+		<div class="item-collection-page">
+			{{#if isItemCollection}}
+			{{else}}
+				<h1 class="centered-placeholder">there's no items for collection yet</h1>
+			{{/if}}
+		</div>
+	</div>
+</template>

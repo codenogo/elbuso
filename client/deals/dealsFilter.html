@@ -1,0 +1,138 @@
+<template name="dealsFilter">
+    <div class="filter-section">
+        <div class="filter-body">
+            <input type="text" name="dealsearch" class="auctionsearch search-filter" placeholder="search for deals..." />
+        </div>
+    </div>
+    <div class="filter-section">
+        <div class="filter-title">
+            <span>Categories</span>
+        </div>
+        <div class="filter-body">
+            <ul class="clickable-list">
+                {{#each rootCategory}}
+                    {{#if countExists}}
+                    <li>
+                        <div class="table-div">
+                            <div class="table-cell">
+                                <input class="checkbox" id="{{_id}}" type="checkbox" name="{{_id}}" checked>
+                                <label tabindex="1" for="{{_id}}" class="checkbox-label">
+                                    <span class="cat-name">{{name}}</span>
+                                    <span class="cat-count">{{count}}</span>
+                                </label>
+                            </div>
+                            <div class="table-cell arrows">
+                                <div class="child-arrow">
+                                    {{#if hasSubCat}}
+                                        <a id="{{_id}}" class="arrow-down has-children"></a>
+                                    {{else}}
+                                        <a id="{{_id}}" class="arrow-down transparent"></a>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        {{#if hasSubCat}}
+                            {{> Template.dynamic template="filterSubCat" data=thisId}}
+                        {{/if}}
+                    </li>
+                    {{/if}}
+                {{else}}
+                    no categories yet
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+
+    <!-- <div class="filter-section">
+        <div class="filter-title">
+            <span>Locations</span>
+        </div>
+        <div class="filter-body">
+        </div>
+    </div> -->
+    <div class="filter-section">
+        <div class="filter-title">
+            <span>Price range</span>
+        </div>
+        <div class="filter-body">
+            <div id="slider" class="slider"></div>
+            <p class="slider-values">
+                <span class="pull-left">min: <span class="min">{{slider.[0]}}</span> </span>
+                <span class="pull-right">max: <span class="max">{{slider.[1]}}</span></span>
+            </p>
+        </div>
+    </div>
+    <div class="filter-section">
+        <div class="filter-title">
+        </div>
+        <div class="filter-body">
+            <a class="btn btn-sm btn-primary">reset filter</a>
+        </div>
+    </div>
+</template>
+
+
+
+<template name="dealSubCat">
+    <ul class="clickable-list hidden" id="{{this}}">
+        {{#each subCategory}}
+            {{#if countExists}}
+            <li>
+                <div class="table-div">
+                    <div class="table-cell">
+                        <input class="checkbox" id="{{_id}}" type="checkbox" name="{{_id}}" checked>
+                        <label tabindex="1" for="{{_id}}" class="checkbox-label">
+                            <span class="cat-name">{{name}}</span>
+                            <span class="cat-count">{{count}}</span>
+                        </label>
+                    </div>
+                    <div class="table-cell arrows">
+                        <div class="child-arrow">
+                            {{#if hasSubCat}}
+                                <a id="{{_id}}" class="arrow-down has-children"></a>
+                            {{else}}
+                                <a id="{{_id}}" class="arrow-down transparent"></a>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                {{#if hasSubCat}}
+                    {{> Template.dynamic template="dealSubSubCat" data=thisId}}
+                {{/if}}
+            </li>
+            {{/if}}
+        {{/each}}
+    </ul>
+</template>
+
+
+
+
+<template name="dealSubSubCat">
+    <ul class="clickable-list hidden" id="{{this}}">
+        {{#each subCategory}}
+            {{#if countExists}}
+            <li>
+                <div class="table-div">
+                    <div class="table-cell">
+                        <input class="checkbox" id="{{_id}}" type="checkbox" name="{{_id}}" checked>
+                        <label tabindex="1" for="{{_id}}" class="checkbox-label">
+                            <span class="cat-name">{{name}}</span>
+                            <span class="cat-count">{{count}}</span>
+                        </label>
+                    </div>
+                    <div class="table-cell arrows">
+                        <div class="child-arrow">
+                            {{#if hasSubCat}}
+                                <a id="{{_id}}" class="arrow-down has-children"></a>
+                            {{else}}
+                                <a id="{{_id}}" class="arrow-down transparent"></a>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {{/if}}
+        {{/each}}
+    </ul>
+</template>

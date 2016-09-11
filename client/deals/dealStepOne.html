@@ -1,0 +1,98 @@
+<template name="dealStepOne">
+    <div class="deal-first-step">
+        <h1 class="no-underline">SELECT CATEGORY</h1>
+        <div class="select-cat">
+            {{#unless rootCategory}}
+                <h1 class="centered-placeholder">no categories yet</h1>
+            {{else}}
+                <div class="select-cat-section">
+                    <ul class="select-cat-list">
+                        {{#each rootCategory}}
+                        <li class="select-cat-item">
+                            <a id="{{_id}}" class="single-cat">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="hilight-circle"></div>
+                                            </td>
+                                            <td>
+                                                <span class="single-cat-name">{{name}}</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </a>
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            {{/unless}}
+            {{#if noRootSelected}}
+                <div class="select-cat-section">
+                    <ul class="select-cat-list">
+                        {{#each subCategory}}
+                        <li class="select-cat-item">
+                            <a id="{{_id}}" class="sub-one single-cat">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="hilight-circle"></div>
+                                            </td>
+                                            <td>
+                                                <span class="single-cat-name">{{name}}</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </a>
+                        </li>
+                        {{else}}
+                            <li class="select-cat-item">
+                                <h1 class="centered-placeholder">that's it :-)</h1>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            {{else}}
+                <div class="select-cat-section">
+                    <h1 class="centered-placeholder">no category selected</h1>
+                </div>
+            {{/if}}
+            {{#if subSelected}}
+                <div class="select-cat-section">
+                    <ul class="select-cat-list">
+                        {{#each subSubCategory}}
+                        <li class="select-cat-item">
+                            <a id="{{_id}}" class="sub-two single-cat">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="hilight-circle"></div>
+                                            </td>
+                                            <td>
+                                                <span class="single-cat-name">{{name}}</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </a>
+                        </li>
+                        {{else}}
+                            <li class="select-cat-item">
+                                <h1 class="centered-placeholder">that's it :-)</h1>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            {{/if}}
+        </div>
+        <div class="select-category-btn">
+            <a class="btn btn-primary select-cat-link {{#if hasChildren}}disabled{{else}}step-two-trigger{{/if}}">
+                select <span class="bold">{{currentSelection}}</span>
+            </a>
+        </div>
+    </div>
+</template>

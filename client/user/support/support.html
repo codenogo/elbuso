@@ -1,0 +1,33 @@
+<template name="support">
+	<div class="data-container">
+		<h1>
+			all support conversations
+			{{#if isInRole "admin"}}
+			{{else}}
+				<a href="/new-support" class="btn btn-sm btn-default pull-right create-conversation">
+					new conversation
+				</a>
+			{{/if}}
+			<a href="/support/closed" class="btn btn-sm btn-default pull-right">
+				closed
+			</a>
+			<a href="/support/open" class="btn btn-sm btn-default pull-right">
+				open
+			</a>
+			
+		</h1>
+		<div class="conversations">
+			{{#each support}}
+				{{> supportPreview}}
+			{{else}}
+				<h1 class="centered-placeholder">
+				<br />
+				<br />
+				<br />
+				<br />
+					You have no conversations yet
+				</h1>
+			{{/each}}
+		</div>
+	</div>
+</template>

@@ -1,0 +1,106 @@
+.arrow-up {
+    width: 0 !important;
+    height: 0 !important;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid #333;
+    display:block;
+}
+.arrow-down {
+    width: 0 !important;
+    height: 0 !important;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-top: 7px solid #333;
+    display:block;
+}
+.arrow-right {
+    width: 0 !important;
+    height: 0 !important;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 7px solid #333;
+    display:block;
+    margin-bottom: -3px;
+}
+.arrow-left {
+    width: 0 !important;
+    height: 0 !important;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-right:7px solid #333;
+    display:block;
+    margin-bottom: -3px;
+}
+.filter-section{
+    width:100%;
+    display:block;
+    .filter-title{
+        display:block;
+        width:100%;
+        border-bottom: 1px solid #ddd;
+        padding:1em 0;
+        span{
+            text-transform:uppercase;
+            color:#777;
+            font-size:1.3em;
+        }
+    }
+    .filter-body{
+        display:block;
+        width:100%;
+        margin:1em 0 3em;
+        height:auto;
+        .clickable-list{
+            li{
+                .clickable-list{
+                    margin-left:2em;
+                }
+            }
+        }
+        .checkbox-label{
+            width:100%;
+        }
+        .arrows{
+            width:1.5em;
+        }
+        .child-arrow{
+            margin: .3em 0;
+            display: inline;
+            width: 1em;
+            a{
+                float:right;
+            }
+        }
+        .cat-count{
+            display:block;
+            background:#777;
+            color:#fff;
+            padding: .1em;
+            float:right;
+            min-width:2em;
+            text-align:center;
+            border-radius:.5em;
+            font-size:.7em;
+        }
+        .slider{
+            margin-bottom: 2em !important;
+            padding:0 1em;
+        }
+        .slider-values{
+            color:#777;
+            .min, .max{
+                color:#333;
+                font-family: 'montserratextra_bold';
+            }
+        }
+        .btn{
+            width:100%;
+        }
+        .search-filter{
+            width:100%;
+            padding:.5em 1em;
+        }
+    }
+
+}

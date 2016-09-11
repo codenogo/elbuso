@@ -1,0 +1,17 @@
+<template name="categoryEdit">
+	<div class="new-category">
+		<h1>New category</h1>
+		<!-- {{> quickForm collection="Categories" type="insert" id="insertCategoriesForm" placeholder="schemaLabel" class="new-category-form"}} -->
+		{{#autoForm collection="Categories" id="insertCategoriesForm" type="insert" placeholder="schemaLabel" class="new-category-form" validation="blur"}}
+		    <fieldset>
+		    	{{> afQuickField name='name'}}
+		    	{{> afQuickField name='rate'}}
+		    	{{> afQuickField name='parentCategory'}}
+		    	<div class="hidden">
+		    		{{> afQuickField name='order' defaultValue=lastOne}}
+		    	</div>
+		    	<button type="submit" class="btn btn-primary btn-sm">add category</button>
+		    </fieldset>
+	    {{/autoForm}}
+	</div>
+</template>

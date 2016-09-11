@@ -1,0 +1,31 @@
+<template name="publishedDealTemplate">
+	<table style="border:1px solid #ddd; width:auto; max-width:700px;" cell-padding="0" cell-spacing="0">
+		<tr>
+			<td style="background:#000; padding:20px; text-align:center;">
+				<img src="http://elbuso.com/img/logo-white.png" height="35" style="height:35px;" />
+			</td>
+		</tr>
+		<tr>
+			<td style="padding:20px; text-align:center; border-bottom: 1px solid #ddd;">
+				<p style="padding:20px 0; font-family: arial,sans-serif; color: #767676;">Hi {{name}},</p>
+				<h1 style="padding:20px 50px; font-family: arial,sans-serif; color: #767676; text-transform:uppercase;">Your deal has been published.</h1>
+				{{#with FS.GetFile "dealImages" dealImage}}
+					<img src="http://elbuso.com{{url}}" style="width:100%;">
+				{{/with}}
+
+				<p style="padding:0 0 30px">
+					<a href="http://elbuso.com/auction/{{dealId}}" style="width:100%; font-family: arial,sans-serif; text-decoration:none;color:#000; padding:10px 20px; border:1px solid #000">{{dealName}}</a>
+				</p>
+				<p style="padding:20px 50px; font-family: arial,sans-serif; color: #767676;">Your deal {{dealName}} has been published, and potential clients can view and even reserve it.</p>
+				<p style="padding:20px 50px; font-family: arial,sans-serif; color: #767676;"><strong>Note:</strong>Once published, you cannot make changes to the deal. Incase of any need for changes, please contact <a style="text-decoration:none; color:#000;" href="mailto:hello@elbuso.com">hello@elbuso.com</a>.You will be notified once the deal closes, but in the meantime you can watch the deals's reservations and reach expand. Enjoy.</p>
+				<p style="padding:20px 50px; font-family: arial,sans-serif; color: #767676;">If you have any problems feel free to talk to us on <a style="text-decoration:none; color:#000;" href="mailto:hello@elbuso.com">hello@elbuso.com</a></p>
+			</td>
+		</tr>
+		<tr>
+			<td style="text-align:center;">
+				<img src="http://elbuso.com/img/logo.png" height="35" style="height:35px; margin-top:30px;" />
+				<p style="padding:20px 50px; font-size:12px; font-family: arial,sans-serif; color: #767676;">&copy; Elbuso Inc </p>
+			</td>
+		</tr>
+	</table>
+</template>

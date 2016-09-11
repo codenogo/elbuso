@@ -1,0 +1,51 @@
+<template name="home">
+	{{> banner}}
+	{{> verifyEmail}}
+	{{> deactivatedUser}}
+	<div class="previews">
+		<div class="title-bar">
+			<h1>{{_ 'homepage.featured_auctions'}}</h1>
+		</div>
+		{{#if Template.subscriptionsReady}}
+			<div class="preview-data">
+				{{#each auctions}}
+					{{> auctionPreview}}
+				{{else}}
+					<h1 class="centered-placeholder">{{_ 'homepage.no_featured_auctions'}}</h1>
+				{{/each}}
+			</div>
+			{{#if auctions}}
+				<div class="show-more-bar">
+					<a class="show-more" href="/auctions/">
+						{{_ 'global.show_more'}} <span class="plus-black-sm"></span>
+					</a>
+				</div>
+			{{/if}}
+		{{else}}
+			{{> preloaderInner}}
+		{{/if}}
+	</div>
+	<div class="previews">
+		<div class="title-bar">
+			<h1>{{_ 'global.deals'}}</h1>
+		</div>
+		{{#if Template.subscriptionsReady}}
+			<div class="preview-data regular">
+					{{#each deals}}
+						{{> dealPreview}}
+					{{else}}
+						<h1 class="centered-placeholder">{{_ 'global.no_deals_yet'}}</h1>
+					{{/each}}
+			</div>
+			{{#if deals}}
+				<div class="show-more-bar">
+					<a class="show-more" href="/deals/">
+						{{_ 'global.show_more'}} <span class="plus-black-sm"></span>
+					</a>
+				</div>
+			{{/if}}
+		{{else}}
+			{{> preloaderInner}}
+		{{/if}}
+	</div>
+</template>

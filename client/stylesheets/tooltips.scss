@@ -1,0 +1,114 @@
+// Some vars
+$link-color: #000;
+$text-color: #fff;
+$tooltip-border: #333;
+$tooltip-background: #333;
+$background-color: #333;
+
+// Tooltip Magic
+[data-tooltip][tabindex="0"] {
+  display: inline-block;
+  position: relative;
+  color: $link-color;
+  cursor: text;
+  text-decoration:none;
+  
+  &::after {
+    display: none;
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    padding: 10px;
+    max-width: 400px;
+    width:300px;
+    transform: translateX(-50%);
+    border: 1px solid $tooltip-border;
+    border-radius: 3px;
+    color: $text-color;
+    // You can also use a fixed width and ommit the white-sapce.
+    background-color: $tooltip-background;
+    // Make sure tooltips don't block each others trigger.
+    pointer-events: none;
+    content: attr(data-tooltip);
+    text-transform: lowercase;
+    font-size:14px;
+    line-height:1.5;
+  }
+  
+  // Create a neat little arrow
+  &::before {
+    display: none;
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    z-index: 2;
+    transform: translate(-50%, 50%) rotate(45deg);
+    width: 6px;
+    height: 6px;
+    border: solid $tooltip-border;
+    border-width: 0 1px 1px 0;
+    background-color: $tooltip-background;
+    content: '';
+  }
+  
+  // Activate tooltip
+  &:focus,
+  &:hover {
+    &::after,
+    &::before {
+      display: block;
+    }
+  }
+  
+  // Different directions
+  &[data-side="right"] {
+    &::after,
+    &::before {
+      bottom: 50%;
+      left: 100%;
+      margin-left: 10px;
+    }
+    
+    &::after {
+      transform: translate(0, 50%);
+    }
+    
+    &::before {
+      transform: translate(-50%, 50%) rotate(135deg);
+    }
+  }
+  
+  &[data-side="bottom"] {
+    &::after,
+    &::before {
+      bottom: auto;
+      top: 110%;
+    }
+    
+    &::after {
+      transform: translate(-50%, 0);
+    }
+    
+    &::before {
+      transform: translate(-50%, -50%) rotate(225deg);
+    }
+  }
+  
+  &[data-side="left"] {
+    &::after,
+    &::before {
+      right: 100%;
+      bottom: 50%;
+      left: auto;
+      margin-right: 10px;
+    }
+    
+    &::after {
+      transform: translate(0, 50%);
+    }
+    
+    &::before {
+      transform: translate(50%, 50%) rotate(315deg);
+    }
+  }
+}

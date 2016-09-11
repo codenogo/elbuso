@@ -1,0 +1,78 @@
+<template name="closedAuction">
+		<div class="closed-item item">
+	        <div class="image-preview col-sm-4">
+				<a href="/auction/{{_id}}">
+					{{#with FS.GetFile "auctionImages" image}}
+			        <div class="image-preview-image" style="background: url({{url}});"></div>
+					{{/with}}
+				</a>
+			</div>
+		
+			<div class="info-section col-sm-8">
+				<div class="col-xs-12 name-field">
+					<a href="/auction/{{_id}}"><h2 class="title"><span data-tooltip="{{name}}" tabindex="0">{{briefName}}</span></h2></a>
+				</div>
+				<div class="rates-info col-xs-4">
+					<ul>
+						<li class="total-purchase">
+							<span class="value">{{totalPurchaseValue}}$</span><br />
+							<span class="attr">Purchased value</span><br />
+						</li>
+						<li class="final-discount">
+							<span class="attr">Final Discount</span><br />
+							<span class="value">{{winningBid}}%</span>
+						</li>
+						<li class="standing">
+							{{#if winning}}
+								<span class="btn btn-success btn-sm">won</span>
+							{{else}}
+								<span class="btn btn-danger btn-sm">lost</span>
+							{{/if}}
+						</li>
+					</ul>
+				</div>
+				<div class="details-info col-xs-8">
+					<ul>
+						<li>
+							<span class="attr">
+								Closed {{daysLeft}}
+							</span>
+						</li>
+						<li class="min-amount">
+							<span class="value">0$</span> 
+							<span class="attr">collected</span>
+						</li>
+						<li class="purchases">
+							<span class="value">{{reservationNo}}</span> 
+							<span class="attr">customers gained</span>
+						</li>
+						<li class="standing">
+							{{#if winning}}
+							{{else}}
+								<table class="bidder-data">
+									<tbody>
+										{{#each Bidderss}}
+											{{#if winningUser}}
+												<tr>
+													<td>
+														{{#with FS.GetFile "userImage" bidderImage}}
+												            <div class="bidder-image" style="background: url({{url}}) no-repeat;"></div>
+												        {{else}}
+															<div class="bidder-image">
+																<span>{{bidderLetter}}</span>
+															</div>
+														{{/with}}
+														won by {{bidderName}}
+													</td>
+												</tr>
+											{{/if}}
+										{{/each}}
+									</tbody>
+								</table>
+							{{/if}}
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+</template>

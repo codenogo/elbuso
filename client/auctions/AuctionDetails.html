@@ -1,0 +1,724 @@
+<template name="AuctionDetails">
+	<div class="auction-details">
+		{{#if isInRole 'admin'}}
+			<div class="edit-controls">
+				{{#if reservationsExist}}
+					{{#if auctionIsClosed}}
+					{{else}}
+						{{#if biddingIsOpen}}
+							<a class="bidding-auction btn btn-sm btn-danger">stop bidding</a>
+							{{#if auctionIsOpen}}
+								<a class="close-auction btn btn-sm btn-danger">close auction</a>
+							{{else}}
+								<a class="close-auction btn btn-sm btn-success">open auction</a>
+							{{/if}}
+						{{else}}
+							<a class="bidding-auction btn btn-sm btn-success">begin bidding</a>
+						{{/if}}
+					{{/if}}
+				{{else}}
+					{{#if editMode}}
+						<a class="edit-auction btn btn-sm btn-primary">Stop Editing</a>
+					{{else}}
+						<a class="edit-auction btn btn-sm btn-primary">Edit</a>
+						<a class="delete-auction btn btn-sm btn-danger">delete</a>
+						{{#if isPublishedState}}
+							<a class="publish-auction btn btn-sm btn-default">unpublish</a>
+						{{else}}
+							<a class="publish-auction btn btn-sm btn-success">publish</a>
+						{{/if}}
+					{{/if}}
+				{{/if}}
+			</div>
+		{{/if}}
+		{{#if editMode}}
+
+			{{#autoForm collection="Auctions" id="auctionUpdateId" type="update" doc=auction class="updateAuctionForm update-detail"}}
+				<div class="image-section">
+					<div class="title-bar">
+						<div class="row">
+							<div class="col-sm-12">
+								{{> afQuickField name='name' class="deal-name full-width"}}
+							</div>
+						</div>
+					</div>
+					<div class="primary-image">
+						{{> afQuickField name='image' placeholder="you can change the image" autosave=true}}
+					</div>
+
+			        <div class="attachments">
+						<div class="add-attachments">
+							{{> afQuickField name='secondaryImage'}}
+						</div>
+					</div>
+				</div>
+				<div class="right-sidebar">
+						<div class="reserve-section">
+							<div class="amount">
+								<span class="intro"><strong>minimum</strong> discount <br/>rate (%)</span><br />
+								<span class="minimum">{{> afQuickField name='StartRate' class="semi-large-text"}}</span>
+							</div>
+							<div class="reservation">
+								<span class="reservation-help">
+									<strong>minimum</strong> user purchase <br/>value ({{currencySymbol}})
+								</span><br />
+								<span class="min-value">{{> afQuickField name='minimumPrice' class="semi-large-text full-width"}}</span>
+							</div>
+						</div>
+						<div class="offer-section">
+							<div class="show-label">
+								{{> afQuickField name='currency'}}
+						    	{{> afQuickField name='maximumPrice' min=minValue defaultValue=minValue}}
+						    	{{> afQuickField name='targetted'}}
+
+								<h1>bidders and redeeming</h1>
+						    	{{> afQuickField name='maximumValue' min=calcValue value=calcValue class="hidden"}}
+						    	<div class="form-group">
+								    <input type="text" disabled value="{{calcValue}}" class="form-control">
+								</div>
+						    	{{> afQuickField name='Bidders'}}
+						    	{{> afQuickField name='reservationFee'}}
+
+						    	<h1>timelines</h1>
+						    	<div class="toggle-options">
+						    		{{> afQuickField name='selectLive' template="buttonGroup"}}
+						    	</div>
+						    	<!--if the value of the radio group above is custom show the date field for go live-->
+						    	{{#if afFieldValueIs name="selectLive" value="custom"}}
+									<div class="live-date">
+							    		{{> afQuickField name='goingLiveDate' defaultValue=""}}
+							    	</div>
+							    {{/if}}
+							    {{#if afFieldValueIs name="selectLive" value="immediately"}}
+							    	<div class="live-date">
+							    		{{> afQuickField name='goingLiveDate' value=dateNow}}
+							    	</div>
+								{{/if}}
+
+
+
+						    	<div class="closing-date">
+						    		{{> afQuickField name='closingDate'}}
+						    	</div>
+								<div class="redeem-date">
+							    	<div class="toggle-options">
+							    		{{> afQuickField name='redeemMoreToggle' template="buttonGroup"}}
+							    	</div>
+							    	<!--same as comment above-->
+							    	{{#if afFieldValueIs name="redeemMoreToggle" value="yes"}}
+								    	<div class="">
+								    		{{> afQuickField name='finalRedeemDate' defaultValue=""}}
+								    	</div>
+								    {{/if}}
+								    {{#if afFieldValueIs name="redeemMoreToggle" value="no"}}
+								    	<div class="hidden">
+								    		{{> afQuickField name='finalRedeemDate' value=closeDate}}
+								    	</div>
+									{{/if}}
+								</div>
+
+								<div class="collection-date">
+						    		{{> afQuickField name='finalCollectionDate'}}
+						    	</div>
+							</div>
+						</div>
+
+				</div>
+				<div class="details">
+					<div class="description">
+						<h1>Description</h1>
+						{{> afQuickField name='description' class="full-width"}}
+						<div class="attachments">
+							<h1>Attachments</h1>
+							<div class="add-attachments">
+								{{> afQuickField name='attachments'}}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="edit-controls clear">
+					<button type="submit" class="btn btn-primary">Update details</button>
+				</div>
+			{{/autoForm}}
+
+		{{else}}
+
+			<div class="image-section">
+				<div class="title-bar">
+					<div class="">
+						<div class="col-sm-6">
+							<h2 class="title">{{auction.name}}</h2>
+						</div>
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="liked">
+										<a class="heart">
+											<div id="twitter-like" class=" {{FavouritesThis}}"></div>
+										</a>
+										<span class="number">{{numLikes}}</span><br/>
+										<span class="val">likes</span>
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<div class="days-left">
+										<div class="clear"></div>
+										<table class="times">
+											<tbody>
+												<tr>
+													<td><img class="clock-icon" src="/img/time.png"></td>
+													<td><span class="time">Ends {{daysLeft}}</span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				{{#if biddingIsOpen}}
+					{{#if shortlistedSeller}}
+						{{#if placedBid}}
+							<div class="bid-current-position">
+								{{#if winning}}
+									<span class="btn btn-success btn-sm">you are winning</span>
+								{{else}}
+									<span class="btn btn-danger btn-sm">you are losing</span>
+								{{/if}}
+							</div>
+						{{/if}}
+					{{else}}
+						<div class="bidding-progress-label">
+							<span class="btn-success btn btn-sm col-xs-12">bidding is in progress</span>
+						</div>
+					{{/if}}
+				{{/if}}
+				{{#if isPublishedState}}
+				{{else}}
+					<div class="bidding-progress-label">
+						<span class="btn-danger btn btn-sm col-xs-12">this auction has not yet been published</span>
+					</div>
+				{{/if}}
+
+				{{#if auctionIsClosed}}
+					{{#if shortlistedSeller}}
+						{{#if placedBid}}
+							<div class="bid-current-position">
+								{{#if winning}}
+									<span class="btn btn-success btn-sm">won</span><span class="btn btn-primary btn-sm">auction is closed</span>
+								{{else}}
+									<span class="btn btn-danger btn-sm">lost</span><span class="btn btn-primary btn-sm">auction is closed</span>
+								{{/if}}
+							</div>
+						{{/if}}
+					{{else}}
+						<div class="bidding-progress-label">
+							<span class="btn-primary btn btn-sm col-xs-12">auction is closed</span>
+						</div>
+					{{/if}}
+				{{/if}}
+				<div class="slide-show">
+
+					<div class="container">
+						<div data-am-gallery>
+							<!-- Radio -->
+							{{#with FS.GetFile "auctionImages" auction.image}}
+					            <input type="radio" name="gallery" id="{{this}}" checked />
+					        {{/with}}
+							{{#each auction.secondaryImage}}
+								{{#with FS.GetFile "auctionImages" this}}
+									<input type="radio" name="gallery" id="{{_id}}" />
+								{{/with}}
+							{{/each}}
+							<!-- Images -->
+							<div class="images">
+								{{#with FS.GetFile "auctionImages" auction.image}}
+						            <div class="image" style="background-image: url({{url}});"></div>
+						        {{/with}}
+								{{#each auction.secondaryImage}}
+									{{#with FS.GetFile "auctionImages" this}}
+										<div class="image" style="background-image: url({{url}});"></div>
+									{{/with}}
+								{{/each}}
+							</div>
+							<!-- Navigation -->
+							<div class="navigation">
+								{{#with FS.GetFile "auctionImages" auction.image}}
+					            	<label class="dot" style="background: url({{url}})" for="{{this}}"></label>
+						        {{/with}}
+								{{#each auction.secondaryImage}}
+									{{#with FS.GetFile "auctionImages" this}}
+										<label class="dot" style="background: url({{url}})" for="{{_id}}"></label>
+									{{/with}}
+								{{/each}}
+							</div>
+						</div>
+					</div>
+
+				</div>
+		        <div class="stats">
+		        	<div class="col-xs-9">
+		        		<div class="progressbar">
+				        	<div class="progress progress-{{reservationPercentage}}"></div>
+				        </div>
+		        	</div>
+		        	<div class="col-xs-3">
+		        		<span class="reservations">{{reservationNo}}</span><br />
+		        		<span class="attr">Reservations</span>
+		        	</div>
+		        </div>
+			</div>
+
+
+			<div class="right-sidebar">
+				{{#if biddingIsOpen}}
+					{{#if shortlistedSeller}}
+						<div class="bidding-data">
+							<div class="stats">
+								<table>
+									<thead>
+										<tr>
+											<th>
+												<span class="attr">your discount</span><br />
+												<span class="value">{{bidPlaced}}%</span>
+											</th>
+											<th>
+												<span class="attr">purchased value</span><br />
+												<span class="value">{{totalPurchaseValue}}{{currencySymbol}}</span>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>
+												<span class="attr">new customers gained</span><br />
+												<span class="value">{{reservationNo}}</span>
+											</td>
+											<td>
+												<span class="attr">average purchase value</span><br />
+												<span class="attr">individuals:</span><br />
+												<span class="value">{{averagePurchase}}{{currencySymbol}}</span>
+											</td>
+										</tr>
+										<!-- <tr>
+											<td>
+												<span class="attr">recurring customers</span><br />
+												<span class="value">-.-</span>
+											</td>
+											<td>
+												<span class="attr">businesses:</span><br />
+												<span class="value">-.-{{currencySymbol}}</span>
+											</td>
+										</tr> -->
+									</tbody>
+								</table>
+							</div>
+							<div class="update-bid">
+								{{#if placedBid}}
+									<form class="myBidUpdate">
+										<table>
+											<tbody>
+												<tr>
+													<td>
+														<input type="number" name="myBid" placeholder="{{auction.StartRate}}" min="{{auction.StartRate}}" value="{{bidPlaced}}" />
+													</td>
+													<td>
+														<button type="submit" class="btn btn-default btn-sm">update your bid</button>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</form>
+								{{else}}
+									<form class="myBidUpdate">
+										<table>
+											<tbody>
+												<tr>
+													<td>
+														<input type="number" name="myBid" placeholder="{{auction.StartRate}}" min="{{auction.StartRate}}" value="{{bidPlaced}}" />
+													</td>
+													<td>
+														<button type="submit" class="btn btn-default btn-sm">place your bid</button>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</form>
+								{{/if}}
+							</div>
+							<div class="bidding-preview">
+								<table class="table">
+									<tbody>
+										{{#each Bidderss}}
+										<tr class="{{#if bidderIsMe}}bidder-is-me{{/if}}">
+											<td>
+												<span>{{position}}</span>
+											</td>
+											<td>
+												{{#with FS.GetFile "userImage" bidderImage}}
+										            <div class="bidder-image" style="background: url({{url}}) no-repeat;"></div>
+										        {{else}}
+													<div class="bidder-image">
+														<span>{{bidderLetter}}</span>
+													</div>
+												{{/with}}
+												<span class="name">{{bidder}}</span>
+											</td>
+											<td>
+												{{#if bidderPlacedBid}}
+													<span class="{{#if winningUser}}winning-rate{{/if}}">
+														{{bidderPlacedBid}}%
+													</span>
+												{{else}}
+													{{originalStartRate}}%
+												{{/if}}
+											</td>
+										</tr>
+										{{/each}}
+									</tbody>
+								</table>
+							</div>
+						</div>
+					{{else}}
+						<div class="reserve-section">
+							<div class="amount">
+								<span class="intro">Get a <strong>minimum</strong></span><br />
+								{{#if bidExists}}
+								<span class="minimum">{{winningBid}}%</span>
+								{{else}}
+									<span class="minimum">{{auction.StartRate}}%</span>
+								{{/if}}
+							</div>
+							{{#if isInRole "admin"}}
+								<div class="reservation">
+									<span class="reservation-help">
+										total purchased <br />value
+									</span><br />
+									<span class="min-value">{{totalPurchaseValue}}{{currencySymbol}}</span>
+								</div>
+							{{else}}
+								<div class="reservation">
+									<span class="reservation-help">
+										if you purchase <br />for a <strong>minimum</strong> of
+									</span><br />
+									<span class="min-value">{{auction.minimumPrice}}{{currencySymbol}}</span>
+								</div>
+							{{/if}}
+						</div>
+						<div class="offer-section">
+
+							<table class="wide">
+								<tbody>
+									<tr>
+										<td>Your purchase value ({{currencySymbol}})</td>
+										<td class="border-right"><img src="/img/info.svg"></td>
+										<td class="input">
+											{{#if userReserved}}
+												<input type="number" value="{{myPurchaseValue}}" min="{{auction.minimumPrice}}" placeholder="{{auction.minimumPrice}}" name="myPurchaseVal" class="my-purchase-val" />
+											{{else}}
+												<input type="number" value="{{auction.minimumPrice}}" min="{{auction.minimumPrice}}" placeholder="{{auction.minimumPrice}}" name="myPurchaseVal" class="my-purchase-val" />
+											{{/if}}
+										</td>
+									</tr>
+									<tr>
+										<td>You save minimum</td>
+										<td class="border-right"><img src="/img/info.svg"></td>
+										<td>
+											{{#if bidExists}}
+												{{newDiscounted}} / {{winningBid}}%
+											{{else}}
+												{{discounted}}{{currencySymbol}} / {{auction.StartRate}}%
+											{{/if}}
+										</td>
+									</tr>
+									<tr>
+										<td>Reservation fee</td>
+										<td class="border-right"><img src="/img/info.svg"></td>
+										<td>{{reservationFee}}{{currencySymbol}}</td>
+									</tr>
+									<tr class="sm-text seperator">
+										<td rowspan="2" class="long">winning Supplier</td>
+										<td></td>
+										<td></td>
+									</tr>
+									{{#each auction.Bidders}}
+										{{#if winningUser}}
+											<tr class="sm-text">
+												<td class="border-right"></td>
+												<td>
+													{{#with FS.GetFile "userImage" bidderImage}}
+											            <div class="bidder-image" style="background: url({{url}}) no-repeat;"></div>
+											        {{else}}
+														<div class="bidder-image">
+															<span>{{bidderLetter}}</span>
+														</div>
+													{{/with}}
+													<span class="name">{{bidder}}</span>
+												</td>
+											</tr>
+										{{/if}}
+									{{/each}}
+								</tbody>
+							</table>
+
+						</div>
+						{{#if userReserved}}
+							<div class="more">
+								<div class="reserve-more">
+									you can still reserve more of this product from the winning supplier for upto 7 weeks after it closes
+								</div>
+									<p class="orange-reserve-button">you have reserved this item</p>
+								<span>don't forget to pay the balance of the final price to the winning supplier once the bidding is done.</span>
+							</div>
+						{{/if}}
+
+					{{/if}}
+				{{else}}
+					<form class="reservation">
+						<div class="reserve-section">
+							<div class="amount">
+								<span class="intro">Get a <strong>minimum</strong></span><br />
+								{{#if auctionIsClosed}}
+								<span class="minimum">{{winningBid}}%</span>
+								{{else}}
+									<span class="minimum">{{auction.StartRate}}%</span>
+								{{/if}}
+							</div>
+							{{#if isInRole "admin"}}
+								<div class="reservation">
+									<span class="reservation-help">
+										total purchased <br />value
+									</span><br />
+									<span class="min-value">{{totalPurchaseValue}}{{currencySymbol}}</span>
+								</div>
+							{{else}}
+								<div class="reservation">
+									<span class="reservation-help">
+										if you purchase <br />for a <strong>minimum</strong> of
+									</span><br />
+									<span class="min-value">{{auction.minimumPrice}}{{currencySymbol}}</span>
+								</div>
+							{{/if}}
+						</div>
+						<div class="offer-section">
+
+							<table class="wide">
+								<tbody>
+									<tr>
+										<td>Your purchase value ({{currencySymbol}})</td>
+										<td class="border-right"><img src="/img/info.svg"></td>
+										<td class="input">
+											{{#if userReserved}}
+												<input type="number" value="{{myPurchaseValue}}" min="{{auction.minimumPrice}}" max="{{auction.maximumPrice}}" placeholder="{{auction.minimumPrice}}" name="myPurchaseVal" class="my-purchase-val" />
+											{{else}}
+												<input type="number" value="{{auction.minimumPrice}}" min="{{auction.minimumPrice}}" max="{{auction.maximumPrice}}" placeholder="{{auction.minimumPrice}}" name="myPurchaseVal" class="my-purchase-val" />
+											{{/if}}
+										</td>
+									</tr>
+									<tr>
+										<td>You save minimum</td>
+										<td class="border-right"><img src="/img/info.svg"></td>
+										<td>
+											{{#if auctionIsClosed}}
+												{{#if userReserved}}
+													{{myNewDiscounted}} / {{winningBid}}%
+												{{else}}
+													{{newDiscounted}} / {{winningBid}}%
+												{{/if}}
+											{{else}}
+												<span class="staticc-discounted">
+													{{discounted}}{{currencySymbol}} / {{auction.StartRate}}%
+												</span>
+												<span class="dynamicc-discounted hidden">
+													<span class="dynamicc-discounted-value"></span>{{currencySymbol}} / {{auction.StartRate}}%
+												</span>
+											{{/if}}
+										</td>
+									</tr>
+									<tr>
+										<td>Reservation fee</td>
+										<td class="border-right"><img src="/img/info.svg"></td>
+										<td>
+											<span class="staticc-reservation">
+												{{reservationFee}}{{currencySymbol}}
+											</span>
+											<span class="dynamicc-reservation hidden">
+												<span class="dynamicc-reservation-fee"></span>{{currencySymbol}}
+											</span>
+										</td>
+									</tr>
+
+									{{#if auctionIsClosed}}
+										<tr class="sm-text seperator">
+											<td rowspan="2" class="long">winning Supplier</td>
+											<td></td>
+											<td></td>
+										</tr>
+										{{#each auction.Bidders}}
+											{{#if winningUser}}
+											<tr class="sm-text">
+												<td class="border-right"></td>
+												<td>
+													{{#with FS.GetFile "userImage" bidderImage}}
+											            <div class="bidder-image" style="background: url({{url}}) no-repeat;"></div>
+											        {{else}}
+														<div class="bidder-image">
+															<span>{{bidderLetter}}</span>
+														</div>
+													{{/with}}
+													<span class="name">{{bidder}}</span>
+												</td>
+											</tr>
+											{{/if}}
+										{{/each}}
+									{{else}}
+										<tr class="sm-text seperator">
+											<td rowspan="{{rowspan}}" class="long">Edit Supplier preference</td>
+											<td></td>
+											<td></td>
+										</tr>
+										{{#each auction.Bidders}}
+										<tr class="sm-text">
+											<td class="border-right"><input type="checkbox" value="{{this}}" name="seller" checked /></td>
+											<td>
+												{{#with FS.GetFile "userImage" bidderImage}}
+										            <div class="bidder-image" style="background: url({{url}}) no-repeat;"></div>
+										        {{else}}
+													<div class="bidder-image">
+														<span>{{bidderLetter}}</span>
+													</div>
+												{{/with}}
+												<span class="name">{{bidder}}</span>
+											</td>
+										</tr>
+										{{/each}}
+									{{/if}}
+								</tbody>
+							</table>
+
+						</div>
+						{{#if userVerifiedPhoneFailed}}
+							<div class="more">
+								<div class="reserve-more">
+									please verify your phone number before you transact on Elbuso.
+								</div>
+							</div>
+						{{else}}
+							{{#if auctionIsClosed}}
+								{{#if userReserved}}
+									{{#if hasReservedMore}}
+										<div class="more">
+											<div class="reserve-more">
+												Please pick up your items from the seller.
+											</div>
+											<span>you can collect your product from the supplier even in bits where applicable</span>
+										</div>
+									{{else}}
+										<div class="more">
+											<div class="reserve-more">
+												you can reserve more of this product for a limited period since the auction is now closed.
+											</div>
+											<button class="orange-reserve-button" type="submit">reserve more for {{reservationFee}}{{currencySymbol}}</button>
+											<span>pay the balance of the final price to the supplier</span>
+										</div>
+									{{/if}}
+								{{else}}
+									<div class="more">
+										<div class="reserve-more">
+											This auction has ended.
+										</div>
+									</div>
+								{{/if}}
+							{{else}}
+								{{#if userReserved}}
+								<div class="more">
+									<div class="reserve-more">
+										you can still reserve more of this product from the winning supplier for upto 7 weeks after it closes
+									</div>
+										<p class="orange-reserve-button">you have reserved this item</p>
+									<span>don't forget to pay the balance of the final price to the winning supplier once the bidding is done.</span>
+								</div>
+								{{else}}
+									{{#if shortlistedSeller}}
+									<div class="more">
+										<div class="reserve-more">
+											sorry, you cannot reserve an auction that you are listed as a seller.
+										</div>
+									</div>
+									{{else}}
+										{{#if isInRole 'admin'}}
+										<div class="more">
+											<div class="reserve-more">
+												sorry Admin, you cannot reserve an auction.
+											</div>
+										</div>
+										{{else}}
+											{{#if isInRole 'sub-user'}}
+												<div class="more">
+													<div class="reserve-more">
+														sorry, you cannot reserve an auction.
+													</div>
+												</div>
+											{{else}}
+												<div class="more">
+													<div class="reserve-more">
+														you can reserve more of this product from the winning supplier for upto 7 weeks after it closes
+													</div>
+														<button class="orange-reserve-button" type="submit">reserve now for {{reservationFee}}{{currencySymbol}}</button>
+													<span>pay the balance of the final price to the supplier</span>
+												</div>
+											{{/if}}
+										{{/if}}
+									{{/if}}
+								{{/if}}
+
+							{{/if}}
+						{{/if}}
+					</form>
+				{{/if}}
+			</div>
+
+
+
+			<div class="details">
+				<div class="description">
+					<h1>Description</h1>
+					{{{auction.description}}}
+
+
+					<!--here is where the attachments are-->
+					{{#unless auction.attachments}}
+					{{else}}
+						<div class="attachments">
+							<h1>Attachments</h1>
+							<p class="desc">Click on any of the links below to download the attachment:</p>
+							{{#each auction.attachments}}
+								<!-- {{#if isImage}}
+									{{#with FS.GetFile "auctionAttachments" this}}
+						            	<img class="attachment-preview" src="{{url}}" />
+							            <p class="btn btn-sm btn-primary attachment-link">
+							            	<a href="{{url}}" target="_blank">{{original.name}}</a>
+							            	<i class="fa fa-download"></i>
+							            </p>
+							        {{/with}}
+						        {{else}} -->
+							        {{#with FS.GetFile "auctionAttachments" this}}
+							            <p class="btn btn-sm btn-primary attachment-link">
+							            	<a href="{{url}}" target="_blank">{{original.name}}</a>
+							            	<i class="fa fa-download"></i>
+							            </p>
+							        {{/with}}
+						        <!-- {{/if}} -->
+							{{/each}}
+						</div>
+					{{/unless}}
+				</div>
+			</div>
+
+
+		{{/if}}
+		<div class="similar"></div>
+	</div>
+</template>

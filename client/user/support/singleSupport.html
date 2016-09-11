@@ -1,0 +1,60 @@
+<template name="singleSupport">
+	<div class="data-container">
+		<h1>
+			{{support.topic}} 
+			<span class="unread-count {{#if ifUnread}}{{else}}hidden{{/if}}">{{unreadCount}} unread</span>
+			<a href="/support" class="btn btn-sm btn-default pull-right">
+				back to conversations
+			</a>
+			<!-- {{#if ifUnreadExist}}
+			{{else}} -->
+				{{#if isOpen}}
+					<a class="btn btn-sm btn-danger pull-right close-support">
+						end this chat
+					</a>
+				{{else}}
+					<a class="btn btn-sm btn-success pull-right open-support">
+						re-open this chat
+					</a>
+				{{/if}}
+			<!-- {{/if}} -->
+		</h1>
+		<div class="message-box">
+			<div id="all-messages" class="all-messages">
+				{{#each support.message}}
+				<div class="single-message {{#if isMine}}mine{{/if}}">
+					{{#with FS.GetFile "userImage" authorImage}}
+						<div class="sender-image-preview" style="background: url({{url}});"></div>
+					{{else}}
+						<div class="sender-image-preview" style="background: url(/img/e-preview.jpg);"></div>
+					{{/with}}
+					<div class="bubble">
+						<p class="message-data">{{message}}</p>
+						<p class="time">{{date}}</p>
+					</div>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+		{{#if isOpen}}
+			<div class="add-message">
+				<form class="add-a-message">
+					<table>
+						<tbody>
+							<tr>
+								<td>
+									<textarea id="new-msg" class="full-width has-padding has-border new-msg" placeholder="add a message..." name="newMessage" autocomplete="off" rows="2" cols="10"></textarea>
+								</td>
+								<td>
+									<button type="submit" class="btn btn-success"><i class="fa fa-plus"></i></button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+		{{/if}}
+
+
+	</div>
+</template>

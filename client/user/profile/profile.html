@@ -1,0 +1,197 @@
+<template name="profile">
+	<div class="user-detail">
+		<div class="row {{#if isActive}}{{else}}deactivated{{/if}}">
+			<div class="col-sm-6">
+				<h1 class="user-details-header">Personal details</h1>
+				<table class="table">
+					<tbody>
+						<tr>
+							<td>Names:</td>
+							<td>{{user.profile.firstname}} {{user.profile.lastname}}</td>
+						</tr>
+						<tr>
+							<td>Phone:</td>
+							<td>+{{user.profile.personalPhone.countryCode}}{{user.profile.personalPhone.phoneNumber}}</td>
+						</tr>
+						<tr>
+							<td>Emails:</td>
+							<td>
+								{{#each user.emails}}
+									{{this.address}}
+								{{/each}}
+							</td>
+						</tr>
+						{{#if isInRole 'buyer'}}
+							<tr>
+								<td>Location:</td>
+								<td>
+									{{#unless user.profile.country.name.formattedAddress}}
+										.....
+									{{else}}
+										{{user.profile.country.name.formattedAddress}}
+									{{/unless}}
+								</td>
+							</tr>
+						{{/if}}
+					</tbody>
+				</table>
+			</div>
+			{{#if isInRole 'seller'}}
+				<div class="col-sm-6">
+					<h1 class="user-details-header">Company details</h1>
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Name:</td>
+								<td>
+									{{#unless user.profile.company.companyName}}
+										.....
+									{{else}}
+										{{user.profile.company.companyName}}
+									{{/unless}}
+								</td>
+							</tr>
+							<tr>
+								<td>Registration:</td>
+								<td>
+									{{#unless user.profile.company.companyRegistration}}
+										.....
+									{{else}}
+										{{user.profile.company.companyRegistration}}
+									{{/unless}}
+								</td>
+							</tr>
+							<tr>
+								<td>Phone:</td>
+								<td>
+									{{#unless user.profile.company.companyPhone}}
+										.....
+									{{else}}
+										{{user.profile.company.companyPhone}}
+									{{/unless}}
+								</td>
+							</tr>
+							<tr>
+								<td>Website:</td>
+								<td>
+									{{#unless user.profile.company.companyWebsite}}
+										.....
+									{{else}}
+										{{user.profile.company.companyWebsite}}
+									{{/unless}}
+								</td>
+							</tr>
+							<tr>
+								<td>Company Address:</td>
+								<td>
+									{{#unless user.profile.country.name.formattedAddress}}
+										.....
+									{{else}}
+										{{user.profile.country.name.formattedAddress}}
+									{{/unless}}
+								</td>
+							</tr>
+							{{#unless user.profile.country.name.postalCode}}
+							{{else}}
+								<tr>
+									<td>Zip:</td>
+									<td>
+										{{user.profile.country.name.postalCode}}
+									</td>
+								</tr>
+							{{/unless}}
+						</tbody>
+					</table>
+				</div>
+			{{/if}}
+			{{#if isInRole 'manager'}}
+				<div class="col-sm-6">
+					<h1 class="user-details-header">Company details</h1>
+					<table class="table">
+						<tbody>
+							<tr>
+								<td>Name:</td>
+								<td>
+									{{#unless parentUser.profile.company.companyName}}
+										.....
+									{{else}}
+										{{parentUser.profile.company.companyName}}
+									{{/unless}}
+								</td>
+							</tr>
+							<tr>
+								<td>Registration:</td>
+								<td>
+									{{#unless parentUser.profile.company.companyRegistration}}
+										.....
+									{{else}}
+										{{parentUser.profile.company.companyRegistration}}
+									{{/unless}}
+								</td>
+							</tr>
+							<tr>
+								<td>Phone:</td>
+								<td>
+									{{#unless parentUser.profile.company.companyPhone}}
+										.....
+									{{else}}
+										{{parentUser.profile.company.companyPhone}}
+									{{/unless}}
+								</td>
+							</tr>
+							<tr>
+								<td>Website:</td>
+								<td>
+									{{#unless parentUser.profile.company.companyWebsite}}
+										.....
+									{{else}}
+										{{parentUser.profile.company.companyWebsite}}
+									{{/unless}}
+								</td>
+							</tr>
+							<tr>
+								<td>Company Address:</td>
+								<td>
+									{{#unless parentUser.profile.country.name.formattedAddress}}
+										.....
+									{{else}}
+										{{parentUser.profile.country.name.formattedAddress}}
+									{{/unless}}
+								</td>
+							</tr>
+							{{#unless parentUser.country.zip}}
+							{{else}}
+								<tr>
+									<td>Zip:</td>
+									<td>
+										{{parentUser.country.zip}}
+									</td>
+								</tr>
+							{{/unless}}
+						</tbody>
+					</table>
+				</div>
+			{{/if}}
+			<div class="col-sm-12">
+				<a href="/edit-profile" class="btn btn-sm btn-primary">Edit my profile</a>
+				{{#if isInRole "seller"}}
+					<a href="/locations" class="btn btn-sm btn-primary">store locations</a>
+					<a href="/sub-user" class="btn btn-sm btn-primary">sub users</a>
+					{{#if isVerifiedSeller}}
+					{{else}}
+						{{#if hasCompletedProfile}}
+							{{#if hasNotSubmitted}}
+								<a class="btn submit-for-verification btn-sm btn-success pulse">submit my account for verification</a>
+							{{else}}
+								<a class="btn btn-sm btn-default youve-submitted">you've submitted for verification</a>
+							{{/if}}
+						{{/if}}
+					{{/if}}
+				{{/if}}
+				{{#if isInRole 'manager'}}
+					<a href="/sub-user" class="btn btn-sm btn-primary">sub users</a>
+				{{/if}}
+			</div>
+		</div>
+	</div>	
+</template>

@@ -1,0 +1,44 @@
+<template name="singleBanner">
+	{{#if editMode}}
+		<div class="banner-preview row {{#if isPublished}}published{{else}}unpublished{{/if}}">
+			{{#with FS.GetFile "bannerImages" image}}
+		        <div class="banner-image-update col-sm-6" style="background:url({{url}})no-repeat;">
+		        </div>
+		    {{/with}}
+			<div class="col-sm-6 hide-submit">
+				{{> quickForm collection="Banners" id="updateBannerId" type="update" doc=this autosave=true class="updateBannerForm"}}
+				<div class="toggles">
+					<a class="btn btn-sm btn-primary edit-btn"><img src="/img/profile.svg"></a>
+					<a class="btn btn-sm btn-danger delete-btn"><i class="fa fa-times"></i></a>
+					{{#if isPublished}}
+						<a class="btn btn-sm btn-default toggle-menu">unpublish</a>
+					{{else}}
+						<a class="btn btn-sm btn-success toggle-menu">publish</a>
+					{{/if}}
+				</div>
+			</div>
+		</div>
+	{{else}}
+		<div class="banner-preview row {{#if isPublished}}published{{else}}unpublished{{/if}}">
+			{{#with FS.GetFile "bannerImages" image}}
+		        <div class="banner-image col-sm-6" style="background:url({{url}})no-repeat;">
+		        </div>
+		    {{/with}}
+			<div class="details col-sm-6">
+				<h1>{{title}}</h1>
+				<p>{{subtitle}}</p>
+				<p></p>
+				<p><strong>link:</strong> <em>{{link}}</em></p>
+				<div class="toggles">
+					<a class="btn btn-sm btn-primary edit-btn"><img src="/img/profile.svg"></a>
+					<a class="btn btn-sm btn-danger delete-btn"><i class="fa fa-times"></i></a>
+					{{#if isPublished}}
+						<a class="btn btn-sm btn-default toggle-menu">unpublish</a>
+					{{else}}
+						<a class="btn btn-sm btn-success toggle-menu">publish</a>
+					{{/if}}
+				</div>
+			</div>
+		</div>
+	{{/if}}
+</template>

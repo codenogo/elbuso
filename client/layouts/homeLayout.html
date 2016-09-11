@@ -1,0 +1,19 @@
+<template name="homeLayout">
+	<div class="homepage">
+		{{> preloader}}
+		{{> headerBar}}	
+		<main class="menufy-main-content">
+			{{#if userIsDeactivated}}
+				<h1 class="centered-placeholder">
+				<br />
+				<br />
+				<br />
+				<br />
+					Your account has been deactivated
+				</h1>
+			{{else}}
+				{{> Template.dynamic template=homely}}
+			{{/if}}
+		</main>
+	</div>
+</template>

@@ -1,0 +1,32 @@
+<template name="locations">
+	<div class="data-container">
+		{{#if $.Session.get 'newLocation'}}
+			<button class="close-new"><i class="fa fa-close"></i></button>
+			{{> newLocation}}
+		{{else}}
+			{{#if location}}
+				<h1>Locations
+					<a class="new-location btn btn-sm btn-success pull-right">New Location</a>
+					<a href="/profile" class="btn btn-sm btn-default pull-right">back to profile</a>
+				</h1>
+			{{else}}
+				<button class="new-location btn-sm btn-default">New Location</button>
+			{{/if}}
+		{{/if}}
+		<div class="location-list">
+			{{#if Template.subscriptionsReady}}
+				<div class="row">
+					{{#each location}}
+						{{> locationItem}}
+					{{else}}
+						<div class="col-xs-12">
+							<h1 class="centered-placeholder">you have not added a location</h1>
+						</div>
+					{{/each}}
+				</div>
+			{{else}}
+				{{> preloaderInner}}
+			{{/if}}
+		</div>
+	</div>
+</template>

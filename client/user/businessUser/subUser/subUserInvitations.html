@@ -1,0 +1,43 @@
+<template name="subUserInvitations">
+	<div class="data-container">
+		<h1>
+			sub user invitations
+			<a href="/sub-user" class="btn btn-sm btn-default pull-right">back</a>
+			<a href="/sub-user/new" class="btn btn-sm btn-success pull-right">invite a sub user</a>
+		</h1>
+		<div class="sub-user-invites">
+			<table>
+				<thead>
+					<tr>
+						<th>
+							<p>names</p>
+						</th>
+						<th>
+							email
+						</th>
+						<th>
+							role
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each invitations}}
+						<tr>
+							<td>
+								<p>{{firstname}} {{lastname}}</p>
+							</td>
+							<td>
+								<p>{{email}}</p>
+							</td>
+							<td>
+								<p class="label label-sm label-primary">
+									{{permission}}
+								</p>
+							</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</template>

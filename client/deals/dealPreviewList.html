@@ -1,0 +1,43 @@
+<template name="dealPreviewList">
+	
+	<div class="deal-preview col-sm-4">
+		<a href="/deal/{{_id}}">
+			{{#if isAFavourite}}
+				<div class="liked">
+					<span class="heart">
+						<div id="twitter-like" class="liked twit-animated"></div>
+					</span>
+				</div>
+			{{/if}}
+			{{#if isUnpublished}}
+				{{#with FS.GetFile "dealImages" image}}
+		            <div class="image-preview" style="background: url({{url}}) no-repeat;">
+		            	<span class="unpublished-deal-label btn btn-sm btn-danger">unpublished</span>
+		            </div>
+		        {{/with}}
+			{{else}}
+				{{#with FS.GetFile "dealImages" image}}
+		            <div class="image-preview" style="background: url({{url}}) no-repeat;"></div>
+		        {{/with}}
+			{{/if}}
+			<div class="preview-title">
+				<span data-tooltip="{{name}}" tabindex="0">{{shortName}}</span>
+			</div>
+			<div class="deal-by">
+				{{#with FS.GetFile "userImage" authorImage}}
+		            <div class="dealer" style="background: url({{url}}) no-repeat;"></div>
+		        {{else}}
+				<div class="dealer"><span>{{authorLetter}}</span></div>
+				{{/with}}
+				
+				<span>by {{authorName}}</span>
+			</div>
+			<div class="rate-bar-standard">
+				<span class="percent">{{Rate}}%</span><br />
+				<span class="intro">0ff</span><br />
+				<span class="rate">{{currencySymbol}}{{price}}</span>
+			</div>
+		</a>
+	</div>
+	
+</template>

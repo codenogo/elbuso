@@ -1,0 +1,29 @@
+<template name="verifyPhone">
+	<div class="container">
+		<div class="registration-page">
+			<h1 class="page-header">verify your phone number</h1>
+			<form id="phone-verification" class="phone-verification">
+				<p>We have sent a verification code to your number <strong>{{myPhoneNumber}}.</strong> Enter it below so you can begin transacting on the Elbuso platform.</p>
+				<br />
+
+				<div class="form-group">
+					<!-- <label for="verificationCode">Your verification Code</label> -->
+					<p></p>
+					<p></p>
+					<input type="text" name="verificationCode" class="form-control verification-code" placeholder="Your verification Code here">
+				</div>
+				<div class="form-group">
+					<input type="submit" class="full-width btn btn-success btn-sm submit" value="Verify your phone Number">
+					<div class="processing hidden">
+						{{> processingButton}}
+					</div>
+				</div>
+				<div class="form-group">
+					<p class="centered">
+						<a href="/change-phone">change your phone number</a>
+					</p>
+				</div>
+			</form>
+		</div>
+	</div>
+</template>

@@ -1,0 +1,221 @@
+.auction-sidebar-item, .deal-sidebar-item{
+	display:none;
+}
+.deal-sidebar-item{
+	border-bottom:1px solid #eee;
+}
+.mobile-only{
+	display:none;
+}
+@media only screen and (max-width: 50em) {
+	.col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .image-section, .right-sidebar, .details{
+		width:100% !important;
+	}
+
+	.sidebar{
+		width:100%;
+		position:fixed;
+		top:0;
+		height:100vh;
+		z-index:9999999999;
+		background:#fff;
+		padding-top:3em;
+		overflow-y:auto;
+		display:none;
+	}
+	.main-content .profile-preview{
+		display:none;
+	}
+	#menufy-top-nav {
+	    right: 40px !important;
+	}
+	#menufy-top-nav ul {
+	    padding-top: 11px !important;
+	}
+	#menufy-top-nav ul li{
+		display:none;
+	}
+	#menufy-top-nav ul li.current-user, #menufy-top-nav ul li.login{
+		display:block;
+	}
+	#menufy-top-nav ul li.current-user span.name, #menufy-top-nav ul li.login span{
+		display:none;
+	}
+	.auction-sidebar-item, .deal-sidebar-item{
+		display:block;
+	}
+
+
+	.item .info-section, .item .info-section .details-info{
+		padding:0 !important;
+	}
+	.item .info-section .rates-info{
+		border-right:0 !important;
+		padding:0 !important;
+	}
+	.item .info-section .rates-info ul{
+		width:100%;
+		display:table;
+	}
+	.item .info-section .rates-info ul li{
+		width:33.333333333%;
+		float:left;
+	}
+	.item .info-section .rates-info ul li .value {
+	    font-size: 1.5em !important;
+	}
+	.item .info-section .rates-info ul li .attr {
+		font-size: 0.8em !important;
+	}
+
+
+	.auction-details .image-section {
+	    padding-left:0 !important;
+	}
+	.auction-details .image-section .stats .attr{
+		display:none;
+	}
+	.auction-details .right-sidebar {
+	    width: 100%;
+	    float: none;
+	    padding: 20px;
+	}
+	.auction-details .right-sidebar .reserve-section .reservation .min-value{
+		font-size:2em;
+	}
+	.auction-details .right-sidebar .reserve-section .amount .minimum{
+		font-size:3em;
+	}
+	.auction-details .right-sidebar .offer-section table.wide tr td.input input{
+		width:100%;
+	}
+	.auction-details .right-sidebar .offer-section table.wide tr td .name{
+		display:none;
+	}
+	.auction-details .image-section .title-bar h2.title{
+		margin-bottom:.5em;
+		font-size:2em;
+	}
+	.mobile-only{
+		display:block !important;
+	}
+	.desktop-only{
+		display:none;
+	}
+	.show-menu .main-content{
+		height:100%;
+		overflow:hidden !important;
+	}
+	.insidepages.user #sidebar-btn{
+		display:inline-block !important;
+	}
+	.my-cart-data .table tbody tr td a .cart_values, .my-cart-data .table tbody tr td a .cart_image{
+	  	width: 100% !important;
+	  	padding: .5em 0 !important;
+	}
+	.my-cart-data > .table > tbody > tr > td:last-child, .my-cart-data > .table > thead > tr > th:last-child{
+		display:none;
+	}
+	.fixed-layer{
+		padding:30vh 15vw 0;
+	}
+}
+
+@media only screen and (max-width: 30em) {
+	#menufy-lateral-nav{
+		width:100% !important;
+	}
+	.data-container h1 .pull-right, h1 .pull-right{
+		float:none !important;
+		width:100%;
+		margin-bottom:.3em;
+	    border-top: 0;
+	    border-right: 0;
+	    text-align: left;
+	    border-bottom: 0;
+	    border-left: 0.2em solid #aaa;
+		margin-top:.2em;
+	}
+	.deal-details .details .client-intro-section .supplier-name{
+		margin-bottom:1em;
+	}
+	.deal-details .image-section .title-bar {
+	    margin-top: 1em;
+	    margin-bottom: 1em;
+	    position: relative;
+	}
+	.deal-details .image-section .title-bar h2.title {
+		font-size:2em;
+		margin-bottom:.7em;
+	}
+	/*form*/
+	.add-attachments .panel .list-group .list-group-item, .new-auction .panel .list-group .list-group-item, .new-deal .panel .list-group .list-group-item {
+	    width: 100%;
+	}
+	.slide-show {
+	    height: 70vw !important;
+	}
+
+	.banner-bg {
+		height: 70vw;
+	}
+	.banner-bg .carousel .container {
+	    height: 70vw;
+	}
+	.banner-bg .carousel .container .slide .details {
+	    max-width: 100%;
+	    bottom: 1em;
+	    left: 1em;
+	}
+	.banner-bg .carousel .container .slide .details h1{
+		padding:0;
+		font-size:2em;
+	}
+
+
+	.user-detail .head-section table tr td:last-child{
+		display:none;
+	}
+
+
+
+	/*auctions*/
+
+	.item .info-section .details-info h2.title{
+	    font-size: 2em !important;
+	}
+
+
+
+	.main-content {
+		padding:1em !important;
+	}
+	.message-box ~ h1{
+		border-bottom:0 !important;
+	}
+	.conversations .single-conversation table tbody tr td:first-child, .conversations .single-conversation table tbody tr td img{
+		display:none;
+	}
+	.conversations .single-conversation {
+		padding: 1em !important;
+	}
+	.conversations .single-conversation table tbody tr td .topic {
+	    font-size: 1em !important;
+	}
+
+
+	.buyer-register {
+	    border-right: 0 !important;
+	}
+	.buyer-register p, .seller-register p, h1.select-type{
+		font-size:1.5em !important;
+	}
+	.registration-page form{
+		width:100% !important;
+	}
+	.fixed-layer{
+		padding:20vh 5vw 0;
+	}
+
+
+}

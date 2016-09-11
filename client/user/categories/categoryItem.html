@@ -1,0 +1,96 @@
+<template name="categoryItem">
+	<li id="cat-item" class="{{_id}} {{#if isRoot}}{{else}}sub-one{{/if}}">
+		{{#if editMode}}
+			{{#if isNotFixed}}
+				<div class="cat-object">
+					{{#autoForm collection="Categories" id="updateCategoryId" type="update" placeholder="schemaLabel" class="edit-category-form" validation="blur" doc=this autosave=true}}
+						<table class="category-item-edit">
+							<tbody>
+								<tr>
+									<td>
+										{{#if isRoot}}<div class="hilight-circle"></div>{{/if}}
+										{{> afQuickField name='name'}}
+									</td>
+									<td>
+										{{> afQuickField name='rate'}}<span class="pull-left btn btn-default percent-btn">%</span>
+									</td>
+									<td>
+										<!-- <button type="submit" class="btn btn-primary btn-sm">update</button> -->
+										<a class="btn btn-sm btn-primary edit-btn pull-right">update</a>
+										{{#if hasSubs}}
+										{{else}}
+											<a class="btn btn-sm btn-danger delete-btn pull-right">delete</a>
+										{{/if}}
+									</td>
+								</tr>
+							</tbody>
+						</table>
+				    {{/autoForm}}
+			    </div>
+			{{else}}
+				<div class="cat-object">
+					<table class="category-item">
+						<tbody>
+							<tr>
+								<td>
+									{{#if isRoot}}<div class="hilight-circle"></div>{{/if}}
+									{{name}}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+		    {{/if}}
+		{{else}}
+			<div class="cat-object">
+				<table class="category-item">
+					<tbody>
+						<tr>
+							<td>
+								{{#if isRoot}}<div class="hilight-circle"></div>{{/if}}
+								{{name}}
+							</td>
+							{{#if isNotFixed}}
+								<td>
+									{{#if hasSubs}}
+									{{else}}
+										{{rate}}%
+									{{/if}}
+								</td>
+								<td>
+									<a class="edit-btn"><img src="/img/dark-profile.svg" class="edit-ico inactive-edit" /></a>
+									<a class="edit-btn"><img src="/img/profile.svg" class="edit-ico active-edit" /></a>
+								</td>
+								{{#if thirdLevel}}
+									<td></td>
+								{{else}}
+									{{#if hasSubs}}
+										<td>
+											<a class="has-children" id="{{_id}}">
+												<i class="fa fa-arrow-right"></i>
+											</a>
+										</td>
+									{{else}}
+										<td>
+											<a class="has-children" id="{{_id}}">
+												<i class="fa fa-arrow-right disabled-arrow"></i>
+											</a>
+										</td>
+									{{/if}}
+								{{/if}}
+							{{/if}}
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		{{/if}}
+		<!-- {{#if hasSubs}}
+			<ul class="sub-category">
+				{{#sortable items=subCategories options=categoryOptions ghostClass="sortable-ghost" group="manners"}}
+					{{> categoryItem2}}
+				{{/sortable}}
+			</ul>
+		{{/if}} -->
+
+	</li>
+</template>

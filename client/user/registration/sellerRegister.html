@@ -1,0 +1,56 @@
+<template name="sellerRegister">
+	<div class="container">
+		<div class="registration-page">
+			<h1>CREATE A new business ACCOUNT</h1>
+			<form class="sellerRegister">
+				<p class="fieldset intro">
+					with your account you will be able to participate in auctions, deals and much more. get access to users and expand your client base by offering them the best deals.
+				</p>
+				<p class="fieldset">
+					<input class="full-width has-padding has-border" type="text" placeholder="First name" name="firstname" autocomplete="off">
+				</p>
+				<p class="fieldset">
+					<input class="full-width has-padding has-border" type="text" placeholder="Last name" name="lastname" autocomplete="off">
+				</p>
+				<p class="fieldset">
+					<input class="full-width has-padding has-border" type="text" placeholder="company name" name="companyname" autocomplete="off">
+				</p>
+				<div class="row">
+					<div class="form-group col-sm-5">
+				        <select id="country-code" name="countryCode" class="form-control">
+				        	{{#each country}}
+			        			<option value="{{countryCode}}">{{name}} (+{{countryCode}})</option>
+				        	{{/each}}
+				        </select>
+			        </div>
+			        <div class="form-group col-sm-7">
+			        	<table class="phone-no">
+			        		<tbody>
+			        			<tr>
+			        				<td>
+					        			<input type="number" name="phoneNumber" id="phone-number" class="form-control" placeholder="phone number">
+					        		</td>
+					        		<td>
+					        			<span data-tooltip="{{whyPhone}}" tabindex="0" data-side="top" class="why"><i class="fa fa-question" aria-hidden="true"></i></span>
+					        		</td>
+			        			</tr>
+			        		</tbody>
+			        	</table>
+			        </div>
+				</div>
+				<p class="fieldset">
+					<input class="full-width has-padding has-border" type="email" placeholder="email" name="registerEmail" autocomplete="off">
+				</p>
+				<p class="fieldset">
+					<input class="full-width has-padding has-border" type="password" placeholder="password" name="registerPassword" autocomplete="off">
+				</p>
+				<p class="fieldset">
+					<input class="full-width has-padding submit" type="submit" value="Register">
+					<div class="processing hidden">
+						{{> processingButton}}
+					</div>
+				</p>
+		    </form>
+	    </div>
+	</div>
+</template>

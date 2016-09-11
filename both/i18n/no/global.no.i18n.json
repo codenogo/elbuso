@@ -1,0 +1,22 @@
+{
+    "global": {
+        "deals": "tilbud",
+        "auctions": "auksjoner",
+        "register": "registrere",
+        "login": "Logg inn",
+        "logout": "Logg ut",
+        "cart": "handlevogn",
+        "my_account": "min konto",
+        "no_deals_yet": "ingen avtaler ennå",
+        "show_more": "vis mer",
+        "favourites": "favoritter",
+        "my_activity": "min aktivitet",
+        "my_cart": "min handlevogn",
+        "support": "støtte",
+        "checkout": "Sjekk ut"
+    },
+    "homepage": {
+        "featured_auctions": "utvalgte auksjoner",
+        "no_featured_auctions": "ikke omtalt auksjoner ennå"
+    }
+}

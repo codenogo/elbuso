@@ -1,0 +1,62 @@
+<template name="auctions">
+	<div class="filter col-md-3 desktop-only">
+		<h1>filter</h1>
+		{{> auctionFilter}}
+	</div>
+	<div class="col-md-9 pull-right">
+		<h1>ALL AUCTIONS
+			{{#if isInRole "admin"}}
+				<a href="/admin/new-auction" class="btn btn-sm btn-default pull-right">create new auction</a>
+			{{/if}}
+		</h1>
+		<div class="previews">
+			{{#if Template.subscriptionsReady}}
+				<!-- <div class="preview-data">
+					{{#if isInRole "admin"}}
+						{{#each allAuctions}}
+							{{> auctionListItem}}
+						{{else}}
+							<h1 class="left-placeholder">create a new auction</h1>
+						{{/each}}
+					{{else}}
+						{{#if isInRole "seller"}}
+							{{#each auctionsBidding}}
+								{{> biddingAuction}}
+							{{/each}}
+						{{/if}}
+						{{#if isInRole "sub-user"}}
+							{{#each auctionsBidding}}
+								{{> biddingAuction}}
+							{{/each}}
+						{{/if}}
+						{{#each auctions}}
+							{{> auctionListItem}}
+						{{else}}
+							<h1 class="left-placeholder">no auctions yet</h1>
+						{{/each}}
+					{{/if}}
+				</div> -->
+
+				<div class="preview-data">
+					{{#if isLoading}}
+						{{>preloader}}
+					{{/if}}
+					{{#each getPackages}}
+						{{> auctionListItem}}
+					{{/each}}
+				</div>
+
+
+				<!-- {{#if auctions}}
+					<div class="show-more-bar">
+						<a class="show-more">
+							show more <span class="plus-black-sm"></span>
+						</a>
+					</div>
+				{{/if}} -->
+			{{else}}
+				{{> preloader}}
+			{{/if}}
+		</div>
+	</div>
+</template>

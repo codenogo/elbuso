@@ -1,0 +1,35 @@
+<template name="banner">
+{{#if Template.subscriptionsReady}}
+<div class="banner-bg">
+	<section class="carousel">
+		<nav></nav>
+		<div class="container">
+		    {{#each banners}}
+				<div class="slide">
+		        {{> bannerImg}}
+				</div>
+			{{else}}
+				{{> preloaderInnerBanner}}
+			{{/each}}
+		</div>
+	</section>
+</div>
+{{else}}
+	{{> preloaderInnerBanner}}
+{{/if}}
+</template>
+
+<template name="bannerImg">
+	<a href="{{link}}" parent="_blank">
+		<div class="details">
+			<h1>{{title}}</h1>
+			<p>{{subtitle}}</p>
+		</div>
+	</a>
+	{{#with FS.GetFile "bannerImages" image}}
+        <img src="{{url}}" />
+    {{/with}}
+</template>
+
+
+

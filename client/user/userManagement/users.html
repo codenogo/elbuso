@@ -1,0 +1,27 @@
+<template name="users">
+	<div class="data-container admin-users">
+		<h1>
+			USERS / <span class="user-count">{{userNo}}</span>
+			{{> adminUserMenu}}
+		</h1>
+		<div class="table-responsive">
+			<table class="table users-table table-hover">
+				<thead>
+					<tr>
+						<th></th>
+						<th>name</th>
+						<th>email</th>
+						<th>phone</th>
+						<th>role</th>
+						<th>details</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each users}}
+						{{> userItem}}
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</template>

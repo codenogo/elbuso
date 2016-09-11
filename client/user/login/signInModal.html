@@ -1,0 +1,24 @@
+<template name="signInModal">
+	<form class="popup-form login">
+		<p class="fieldset">
+			<label class="image-replace popup-username" for="signin-username">Email </label>
+			<input class="full-width has-padding has-border" id="signin-username" type="email" name="email" placeholder="EMAIL">
+			<span class="popup-error-message">Please enter a valid username</span>
+		</p>
+
+		<p class="fieldset">
+			<label class="image-replace popup-password" for="signin-password">Password</label>
+			<input class="full-width has-padding has-border" id="signin-password" type="password" name="password"  placeholder="PASSWORD">
+			<span class="popup-error-message">Error message here!</span>
+		</p>
+
+		<!-- <p class="fieldset">
+			<input type="checkbox" id="remember-me" checked>
+			<label for="remember-me">Remember me</label>
+		</p> -->
+
+		<p class="fieldset">
+			<button class="full-width" type="submit">Login</button>
+		</p>
+	</form> 
+</template>

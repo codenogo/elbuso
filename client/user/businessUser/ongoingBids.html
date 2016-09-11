@@ -1,0 +1,21 @@
+<template name="ongoingBids">
+	<div class="data-container">
+		<h1>ongoing bids <img src="/img/clock.svg" /></h1>
+		<div class="ongoing-bids-page">
+			{{#if isInRole "admin"}}
+				{{#each ongoingBids}}
+					{{> biddingAuction}}
+				{{else}}
+					<h1 class="centered-placeholder">there are no ongoing bid right now</h1>
+				{{/each}}
+			{{/if}}
+			{{#if isInRole "seller"}}
+				{{#each sellerOngoingBids}}
+					{{> biddingAuction}}
+				{{else}}
+					<h1 class="centered-placeholder">you are not in any ongoing bid right now</h1>
+				{{/each}}
+			{{/if}}
+		</div>
+	</div>
+</template>

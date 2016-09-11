@@ -1,0 +1,140 @@
+<template name="sideBar">
+	<nav id="menufy-lateral-nav">
+		{{#if currentUser}}
+		<div class="profile-tab">
+			{{> profilePreview}}
+		</div>
+		{{/if}}
+		<ul class="menufy-navigation menufy-single-item-wrapper">
+			<li class="auction-sidebar-item">
+				<a class="sidebar-link current profile" href="/auctions">
+					{{_ 'global.auctions'}} <span class="notification none"></span>
+				</a>
+			</li>
+			<li class="deal-sidebar-item">
+				<a class="sidebar-link current profile" href="/deals">
+					{{_ 'global.deals'}} <span class="notification none"></span>
+				</a>
+			</li>
+
+			{{#if currentUser}}
+				<li>
+					<a class="sidebar-link current profile" href="/profile">
+						<img src="/img/user-light.svg" /> {{_ 'global.my_account'}} <span class="notification none"></span>
+					</a>
+				</li>
+				{{#if isInRole 'admin'}}
+				{{else}}
+				<li>
+					<a class="sidebar-link favourites" href="/favourites">
+						<img src="/img/fav.svg" />{{_ 'global.favourites'}}<span class="notification none"></span>
+					</a>
+				</li>
+					{{#if isInRole 'sub-user'}}
+					{{else}}
+						<li>
+							<a class="sidebar-link activity" href="/activity">
+								<img src="/img/activity.svg" />{{_ 'global.my_activity'}}<span class="notification none"></span>
+							</a>
+						</li>
+					{{/if}}
+				<li>
+					<a class="sidebar-link activity" href="/support">
+						<img src="/img/support-light.svg" />{{_ 'global.support'}}
+						<span class="notification {{#if hasNewMessage}}yeah{{else}}none hidden{{/if}}">{{newMessageCount}}</span>
+					</a>
+				</li>
+				{{/if}}
+				<li>
+					<a class="sidebar-link profile logout">
+						<img src="/img/profile.svg" /> {{_ 'global.logout'}}<span class="notification none"></span>
+					</a>
+				</li>
+
+			{{else}}
+				<!-- <li><a class="create_account popup-signin"><h1>menu</h1></a></li> -->
+			{{/if}}
+
+			{{#if isInRole 'admin'}}
+			{{else}}
+				{{#if cartItem}}
+
+				<li class="item-has-children"><a class="cart" ><img src="/img/cart.svg" />{{_ 'global.my_cart'}}<span class="notification yeah">{{cartCount}}</span></a>
+					<ul class="sub-menu">
+						{{#each isAuction}}
+						<li>
+							<a class="auction">
+								<span class="cart_title">{{auctionName}}</span>
+								<span class="cart_type auction">{{_ 'global.auction'}}</span>
+								<div class="cart_details">
+									<div class="cart_image">
+										{{#with FS.GetFile "auctionImages" auctionImage}}
+								            <img src="{{url}}" />
+								        {{/with}}
+									</div>
+									<div class="cart_values">
+										<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td>Minimum Discount</td>
+												<td>{{minimumDiscount}}%</td>
+											</tr>
+											<tr>
+												<td>Purchase Price</td>
+												<td>{{reservedAmt}}{{auctionCurrencySymbol}}</td>
+											</tr>
+											<tr>
+												<td>Reservarion fee</td>
+												<td>{{reservationFee}}{{auctionCurrencySymbol}}</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</a>
+						</li>
+						{{/each}}
+						{{#each isDeal}}
+						 <li>
+							<a class="auction">
+								<span class="cart_title">{{dealName}}</span>
+								<span class="cart_type deal">{{_ 'global.deal'}}</span>
+								<div class="cart_details">
+									<div class="cart_image">
+										{{#with FS.GetFile "dealImages" dealImage}}
+								            <img src="{{url}}" />
+								        {{/with}}
+									</div>
+									<div class="cart_values">
+										<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td>Minimum Discount</td>
+												<td>{{dealDiscount}}%</td>
+											</tr>
+											<tr>
+												<td>Purchase Price</td>
+												<td>{{dealPrice}}{{dealCurrencySymbol}}</td>
+											</tr>
+											<tr>
+												<td>Reservarion fee</td>
+												<td>{{dealFee}}{{dealCurrencySymbol}}</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</a>
+						</li>
+						{{/each}}
+						<li class="checkout">
+							<a class="checkout-link" href="/cart">
+								{{_ 'global.checkout'}}
+							</a>
+						</li>
+					</ul>
+				</li>
+				{{/if}}
+			{{/if}}
+
+
+
+		</ul>
+	</nav>
+</template>

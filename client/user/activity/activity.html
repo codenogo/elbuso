@@ -1,0 +1,71 @@
+<template name="activity">
+	<div class="data-container">
+		<h1>MY ACTIVITY <img src="/img/dark-activity.svg" /></h1>
+		<div class="activity-page">
+			<div class="activity-stats">
+				<div class="row">
+					<div class="col-sm-3">
+						<div class="value">{{cartValue}}$</div>
+						<div class="info">
+							<span>current cart invoice</span>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="value">{{pastPurchases}}$</div>
+						<div class="info">
+							<span>value of past purchases</span>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="value">{{moneySaved}}$</div>
+						<div class="info">
+							<span>money saved!</span>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="value">{{totalReservations}}</div>
+						<div class="info">number of items reserved</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="activity-items">
+			{{#if activity}}
+				{{#if uncollected}}
+					<h1>collectable items</h1>
+					<div class="currently-uncollected">
+						<div>
+							{{#each uncollectedAuction}}
+								{{> auctionListItem}}
+							{{/each}}
+						</div>
+						<div class="row">
+							{{#each uncollectedDeal}}
+								{{> dealPreviewList}}
+							{{/each}}
+						</div>
+					</div>
+				{{else}}
+					<h1 class="centered-placeholder">you have no collectable items right now</h1>
+				{{/if}}
+				{{#if collected}}
+					<h1>past purchases</h1>
+					<div class="currently-collected">
+						<div>
+							{{#each collectedAuction}}
+								{{> auctionListItem}}
+							{{/each}}
+						</div>
+						<div class="row">
+							{{#each collectedDeal}}
+								{{> dealPreviewList}}
+							{{/each}}
+						</div>
+					</div>
+				{{/if}}
+			{{else}}
+				<h1 class="centered-placeholder">you have no activity yet.</h1>
+			{{/if}}
+		</div>
+	</div>
+</template>

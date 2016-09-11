@@ -1,0 +1,73 @@
+<template name="currencyEditItem">
+	<tr class="{{#if isPublished}}published{{else}}deactivated{{/if}}">
+		<td>
+			<img src="/flags/{{smallIso}}.svg" class="flags">
+			{{name}}
+		</td>
+		{{#if editMode}}
+			<td colspan="4">
+				<form class="select-currency">
+					<select class="currency-list" name="currencyList">
+						{{#each currency}}
+							{{#if isDefaultCurrency}}
+								<option selected="selected" value="{{currencyIso}}">
+									<strong>{{currencyName}} | </strong>
+									
+									{{#unless currencyIso}}
+									{{else}}
+										{{currencyIso}}
+									{{/unless}}
+									 
+									{{#unless currencySymbol}}
+									{{else}}
+										 | ({{currencySymbol}})
+									{{/unless}}
+								</option>
+							{{else}}
+								<option value="{{currencyIso}}">
+									<strong>{{currencyName}} | </strong>
+									
+									{{#unless currencyIso}}
+									{{else}}
+										{{currencyIso}}
+									{{/unless}}
+									 
+									{{#unless currencySymbol}}
+									{{else}}
+										 | ({{currencySymbol}})
+									{{/unless}}
+								</option>
+							{{/if}}
+						{{/each}}
+					</select>
+					<button type="submit" class="btn btn-sm btn-primary update-currency pull-right">save</button>
+				</form>
+			</td>
+		{{else}}
+			<td>
+				{{#unless mycurrencyName}}
+					.....
+				{{else}}
+					{{mycurrencyName}}
+				{{/unless}}
+			</td>
+			<td>
+				{{#unless mycurrencySymbol}}
+					.....
+				{{else}}
+					{{mycurrencySymbol}}
+				{{/unless}}
+			</td>
+			<td>
+				{{#unless currencyIso}}
+					.....
+				{{else}}
+					{{currencyIso}}
+				{{/unless}}
+			</td>
+			<td>
+				<a class="btn btn-sm btn-success edit-state">edit</a>
+			</td>
+		{{/if}}
+	</tr>
+</template>

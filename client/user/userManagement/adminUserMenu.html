@@ -1,0 +1,11 @@
+<template name="adminUserMenu">
+	<a href="/admin/users/verified-sellers" class="btn btn-sm btn-default pull-right">verified sellers</a>
+	<a href="/admin/users/unverified-sellers" class="btn btn-sm btn-default pull-right">
+		submitted sellers 
+		{{#if unverifiedUsers}}
+			<span class="number">{{unverifiedUsersNo}}</span>
+		{{/if}}
+	</a>
+	<a href="/admin/users/buyers" class="btn btn-sm btn-default pull-right">buyers</a>
+	<a href="/admin/users" class="btn btn-sm btn-default pull-right">all users</a>
+</template>

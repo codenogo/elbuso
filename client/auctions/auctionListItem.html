@@ -1,0 +1,119 @@
+<template name="auctionListItem">
+		<div class="item {{#if ifBidding}}bidding-in-progress{{/if}}{{#if isClosed}}auction-closed{{/if}}">
+	        <div class="image-preview col-sm-4">
+	        	{{#if bidExists}}
+	        	{{else}}
+	        		{{#if unPublished}}
+	        			<span class="unpublished-label btn btn-sm btn-danger">auction not published</span>
+	        		{{else}}
+						<div class="progress-bar">
+							<div class="progress progress-{{reservationPercentage}}"></div>
+						</div>
+					{{/if}}
+				{{/if}}
+				<div class="rate-bar-standard">
+					<span class="intro">save<br /> minimum</span><br />
+					{{#if bidExists}}
+						<span class="rate">{{winningBid}}%</span>
+					{{else}}
+						<span class="rate">{{StartRate}}%</span>
+					{{/if}}
+				</div>
+				{{#if isAFavourite}}
+					<div class="liked">
+						<span class="heart">
+							<div id="twitter-like" class="liked twit-animated"></div>
+						</span>
+					</div>
+				{{/if}}
+				<a href="/auction/{{_id}}">
+					{{#if bidExists}}
+						{{#with FS.GetFile "auctionImages" image}}
+					        <div class="image-preview-image" style="background: url({{url}});">
+					        	<span class="btn btn-sm btn-success bid-list-label">bidding in progress</span>
+					        </div>
+						{{/with}}
+					{{else}}
+						{{#with FS.GetFile "auctionImages" image}}
+					        <div class="image-preview-image" style="background: url({{url}});">
+					        </div>
+						{{/with}}
+					{{/if}}
+				</a>
+			</div>
+		<a href="/auction/{{_id}}">
+			<div class="info-section col-sm-8">
+				<div class="rates-info col-sm-3">
+					<ul>
+						{{#if isInRole "admin"}}
+							<li class="min-amount">
+								<span class="value">{{totalPurchaseValue}}{{currencySymbol}}</span><br />
+								<span class="attr">total purchased</span><br />
+								<span class="attr">value</span>
+							</li>
+						{{else}}
+							<li class="min-amount">
+								<span class="value">{{minimumPrice}}{{currencySymbol}}</span><br />
+								<span class="attr">Min purchase</span><br />
+								<span class="attr">value</span>
+							</li>
+						{{/if}}
+						<li class="purchases">
+							<span class="value">{{reservationNo}}</span><br />
+							<span class="attr">purchases</span>
+						</li>
+						<li class="reservations">
+							<span class="value">{{reservationPercentage}}%</span><br />
+							<span class="attr">reserved</span>
+						</li>
+					</ul>
+				</div>
+				<div class="details-info col-sm-9">
+					<h2 class="title"><span data-tooltip="{{name}}" tabindex="0">{{{briefName}}}</span></h2>
+					<div class="bidding-preview">
+						<div class="bid-intro">
+							{{#if bidExists}}
+								<span>winning<br/>supplier</span>
+							{{else}}
+								<span>bidding<br/>suppliers</span>
+							{{/if}}
+						</div>
+						<div class="bidding-icons">
+						{{#if bidExists}}
+							{{#each Bidders}}
+								{{#if winningUser}}
+									{{#with FS.GetFile "userImage" bidderImage}}
+							            <div class="bidder-icon" style="background: url({{url}}) no-repeat;"></div>
+							        {{else}}
+										<div class="bidder-icon">
+											<span>{{bidderLetter}}</span>
+										</div>
+									{{/with}}
+										<span class="with-name">{{bidderName}}</span>
+								{{/if}}
+							{{/each}}
+						{{else}}
+							{{#each Bidders}}
+								{{#with FS.GetFile "userImage" bidderImage}}
+						            <div class="bidder-icon" style="background: url({{url}}) no-repeat;"></div>
+						        {{else}}
+									<div class="bidder-icon">
+										<span>{{bidderLetter}}</span>
+									</div>
+								{{/with}}
+							{{/each}}
+						{{/if}}
+						</div>
+					</div>
+					<div class="desc-bar">
+						<span class="desc">{{{shortDesc}}}</span>
+					</div>
+					<div class="time-bar">
+						<img class="clock-icon" src="/img/time.png">
+						<span>{{formattedDate}}</span>
+					</div>
+				</div>
+			</div>
+		</a>
+		</div>
+</template>

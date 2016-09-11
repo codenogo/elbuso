@@ -1,0 +1,35 @@
+<template name="currencyEdit">
+	<div class="data-container">
+		<h1>Edit currency <a href="/countries" class="btn btn-sm btn-default pull-right">back to countries</a></h1>
+		{{#unless Template.subscriptionsReady}}
+			{{> preloader}}
+		{{/unless}}
+		<div class="table-responsive">
+			<table class="table currency-table table-hover">
+				<thead>
+					<tr>
+						<!-- <th>#</th> -->
+						<th>Country</th>
+						<th>currency Name</th>
+						<th>Symbol</th>
+						<th colspan="2">ISO-4217</th>
+						<!-- <th></th> -->
+					</tr>
+				</thead>
+				<tbody>
+					{{#each country}}
+						{{> currencyEditItem}}
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+		<div>
+			<a class="btn btn-sm btn-primary" href="{{prevPage}}">
+				<span aria-hidden="true">&larr;</span> Previous
+			</a>
+			<a class="btn btn-sm btn-primary" href="{{nextPage}}">
+				Next <span aria-hidden="true">&rarr;</span>
+			</a>
+		</div>
+	</div>
+</template>

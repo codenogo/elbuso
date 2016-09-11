@@ -1,0 +1,60 @@
+<template name="countries">
+	<div class="data-container">
+		<h1>countries <a href="/currency-edit" class="btn btn-sm btn-default pull-right">edit currency</a></h1>
+		{{#unless Template.subscriptionsReady}}
+			{{> preloader}}
+		{{/unless}}
+		<div class="table-responsive">
+			<table class="table currency-table table-hover">
+				<thead>
+					<tr>
+						<!-- <th>#</th> -->
+						<th>Country</th>
+						<th>Phone code</th>
+						<th>Iso code</th>
+						<th>Currency</th>
+						<th>Enabled</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each country}}
+						<tr class="{{#if isPublished}}published{{else}}deactivated{{/if}}">
+							<!-- <td>
+								<input type="checkbox" value="{{_id}}" name="{{_id}}" />
+							</td> -->
+							<td>
+								<img src="/flags/{{smallIso}}.svg" class="flags">
+								{{name}}
+							</td>
+							<td>+{{countryCode}}</td>
+							<td>{{isoCode}}/ {{isoCodeTwo}}</td>
+							<td>
+								{{#unless currencyIso}}
+									.....
+								{{else}}
+									{{currencyIso}}
+								{{/unless}}
+							</td>
+							<td>
+								{{#if isPublished}}
+									<a class="btn btn-sm btn-danger publish-country">unpublish</a>
+								{{else}}
+									<a class="btn btn-sm btn-success publish-country">publish</a>
+								{{/if}}
+							</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+
+		<div>
+			<a class="btn btn-sm btn-primary" href="{{prevPage}}">
+				<span aria-hidden="true">&larr;</span> Previous
+			</a>
+			<a class="btn btn-sm btn-primary" href="{{nextPage}}">
+				Next <span aria-hidden="true">&rarr;</span>
+			</a>
+		</div>
+	</div>
+</template>

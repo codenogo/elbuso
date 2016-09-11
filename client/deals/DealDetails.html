@@ -1,0 +1,514 @@
+<template name="DealDetails">
+	<div class="deal-details">
+		{{#if editMode}}
+			{{#autoForm collection="Deals" id="dealUpdateId" type="update" doc=deal class="updateDealForm update-detail" autosave=true}}
+			<div class="image-section edit">
+				<div class="title-bar edit-mode">
+					<div class="row">
+						<div class="col-sm-12">
+							{{> afQuickField name='name' class="deal-name full-width" }}
+						</div>
+					</div>
+				</div>
+				<div class="primary-image">
+					{{> afQuickField name='image' placeholder="you can change the image"}}
+				</div>
+
+		        <div class="attachments">
+					<div class="add-attachments">
+						{{> afQuickField name='secondaryImage'}}
+					</div>
+				</div>
+			</div>
+			<div class="right-sidebar">
+				<div class="reserve-section">
+					<div class="amount">
+						<span class="discounted">{{discounted}}{{currencySymbol}}</span><br />
+						<span class="original">{{> afQuickField name='price' class="half-width"}}{{currencySymbol}}</span>
+					</div>
+					<div class="reservation">
+						{{#if userVerifiedPhoneFailed}}
+							<div class="orange-box">
+								<span>please add your phone number before you transact on Elbuso.</span>
+							</div>
+						{{else}}
+							{{#if userReserved}}
+							<div class="orange-box">
+								<span>you have reserved this deal</span>
+							</div>
+							{{else}}
+								{{#if seller}}
+									<div class="orange-box">
+										<span>you cannot reserve your own deal</span>
+									</div>
+								{{else}}
+									{{#if isInRole 'admin'}}
+										<div class="orange-box reserve-deal">
+											<span>sorry Admin, you can't reserve a deal</span>
+										</div>
+									{{else}}
+										{{#if isInRole 'sub-user'}}
+											<div class="orange-box">
+												<span>you cannot reserve a deal</span>
+											</div>
+										{{else}}
+											<button class="orange-box reserve-deal">
+												<span>reserve now <span class="lower">for</span><span class="big"> {{reservationFee}}{{currencySymbol}}</span></span>
+											</button>
+										{{/if}}
+									{{/if}}
+								{{/if}}
+							{{/if}}
+						{{/if}}
+						<span class="reservation-help">
+							pay <strong>{{payableBal}}{{currencySymbol}}</strong> at the store
+						</span>
+					</div>
+				</div>
+				<div class="rates">
+					<div class="discount-rate">
+						<span class="rate">{{> afQuickField name='Rate' class="half-width"}}%</span><br />
+						<span class="val">discount</span>
+					</div>
+					<div class="money-saved">
+						<span class="rate">{{savedAmount}}{{currencySymbol}}</span><br />
+						<span class="val">You saved!</span>
+					</div>
+				</div>
+				<div class="show-label">
+					<div class="toggle-options">
+			    		{{> afQuickField name='unitType' template="buttonGroup"}}
+			    	</div>
+					{{> afQuickField name='currency'}}
+
+					{{#if isInRole "admin"}}
+						{{> afQuickField name='reservationFee'}}
+					{{/if}}
+			    	<!--same as comment below-->
+			    	{{#if afFieldValueIs name="unitType" value="single"}}
+						{{> afQuickField name='maximumUserUnits'}}
+						{{> afQuickField name='maximumTotalUnits'}}
+						<div class="hidden">
+							{{> afQuickField name='maximumTotalReservations' min=maxPriceVal value=maxPriceVal class="hidden"}}
+						</div>
+						<div class="form-group">
+							<label>Maximum value available for purchase in this deal (after discount)</label>
+						    <input type="text" disabled value="{{maxPriceVal}}" class="form-control">
+						</div>
+				    {{/if}}
+					{{#if afFieldValueIs name="unitType" value="assortment"}}
+				    	<div class="hidden">
+				    		{{> afQuickField name='maximumUserUnits' value=min}}
+				    		{{> afQuickField name='maximumTotalUnits' label="The maximum number of reservations for this deal" value="9999"}}
+				    	</div>
+				    	{{> afQuickField name='maximumTotalReservations' min=priceVal defaultValue=priceVal}}
+					{{/if}}
+
+			    	<div class="toggle-options">
+			    		{{> afQuickField name='redeemValueToggle' template="buttonGroup"}}
+			    	</div>
+			    	<h1>timelines</h1>
+
+
+
+			    	<div class="toggle-options">
+			    		{{> afQuickField name='selectLive' template="buttonGroup"}}
+			    	</div>
+			    	<!--if the value of the radio group above is custom show the date field for go live-->
+			    	{{#if afFieldValueIs name="selectLive" value="custom"}}
+						<div class="live-date">
+				    		{{> afQuickField name='goingLiveDate' defaultValue=""}}
+				    	</div>
+				    {{/if}}
+				    {{#if afFieldValueIs name="selectLive" value="immediately"}}
+				    	<div class="live-date">
+				    		{{> afQuickField name='goingLiveDate' value=dateNow}}
+				    	</div>
+					{{/if}}
+
+
+
+			    	<div class="closing-date">
+			    		{{> afQuickField name='closingDate'}}
+			    	</div>
+
+
+					<div class="redeem-date">
+				    	<div class="toggle-options">
+				    		{{> afQuickField name='redeemMoreToggle' template="buttonGroup"}}
+				    	</div>
+				    	<!--same as comment above-->
+				    	{{#if afFieldValueIs name="redeemMoreToggle" value="yes"}}
+					    	<div class="">
+					    		{{> afQuickField name='finalRedeemDate' defaultValue=""}}
+					    	</div>
+					    {{/if}}
+					    {{#if afFieldValueIs name="redeemMoreToggle" value="no"}}
+					    	<div class="hidden">
+					    		{{> afQuickField name='finalRedeemDate' value=closeDate}}
+					    	</div>
+						{{/if}}
+					</div>
+
+					<div class="collection-date">
+			    		{{> afQuickField name='finalCollectionDate'}}
+			    	</div>
+				</div>
+				<div class="location">
+					<h1><br />pick up locations</h1>
+					{{#unless deal.locations}}
+						{{> afQuickField name='location'}}
+					{{else}}
+						<div class="hidden">
+			    			{{> afQuickField name='location'}}
+			    		</div>
+			    		{{> afQuickField name='locations'}}
+					{{/unless}}
+				</div>
+			</div>
+			<div class="details">
+				<div class="description">
+					<h1>Description</h1>
+					{{> afQuickField name='description'}}
+					<div class="attachments">
+						<h1>Attachments</h1>
+						<div class="add-attachments">
+							{{> afQuickField name='attachments'}}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="edit-controls clear">
+				<button type="submit" class="btn btn-success btn-sm">Update details</button>
+				<a class="edit-deal btn btn-sm btn-primary">Stop Editing</a>
+			</div>
+			{{/autoForm}}
+		{{else}}
+			{{#if seller}}
+				{{#if reservationsExist}}
+				{{else}}
+					{{#if publishedDeal}}
+					{{else}}
+						<div class="edit-controls">
+							<a class="edit-deal btn btn-sm btn-primary">Edit</a>
+							{{#if dealIsOpen}}
+								<a class="close-deal btn btn-sm btn-danger">close</a>
+							{{else}}
+								<a class="close-deal btn btn-sm btn-success">open </a>
+							{{/if}}
+						</div>
+					{{/if}}
+				{{/if}}
+			{{/if}}
+			{{#if isInRole 'admin'}}
+				{{#if reservationsExist}}
+				{{else}}
+					<div class="edit-controls">
+						<a class="edit-deal btn btn-sm btn-primary">Edit</a>
+						{{#if noReservationFee}}
+							<div class="add-fee show-label">
+								{{#autoForm collection="Deals" id="dealUpdateId" type="update" doc=deal class="updateDealForm update-detail"}}
+									<table class="full-width">
+										<tr>
+											<td>
+												{{> afQuickField name='reservationFee' class="full-width"}}
+											</td>
+											<td>
+												<button type="submit" class="btn btn-primary">add fee</button>
+											</td>
+										</tr>
+									</table>
+								{{/autoForm}}
+							</div>
+						{{else}}
+							{{#if publishedDeal}}
+								<a class="publish-deal btn btn-sm btn-default">unpublish </a>
+							{{else}}
+								<a class="publish-deal btn btn-sm btn-success">publish </a>
+							{{/if}}
+							<!-- {{#if dealIsOpen}}
+								<a class="close-deal btn btn-sm btn-danger">close </a>
+							{{else}}
+								<a class="close-deal btn btn-sm btn-success">open </a>
+							{{/if}} -->
+							<a class="delete-deal btn btn-sm btn-danger">delete </a>
+						{{/if}}
+					</div>
+				{{/if}}
+			{{/if}}
+
+			<div class="image-section">
+				<div class="title-bar">
+					<div class="">
+						<div class="col-sm-6">
+							<h2 class="title">{{deal.name}}</h2>
+						</div>
+						<div class="col-sm-6">
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="liked">
+										<span class="heart">
+											<div id="twitter-like" class=" {{FavouritesThis}}"></div>
+										</span>
+										<span class="number">{{numLikes}}</span><br/>
+										<span class="val">likes</span>
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<div class="days-left">
+										<div class="clear"></div>
+										<table class="times">
+											<tbody>
+												<tr>
+													<td><img class="clock-icon" src="/img/time.png"></td>
+													<td><span class="time">{{daysLeft}}</span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="slide-show">
+
+					<div class="container">
+						<div data-am-gallery>
+							<!-- Radio -->
+							{{#with FS.GetFile "dealImages" deal.image}}
+					            <input type="radio" name="gallery" id="{{this}}" checked />
+					        {{/with}}
+							{{#each deal.secondaryImage}}
+								{{#with FS.GetFile "dealImages" this}}
+									<input type="radio" name="gallery" id="{{_id}}" />
+								{{/with}}
+							{{/each}}
+							<!-- Images -->
+							<div class="images">
+								{{#with FS.GetFile "dealImages" deal.image}}
+						            <div class="image bg-img" style="background-image: url({{url}});"></div>
+						        {{/with}}
+								{{#each deal.secondaryImage}}
+									{{#with FS.GetFile "dealImages" this}}
+										<div class="image bg-img" style="background-image: url({{url}});"></div>
+									{{/with}}
+								{{/each}}
+							</div>
+							<!-- Navigation -->
+							<div class="navigation">
+								{{#with FS.GetFile "dealImages" deal.image}}
+					            	<label class="dot" style="background: url({{url}})" for="{{this}}"></label>
+						        {{/with}}
+								{{#each deal.secondaryImage}}
+									{{#with FS.GetFile "dealImages" this}}
+										<label class="dot" style="background: url({{url}})" for="{{_id}}"></label>
+									{{/with}}
+								{{/each}}
+							</div>
+						</div>
+					</div>
+
+				</div>
+		        {{#if publishedDeal}}
+		        {{else}}
+		        	<span class="deal-detail-unpublished-label btn btn-sm btn-danger">this deal has not been published</span>
+		        {{/if}}
+			</div>
+			<div class="right-sidebar">
+				<div class="reserve-section">
+					<div class="amount static-value">
+						<span class="discounted">{{discounted}}{{currencySymbol}}</span><br />
+						<span class="original">{{deal.price}}{{currencySymbol}}</span>
+					</div>
+					{{#if isUnits}}
+						<div class="amount dynamic-value hidden">
+							<span class="discounted"><span class="dynamic-discounted"></span>{{currencySymbol}}</span><br />
+							<span class="original"><span class="dynamic-original"></span>{{currencySymbol}}</span>
+						</div>
+					{{/if}}
+					<div class="reservation">
+						{{#if userVerifiedPhoneFailed}}
+							<div class="orange-box">
+								<span>please add your phone number before you transact on Elbuso.</span>
+							</div>
+						{{else}}
+							{{#if dealIsOpen}}
+								{{#if userReserved}}
+								<div class="orange-box">
+									<span>you have reserved this deal</span>
+								</div>
+								{{else}}
+									{{#if seller}}
+										<div class="orange-box">
+											<span>you cannot reserve your own deal</span>
+										</div>
+									{{else}}
+										{{#if isInRole 'admin'}}
+											<div class="orange-box reserve-deal">
+												<span>sorry Admin, you can't reserve a deal</span>
+											</div>
+										{{else}}
+											{{#if isInRole 'sub-user'}}
+												<div class="orange-box reserve-deal">
+													<span>sorry, you cannot reserve a deal</span>
+												</div>
+											{{else}}
+												<form class="deal-reservation">
+													{{#if isUnits}}
+														<table class="quantity">
+															<tbody>
+																<tr>
+																	<td>
+																		<span class="quantity-label">
+																			Quantity
+																		</span>
+																	</td>
+																	<td>
+																		<input type="number" class="my-units full-width" name="myUnits" min="1" max="{{deal.maximumUserUnits}}" value="1" />
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													{{else}}
+														<input type="number" pattern="[0-9]*" class="my-units hidden" name="myUnits" min="1" max="{{deal.maximumUserUnits}}" value="1" />
+													{{/if}}
+													<button class="orange-box reserve-deal" type="submit">
+														<span class="static-reservation">reserve now <span class="lower">for</span><span class="big"> {{reservationFee}}{{currencySymbol}}</span></span>
+														{{#if isUnits}}
+															<span class="dynamic-reservation hidden">reserve now <span class="lower">for</span><span class="big"> <span class="dynamic-reservation-fee"></span>{{currencySymbol}}</span></span>
+														{{/if}}
+													</button>
+												</form>
+											{{/if}}
+										{{/if}}
+									{{/if}}
+								{{/if}}
+							{{else}}
+								<div class="orange-box">
+									<span>this deal has ended</span>
+								</div>
+							{{/if}}
+						{{/if}}
+						<span class="reservation-help">
+							pay
+							<strong>
+								<span class="static-payable">
+									{{payableBal}}
+								</span>
+								{{#if isUnits}}
+									<span class="dynamic-payable"></span>
+								{{/if}}
+								{{currencySymbol}}
+							</strong> at the store
+						</span>
+					</div>
+				</div>
+				<div class="rates">
+					<div class="discount-rate">
+						<span class="rate">{{deal.Rate}}%</span><br />
+						<span class="val">discount</span>
+					</div>
+					<div class="money-saved">
+						<span class="rate static-saved">{{savedAmount}}{{currencySymbol}}</span>
+						{{#if isUnits}}
+							<span class="rate dynamic-saved hidden"><span class="dynamic-saved-amt"></span>{{currencySymbol}}</span>
+						{{/if}}
+						<br />
+						<span class="val">You saved!</span>
+					</div>
+				</div>
+				<div class="offer">
+					<div class="get-free">
+						<span>get it <strong>free</strong></span>
+					</div>
+					<div class="invite">
+						<span>Invite at least 5 friends to reserve this deal and you get the deal free</span>
+						<div class="clear"></div>
+						<div class="gplus social-icon">
+							<i class="fa fa-google-plus"></i>
+						</div>
+						<div class="twitter social-icon">
+							<i class="fa fa-twitter"></i>
+						</div>
+						<div class="facebook social-icon">
+							<i class="fa fa-facebook"></i>
+						</div>
+					</div>
+				</div>
+				<div class="location">
+					{{#unless deal.locations}}
+					<div class="map">
+						{{> googleMap name="deaLocation" options=showDealMap}}
+					</div>
+					{{else}}
+						{{#each deal.locations}}
+							<div class="map">
+								{{> googleMap name="deaLocation" options=thisDealMap}}
+							</div>
+							<span>{{locationName}}</span>
+						{{/each}}
+					{{/unless}}
+				</div>
+			</div>
+			<div class="details">
+				<div class="client-intro-section">
+					<table class="deal-author">
+						<tbody>
+							<tr>
+								<td>
+									{{#with FS.GetFile "userImage" authorImage}}
+							            <div class="profile-image" style="background: url({{url}}) no-repeat;"></div>
+							        {{else}}
+										<div class="profile-image">
+											<span>{{authorLetter}}</span>
+										</div>
+									{{/with}}
+								</td>
+								<td>
+									<div class="row">
+										<div class="col-sm-5">
+											<span class="supplier-name">{{authorName}}</span>
+											<div class="rating"></div>
+										</div>
+										<div class="col-sm-7">
+											<span class="location-based">
+												<i class="fa fa-map-marker"></i>
+												{{authorLocation}}
+											</span>
+										</div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="description">
+					<h1>Description</h1>
+					{{{deal.description}}}
+
+
+					<!--here is where the attachments are-->
+					{{#unless deal.attachments}}
+					{{else}}
+						<div class="attachments">
+							<h1>Attachments</h1>
+							<p class="desc">Click on any of the links below to download the attachment:</p>
+							{{#each deal.attachments}}
+						        {{#with FS.GetFile "dealAttachments" this}}
+						            <p class="btn btn-sm btn-primary attachment-link">
+						            	<a href="{{url}}" target="_blank">{{original.name}}</a>
+						            	<i class="fa fa-download"></i>
+						            </p>
+						        {{/with}}
+							{{/each}}
+						</div>
+					{{/unless}}
+				</div>
+			</div>
+
+
+		{{/if}}
+		<div class="similar"></div>
+	</div>
+</template>

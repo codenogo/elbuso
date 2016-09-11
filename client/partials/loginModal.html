@@ -1,0 +1,18 @@
+<template name="loginModal">
+	<div class="popup-user-modal">
+		<div class="popup-user-modal-container">
+			<ul class="popup-switcher">
+				<li><a>LOGIN</a></li>
+				<li><a href="/register">register</a></li>
+			</ul>
+			<div id="popup-login"> 
+				{{> signInModal}}
+				<p class="popup-form-bottom-message"><a>Forgot your password?</a></p>
+			</div>
+			<div id="popup-reset-password"> 
+				{{> recoverPassword}}
+			</div>
+			<a href="#0" class="popup-close-form">Close</a>
+		</div>
+	</div>
+</template>

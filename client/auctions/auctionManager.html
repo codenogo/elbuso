@@ -1,0 +1,25 @@
+<template name="auctionManager">
+	<div class="col-md-9 pull-right">
+		<h1>ALL AUCTIONS</h1>
+		<div class="previews">
+			{{#if Template.subscriptionsReady}}
+				<div class="preview-data">
+					{{#each auctions}}
+						{{> auctionListItem}}
+					{{else}}
+						<h1 class="left-placeholder">no auctions yet</h1>
+					{{/each}}
+				</div>
+				<!-- {{#if auctions}}
+					<div class="show-more-bar">
+						<a class="show-more">
+							show more <span class="plus-black-sm"></span>
+						</a>
+					</div>
+				{{/if}} -->
+			{{else}}
+				{{> preloader}}
+			{{/if}}
+		</div>
+	</div>
+</template>

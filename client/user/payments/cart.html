@@ -1,0 +1,136 @@
+<template name="cart">
+	<div class="data-container">
+
+
+		{{#if isFirstStep}}
+		<div class="my-cart-data">
+			<h1>MY CART <img src="/img/dark-cart.svg" /></h1>
+			{{#if cartItem}}
+			<table class="table">
+				<thead>
+					<tr>
+						<th>item</th>
+						<th>reservation fee</th>
+						<th>balance paid on collection</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each isAuction}}
+						<tr>
+							<td>
+								<a class="auction">
+									<div class="cart_details">
+										<div class="cart_image col-xs-3">
+											{{#with FS.GetFile "auctionImages" auctionImage}}
+									            <img src="{{url}}" />
+									        {{/with}}
+									        <a class="remove-from-cart remove-auction"><img src="/img/close-light.svg" /></a>
+										</div>
+										<div class="cart_values col-xs-9">
+											<table cellpadding="0" cellspacing="0" border="0">
+												<tr>
+													<td>
+														<span class="cart_title">{{auctionName}}</span>
+													</td>
+													<td>
+														<span class="cart_type auction">auction</span>
+													</td>
+												</tr>
+												<tr>
+													<td>
+														Minimum Discount <span class="pull-right">:</span>
+													</td>
+													<td>{{minimumDiscount}}%</td>
+												</tr>
+												<tr>
+													<td>
+														Reservarion fee
+														 <span class="pull-right">:</span>
+													</td>
+													<td>{{reservationFee}}{{auctionCurrencySymbol}}</td>
+												</tr>
+											</table>
+										</div>
+									</div>
+								</a>
+							</td>
+							<td>
+								<span class="semi-large-light">
+									{{reservationFee}}{{auctionCurrencySymbol}}
+								</span>
+							</td>
+							<td>
+								<span class="semi-large-light gray">
+									{{balanceAuction}}{{auctionCurrencySymbol}}
+								</span>
+							</td>
+						</tr>
+					{{/each}}
+					{{#each isDeal}}
+						 <tr>
+						 	<td>
+							<a class="auction">
+								<div class="cart_details">
+									<div class="cart_image col-xs-3">
+										{{#with FS.GetFile "dealImages" dealImage}}
+								            <img src="{{url}}" />
+								        {{/with}}
+								        <a class="remove-from-cart remove-deal"><img src="/img/close-light.svg" /></a>
+									</div>
+									<div class="cart_values col-xs-9">
+										<table cellpadding="0" cellspacing="0" border="0">
+											<tr>
+												<td>
+													<span class="cart_title">{{dealName}}</span>
+												</td>
+												<td>
+													<span class="cart_type deal">deal</span>
+												</td>
+											</tr>
+											<tr>
+												<td>Minimum Discount<span class="pull-right">:</span></td>
+												<td>{{dealDiscount}}%</td>
+											</tr>
+											<tr>
+												<td>Purchase Price<span class="pull-right">:</span></td>
+												<td>{{dealPrice}}{{dealCurrencySymbol}}</td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</a>
+							</td>
+							<td>
+								<span class="semi-large-light">
+									{{dealFee}}{{dealCurrencySymbol}}
+								</span>
+							</td>
+							<td>
+								<span class="semi-large-light gray">
+									{{balanceDeal}}{{dealCurrencySymbol}}
+								</span>
+							</td>
+						</tr>
+					{{/each}}
+						<tr>
+							<td>
+								{{cartValue}}
+							</td>
+							<td class="orange-space">
+								<a class="reserve-checkout">reserve now</a>
+							</td>
+							<td></td>
+						</tr>
+				</tbody>
+			</table>
+			{{else}}
+				<h1 class="centered-placeholder">there's no items in your cart yet</h1>
+			{{/if}}
+		</div>
+		{{else}}
+			{{> payment}}
+		{{/if}}
+
+
+	</div>
+</template>

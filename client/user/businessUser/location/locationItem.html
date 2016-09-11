@@ -1,0 +1,28 @@
+<template name="locationItem">
+	<div class="col-md-12 locale">
+		{{#if editMode}}
+			<div class="edit-location">
+				<p class="name">{{Name}}
+					<a class="btn btn-sm btn-default update-location pull-right">
+						finish editing 
+					</a>
+				</p>
+				{{> quickForm collection="Locations" type="update" id="editLocationForm" doc=this class="edit-location-form" buttonContent="update this location"}}
+			</div>
+		{{else}}
+			<div class="location-item">
+				<p class="name">{{Name}}
+					<a class="btn btn-sm btn-success update-location pull-right">
+						Edit 
+					</a>
+					<a class="btn btn-sm btn-danger delete-location pull-right">
+						Delete
+					</a>
+				</p>
+				<div class="map">
+					{{> googleMap name="location" options=showMap}}
+				</div>
+			</div>
+		{{/if}}
+	</div>
+</template>

@@ -1,0 +1,543 @@
+.auction-details{
+	.image-section{
+		width:66%;
+		float:left;
+		height:auto;
+		padding-left:30px;
+		position:relative;
+		.title-bar{
+			width:100%;
+			margin-top:30px;
+			margin-bottom:30px;
+			position:relative;
+			display:table;
+			h2.title{
+				text-transform:capitalize;
+				font-size:34px;
+				padding-left:0px;
+			}
+			.liked{
+				.heart{
+					font-size: 36px;
+					float:left;
+					margin-right:0px
+				}
+				.heart.unliked{
+					color:#767676;
+				}
+				.heart.liked{
+					color:#f10404;
+				}
+				.number{
+					font-size:20px;
+					font-family: 'montserratbold';
+					color:#767676;
+				}
+				.val{
+					font-size:12px;
+					color:#767676;
+				}
+			}
+			.days-left{
+				table.times{
+					tbody{
+						tr{
+							td{
+								vertical-align:middle;
+								.clock-icon{
+									margin-right:15px;
+								}
+								.time{
+									color:#767676;
+								}
+							}
+						}
+					}
+				}
+			}
+
+		}
+		.image-preview{
+			width:100%;
+		}
+		.stats{
+			margin-top:20px;
+			.progressbar{
+				width:100%;
+				background:#e7e7e7;
+				height:15px;
+				.progress{
+					border-radius:0 8px 8px 0;
+					height:15px;
+					padding:0;
+					background:#000;
+				}
+			}
+			.reservations{
+				color:#767676;
+				font-size:25px;
+				font-family: 'montserratbold';
+			}
+			.attr{
+				color:#767676;
+			}
+		}
+	}
+	.right-sidebar{
+		width:33%;
+		float:right;
+		padding:30px;
+		.reserve-section{
+			width:100%;
+			display:table;
+			padding-top:10px;
+			padding-bottom:45px;
+			border-bottom:1px solid #666;
+			.amount{
+				width:50%;
+				float:left;
+				.minimum{
+					font-size:62px;
+					color:#000;
+					font-family: 'montserratlight';
+				}
+				.intro{
+					color:#767676;
+				}
+				strong{
+					text-transform:uppercase;
+					color:#767676 !important;
+				}
+			}
+			.reservation{
+				width:50%;
+				float:left;
+				.reservation-help{
+					color:#767676;
+					strong{
+						text-transform:uppercase;
+						color:#767676 !important;
+					}
+				}
+				.min-value{
+					font-size:34px;
+				}
+			}
+		}
+		.offer-section{
+			width:100%;
+			margin-bottom:15px;
+			table.wide{
+				width:100%;
+				tr{
+					td{
+						padding:15px 0;
+						border-bottom:1px solid #ccc;
+						vertical-align:middle;
+						color:#767676;
+						.bidder-image{
+							width:30px;
+							height:30px;
+							border-radius:50%;
+							background:#ccc;
+							margin:-7px 10px -7px 0;
+							float:left;
+							background-size:cover !important;
+							background-position:50% 50% !important;
+							span{
+								text-transform:uppercase;
+								margin: 7px auto;
+							    display: table;
+							    color: #fff;
+							}
+						}
+					}
+					td:last-child{
+						width:35%;
+						padding-left:20px;
+						font-size:17px;
+					}
+					td.input{
+						border-right:1px solid #666;
+						border-bottom:1px solid #666;
+						width:5%;
+						input{
+							padding:5px 0;
+							margin:0;
+							border:0;
+							font-size:17px;
+							color:#000 !important;
+						}
+					}
+					td.border-right{
+						border-right:1px solid #ccc;
+						padding-right:5px;
+						img{
+							width:20px;
+						}
+					}
+					td.long{
+						border-bottom:0;
+						vertical-align:top;
+						padding-left:0;
+					}
+				}
+				tr:first-child{
+					td:nth-child(2){
+						border-right:1px solid #666;
+					}
+				}
+				tr:last-child{
+					td{
+						border-bottom:0;
+					}
+				}
+				tr.sm-text{
+					td{
+						font-size:14px;
+					}
+				}
+				tr.seperator{
+					td:nth-child(2), td:nth-child(3){
+						border:0px !important;
+						border-right:0px !important;
+						border-bottom:0px !important;
+						padding:0px !important;
+					}
+				}
+			}
+		}
+		.more{
+			.reserve-more{
+				width:100%;
+				display:table;
+				color:#f9690e;
+				padding:10px;
+				border:1px solid #f9690e;
+			}
+			.orange-reserve-button{
+				background: #f9690e;
+				color:#fff;
+				padding:20px;
+				text-transform:uppercase;
+				width:100%;
+				border:0;
+				margin:10px 0;
+			}
+			span{
+				color:#767676;
+				font-size:12px;
+			}
+		}
+	}
+	.details{
+		width:66%;
+		float:left;
+		padding:30px;
+		.description{
+			color:#767676;
+			h1{
+				color:black;
+				text-transform:capitalize;
+			}
+		}
+	}
+}
+
+
+
+
+
+//BIDDING
+.bidding-item.item{
+	.info-section{
+		.btn{
+			font-size:1em;
+			text-transform:uppercase;
+		}
+		.place-bid{
+			.myBidUpdate{
+				table{
+					width:100%;
+					tbody{
+						tr{
+							td{
+								border:1px solid #8c8c8c;
+								input{
+									width:60px;
+								}
+								input, button{
+									padding:5px 10px;
+									float:left;
+									border:0;
+									// width:auto;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.bidding-preview{
+			table{
+				tbody{
+					tr{
+						td{
+							color:#767676;
+							span{
+								color:#767676;
+							}
+							.bidding-icons{
+								width:auto;
+							}
+							span.winning-rate{
+								color:#11d402 !important;
+								font-size:1.5em;
+							}
+						}
+					}
+					tr.bidder-is-me{
+						td{
+							border-top: 1px solid #333;
+							border-bottom: 1px solid #333;
+							color:#333;
+							span{
+								color:#333;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
+.bidding-data{
+	width:100%;
+	.attr{
+		font-size:14px;
+		color:#767676;
+	}
+	.value{
+		color:#000;
+		font-family: 'montserratlight';
+	}
+	.stats{
+		width:100%;
+		table{
+			width:100%;
+			th, td{
+				padding:1em;
+			}
+			thead{
+				tr{
+					th{
+						border-bottom:1px solid #8c8c8c;
+						// width:50%;
+						.value{
+							font-size:34px;
+						}
+					}
+					th:first-child{
+						border-right:1px solid #8c8c8c;
+						padding-left:0;
+					}
+				}
+			}
+			tbody{
+				tr{
+					td:first-child{
+						border-right:1px solid #8c8c8c;
+						padding-left:0;
+						.value{
+							font-size:34px;
+						}
+
+					}
+					td:last-child{
+						.value{
+							font-size:25px;
+						}
+					}
+				}
+				tr:last-child{
+					td{
+						border-bottom:1px solid #8c8c8c;
+					}
+				}
+			}
+		}
+	}
+	.update-bid{
+		padding:2em 0;
+		width:100%;
+		table{
+			width:100%;
+			tbody{
+				tr{
+					td{
+						width:50%;
+						border:1px solid #8c8c8c;
+						input, .btn{
+							border:0;
+							text-align:center;
+						}
+						.btn{
+							background:#f9690e !important;
+							text-transform:uppercase;
+							width:100% !important;
+							color:#fff;
+						}
+					}
+					td:last-child{
+						border:1px solid #f9690e;
+						border-left:0;
+					}
+				}
+			}
+		}
+	}
+	.bidding-preview{
+		table{
+			tbody{
+				tr{
+					td:first-child{
+						border-right:1px solid #8c8c8c;
+					}
+					td{
+						color:#767676;
+						padding:1em;
+						span{
+							color:#767676;
+						}
+						.bidder-image{
+							width:30px;
+							height:30px;
+							border-radius:50%;
+							background:#ccc;
+							margin:-7px 10px -7px 0;
+							float:left;
+							background-size:cover !important;
+							background-position:50% 50% !important;
+							span{
+								text-transform:uppercase;
+								margin: 7px auto;
+							    display: table;
+							    color: #fff;
+							}
+						}
+						span.winning-rate{
+							color:#11d402 !important;
+							font-size:1.5em;
+						}
+					}
+				}
+				tr.bidder-is-me{
+					td:first-child{
+						border-right:1px solid #333;
+					}
+					td{
+						border-top: 1px solid #333;
+						border-bottom: 1px solid #333;
+						color:#333;
+						span{
+							color:#333;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+.bid-current-position{
+	margin-bottom: -3em;
+    position: relative;
+    margin-left: 1em;
+    .btn{
+    	text-transform:uppercase;
+    	border:0;
+    	padding: .3em 1.5em;
+    	margin:0;
+    }
+}
+.closed-item{
+	.name-field{
+		margin-top:1em;
+		margin-bottom:1em;
+		h2{
+			font-size:18px;
+			text-transform:uppercase;
+		}
+	}
+	.rates-info{
+		.value{
+			color:#000;
+		}
+		.total-purchase{
+			.value{
+				font-size:20px !important;
+			}
+		}
+		.final-discount{
+			.value{
+				font-family: 'montserratlight';
+				font-size:34px;
+			}
+		}
+		.standing{
+			margin-top: 1.8em !important;
+			.btn{
+				text-transform:uppercase;
+				border:0;
+				padding: .3em 1.5em;
+			}
+		}
+	}
+	.details-info{
+	    padding-top: 0px !important;
+		ul{
+			li{
+			    margin: 20px 0;
+			    table{
+			    	tr{
+			    		td{
+			    			.bidder-image{
+								width:30px;
+								height:30px;
+								border-radius:50%;
+								background:#ccc;
+								margin:-7px 10px -7px 0;
+								float:left;
+								background-size:cover !important;
+								background-position:50% 50% !important;
+								span{
+									text-transform:uppercase;
+									margin: 7px auto;
+								    display: table;
+								    color: #fff;
+								}
+							}
+			    		}
+			    	}
+			    }
+			}
+		}
+		.value, .attr{
+			color:#767676;
+		}
+		.value{
+			font-size:25px;
+		}
+		.standing{
+			margin-top:2em;
+		}
+	}
+}
+.bid-name{
+	text-transform:uppercase;
+}

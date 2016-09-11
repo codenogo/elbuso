@@ -1,0 +1,101 @@
+<template name="singleSubUser">
+	<div class="user-detail">
+		<div class="head-section">
+			<table>
+				<tr>
+					<td class="image {{#if isActive}}{{else}}deactivated{{/if}}">
+						{{#with FS.GetFile "userImage" user.image}}
+					        <div class="avatar-image" style="background: url({{url}}) no-repeat;"></div>
+					    {{else}}
+							<div class="avatar-image">
+								<span>{{firstLetter}}</span>
+							</div>
+						{{/with}}
+					</td>
+					<td>
+						<h1>{{user.username}}</h1>
+						{{#if isActive}}
+							{{#if isListing}}
+								<span>listing</span>
+							{{else}}
+								<span>Redeem</span>
+							{{/if}}
+						{{else}}
+							<span>DEACTIVATED USER</span>
+						{{/if}}
+					</td>
+					<td>
+						{{#if isAdmin}}
+						{{else}}
+							{{#if isMe}}
+							{{else}}
+								 <!-- <a class="btn btn-sm btn-danger delete-user pull-right">Delete user</a> -->
+								{{#if isActive}}
+									<a class="btn btn-sm btn-danger deactivate-user pull-right">Deactivate user</a>
+								{{else}}
+									<a class="btn btn-sm btn-success deactivate-user pull-right">Activate user</a>
+								{{/if}}
+								<a href="/new-support/{{user._id}}" class="btn btn-sm btn-default pull-right">new message</a>
+							{{/if}}
+						{{/if}}
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="row {{#if isActive}}{{else}}deactivated{{/if}}">
+			<div class="col-sm-6">
+				<h1 class="user-details-header">Personal details</h1>
+				<table class="table">
+					<tbody>
+						<tr>
+							<td>Names:</td>
+							<td>{{user.profile.firstname}} {{user.profile.lastname}}</td>
+						</tr>
+						<tr>
+							<td>Phone:</td>
+							<td>+{{user.profile.personalPhone.countryCode}}{{user.profile.personalPhone.phoneNumber}}</td>
+						</tr>
+						<tr>
+							<td>Emails:</td>
+							<td>
+								{{#each user.emails}}
+									{{this.address}}
+								{{/each}}
+							</td>
+						</tr>
+						<tr>
+							<td>Address:</td>
+							<td>
+								{{#unless user.profile.address}}
+									.....
+								{{else}}
+									{{user.profile.address}}
+								{{/unless}}
+							</td>
+						</tr>
+						<tr>
+							<td>Zip:</td>
+							<td>
+								{{#unless user.profile.zip}}
+									.....
+								{{else}}
+									{{user.profile.zip}}
+								{{/unless}}
+							</td>
+						</tr>
+						<tr>
+							<td>Location:</td>
+							<td>
+								{{#unless user.profile.country.city}}
+									.....
+								{{else}}
+									{{user.profile.country.city}}, {{country}}
+								{{/unless}}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>	
+</template>

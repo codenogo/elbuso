@@ -1,0 +1,26 @@
+<template name="newSupport">
+	<div class="data-container">
+		<h1>
+			create a new support conversation
+			<a href="/support" class="btn btn-sm btn-default pull-right create-conversation">
+				new conversation
+			</a>
+		</h1>
+		<div class="new-conversation">
+			<form class="new-conversation-form">
+				<p class="fieldset">
+					<label for="newTopic" class="control-label">Topic of the conversation</label>
+					<input class="full-width has-padding has-border" type="text" placeholder="topic" name="newTopic" autocomplete="off">
+				</p>
+				<p class="fieldset">
+					<label for="firstMessage" class="control-label">Tell us a bit more</label>
+					<textarea class="full-width has-padding has-border" placeholder="your initial message" name="firstMessage" autocomplete="off" rows="4" cols="10"></textarea>
+				</p>
+				<p class="fieldset">
+					<button class="btn btn-success btn-sm create-new-support">create a new conversation</button>
+				</p>
+			</form>		
+		</div>
+	</div>
+	
+</template>

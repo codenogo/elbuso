@@ -1,0 +1,36 @@
+<template name="supportPreview">
+	<a href="/support/{{_id}}">
+		<div class="single-conversation">
+			<table>
+				<tbody>
+					<tr>
+						<td>
+							{{#with FS.GetFile "userImage" authorImage}}
+								<div class="latest-image-preview" style="background: url({{url}});"></div>
+							{{else}}
+								<div class="latest-image-preview" style="background: url(/img/e-preview.jpg);"></div>
+							{{/with}}
+						</td>
+						<td>
+							<span class="topic">
+								<span class="unread-count-preview {{#if ifUnread}}{{else}}hidden{{/if}}">{{unreadCount}} unread</span>
+								{{topic}}
+							</span><br />
+							<span class="message-preview">{{messagePreview}}</span>
+						</td>
+						<td>
+							<span class="timestamp">{{date}}</span>
+							<br /><img src="/img/dark-arrow.svg">
+							<br />
+							{{#if isOpen}}
+								<span class="label label-sm label-success">open</span>
+							{{else}}
+								<span class="label label-sm label-danger">closed</span>
+							{{/if}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</a>
+</template>

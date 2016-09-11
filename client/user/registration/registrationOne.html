@@ -1,0 +1,27 @@
+<template name="registrationOne">
+	{{#if $.Session.get 'chooseType'}}
+		<div class="container">
+			<h1 class="select-type">select which user you want to be</h1>
+			<div class="row select-user-type">
+				<div class="col-sm-6">
+					<div class="buyer-register">
+						<p>sellers will bid to <br/>give you the <strong>best</strong> <br/><span class="big">discount!</span> </p>
+						<a class="register-buyer">register as a customer</a>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="seller-register">
+						<p>increase your <br/>customer <strong>base</strong><br/><span class="big">instantly!</span></p>
+						<a class="register-seller">register as a business</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	{{/if}}
+	{{#if $.Session.get 'newBuyer'}}
+		{{> buyerRegister}}
+	{{/if}}
+	{{#if $.Session.get 'newSeller'}}
+		{{> sellerRegister}}
+	{{/if}}
+</template>

@@ -1,0 +1,59 @@
+.update-detail{
+	label{
+		display:none;
+	}
+	.form-control{
+		margin-bottom:0;
+		border: 3px dotted #ddd;
+		background:rgba(255,255,255,.4);
+		width:80%;
+		float: left;
+	    padding: 0;
+	    height: auto;
+	    color:#000;
+	}
+	.show-label{
+		label{
+			display:block;
+		}
+		.form-control{
+			border: 1px solid #aaa;
+			background:rgba(255,255,255,.4);
+			width:100%;
+			float: left;
+		    padding:1em;
+		    height: auto;
+		    color:#000;
+		    margin-bottom:1em;
+		}
+	}
+	.deal-name{
+		font-size:34px;
+		height:auto;
+	}
+	.large-text{
+		font-size:62px;
+	}
+	.semi-large-text{
+		font-size:34px;
+	}
+	.form-control.full-width{
+		width:100%;
+	}
+	.cfsaf-field{
+		width: 80%;
+	    margin: -100px 10% 0;
+	    z-index: 9999;
+	    position: relative;
+	}
+	.form-control.half-width{
+		width:50%;
+	}
+}
+
+.edit-controls{
+	background:#AAB8C2;
+	padding: 20px 30px;
+    width: 100%;
+    display: table;
+}

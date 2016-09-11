@@ -1,0 +1,70 @@
+<template name="auctionPreview">
+	<a href="/auction/{{_id}}">
+		<div class="auction-preview col-sm-4">
+			{{#if ifBidding}}
+				{{#with FS.GetFile "auctionImages" image}}
+		            <div class="image-preview" style="background: url({{url}});">
+		            	<span class="bidding-preview-label btn btn-sm btn-success">bidding is in progress</span>
+		            </div>
+		        {{else}}
+		        	<div class="image-preview"></div>
+		        {{/with}}
+		    {{else}}
+		    	{{#with FS.GetFile "auctionImages" image}}
+		            <div class="image-preview" style="background: url({{url}});"></div>
+		        {{else}}
+		        	<div class="image-preview"></div>
+		        {{/with}}
+		        <div class="progress-bar">
+					<div class="progress progress-{{reservationPercentage}}"></div>
+				</div>
+		    {{/if}}
+			<div class="preview-title">
+				<span data-tooltip="{{name}}" tabindex="0">{{briefName}}</span>
+			</div>
+			<div class="bidding-preview">
+				<div class="bid-intro">
+					{{#if bidExists}}
+						<span>winning supplier</span>
+					{{else}}
+						<span>bidding suppliers</span>
+					{{/if}}
+				</div>
+				<div class="bidding-icons">
+					{{#if bidExists}}
+						{{#each Bidders}}
+							{{#if winningUser}}
+								{{#with FS.GetFile "userImage" bidderImage}}
+						            <div class="bidder-icon" style="background: url({{url}}) no-repeat;"></div>
+						        {{else}}
+									<div class="bidder-icon">
+										<span>{{bidderLetter}}</span>
+									</div>
+								{{/with}}
+									<span class="with-name">{{bidderName}}</span>
+							{{/if}}
+						{{/each}}
+					{{else}}
+						{{#each Bidders}}
+							{{#with FS.GetFile "userImage" bidderImage}}
+					            <div class="bidder-icon" style="background: url({{url}}) no-repeat;"></div>
+					        {{else}}
+								<div class="bidder-icon">
+									<span>{{bidderLetter}}</span>
+								</div>
+							{{/with}}
+						{{/each}}
+					{{/if}}
+				</div>
+			</div>
+			<div class="rate-bar-standard">
+				<span class="intro">save<br /> minimum</span><br />
+				{{#if bidExists}}
+					<span class="rate">{{winningBid}}%</span>
+				{{else}}
+					<span class="rate">{{StartRate}}%</span>
+				{{/if}}
+			</div>
+		</div>
+	</a>
+</template>

@@ -1,0 +1,81 @@
+<template name="profilePreview">
+	<table class="profile-preview">
+		<tbody>
+			<tr>
+				<td class="avatar">
+					{{#if currentUser}}
+						{{#with FS.GetFile "userImage" currentUser.image}}
+				            <div class="avatar-image" style="background: url({{url}}) no-repeat;"></div>
+				        {{else}}
+				        	{{#if isInRole 'seller'}}
+				        		<div class="avatar-image">
+									<h1>{{companyLetter}}</h1>
+								</div>
+							{{else}}
+								<div class="avatar-image">
+									<h1>{{firstLetter}} {{lastLetter}}</h1>
+								</div>
+							{{/if}}
+						{{/with}}
+					{{/if}}
+					{{#if isInRole 'seller'}}
+						{{#if hasSubmitted}}
+							<a href="/profile">
+								<div class="edit-avatar">
+									{{#if sellerVerified}}
+										<img src="/img/verification.svg" />
+									{{else}}
+										<img src="/img/verification-null.svg" />
+									{{/if}}
+								</div>
+							</a>
+						{{/if}}
+					{{/if}}
+				</td>
+				<td class="details">
+					{{#if currentUser}}
+						{{#if isInRole 'seller'}}
+							{{#if hasCompanyName}}
+								<p><span class="user-name">{{currentUser.profile.company.companyName}}</span></p><br />
+							{{else}}
+								<p><span class="user-name">Company Name</span></p><br />
+							{{/if}}
+						{{else}}
+							<p><span class="user-name">{{currentUser.profile.firstname}} {{currentUser.profile.lastname}}</span></p><br />
+						{{/if}}
+					{{/if}}
+					<span class="location-based">
+						{{#if isInRole 'admin'}}
+						{{else}}
+							{{#if isInRole 'sub-user'}}
+								{{#if isInRole 'listing'}}
+									<span class="label label-sm label-primary">listing user</span>
+								{{else}}
+									<span class="label label-sm label-primary">manager</span>
+								{{/if}}
+								{{parentCompanyName}}
+								
+							{{else}}
+								{{#if hasLocation}}
+								<i class="fa fa-map-marker"></i>
+								{{currentUser.profile.country.name.formattedAddress}}
+								{{/if}}
+							{{/if}}
+						{{/if}}
+					</span>
+				</td>
+				{{#if isInRole 'seller'}}
+					{{#if hasSubmitted}}
+						<td class="seller-verification">
+							{{#if sellerVerified}}
+								<span class="verification-text verified"><img src="/img/verification.svg" /> verified</span>
+							{{else}}
+								<span class="verification-text not-verified"><img src="/img/verification-null.svg" /> <span data-tooltip="{{verificationHelpText}}" tabindex="0" data-side="bottom">not verified</span></span>
+							{{/if}}
+						</td>
+					{{/if}}
+				{{/if}}
+			</tr>
+		</tbody>
+	</table>
+</template>

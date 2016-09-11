@@ -1,0 +1,550 @@
+.data-container{
+	form{
+		.panel{
+			border:0px;
+			padding:0;
+			margin:20px 0 0 0;
+			.panel-heading{
+				border:0;
+				border-bottom:1px solid #eee;
+				padding:15px 0;
+				margin:0;
+				background:none;
+				h3{
+					border:0;
+					padding:15px 0;
+					margin:0;
+					font-size:25px;
+					background:none;
+					text-transform:uppercase;
+					font-family: 'montserratlight';
+				}
+			}
+			ul{
+				padding:0;
+				margin:0;
+				li{
+					padding:0;
+					margin:0;
+					border:0 !important;
+				}
+			}
+		}
+	}
+}
+.panel{
+	border:0 !important;
+	border-bottom:0 !important;
+	box-shadow:none !important;
+}
+.panel-body{
+	padding:0;
+	border:0 !important;
+	border-bottom:0 !important;
+	box-shadow:none !important;
+}
+label{
+	padding:10px 0 !important;
+}
+.button{
+	border-radius:0 !important;
+}
+input, select{
+	border-radius:0 !important;
+	box-shadow:none !important;
+}
+.selectize-input{
+	.item{
+		margin:0 !important;
+		padding-bottom:0;
+		border-bottom:0;
+	}
+}
+.help-block {
+    color: #cd0000 !important;
+}
+.selectize-control.multi .selectize-input [data-value] {
+    text-shadow: none !important;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 0px;
+    background-color: #000;
+    background-image: -moz-linear-gradient(top, #000, #000);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#000), to(#000));
+    background-image: -webkit-linear-gradient(top, #000, #000);
+    background-image: -o-linear-gradient(top, #000, #000);
+    background-image: linear-gradient(to bottom, #000, #000);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff000', endColorstr='#ff000', GradientType=0);
+    -webkit-box-shadow:none;
+    box-shadow:none;
+}
+.selectize-control.multi .selectize-input > div {
+    border: 1px solid #fff;
+}
+.selectize-control.plugin-remove_button [data-value] .remove {
+    border-left: 1px solid #333;
+}
+
+
+
+.note-editor.note-frame .note-editing-area .note-editable {
+    min-height: 20vh;
+    border: 1px solid #ddd !important;
+}
+
+.btn.btn-default.js-af-select-file, .af-select-file, .cfsaf-field {
+    border: 2px dashed #aaa;
+    background:#f1f1f1 !important;
+}
+.help-out{
+	font-family: 'montserratlight';
+    color: #fff !important;
+    margin-left: 100px;
+    background: #777;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+}
+
+
+
+.bootstrap-datetimepicker-widget th.disabled,
+.bootstrap-datetimepicker-widget th.disabled:hover {
+  color: #cd0000 !important;
+  opacity:.4;
+  display:none !important;
+}
+
+.datepicker table tr td.today {
+    color: #000000;
+    background-color: #eee !important;
+    border-color: #eee !important;
+}
+.bootstrap-datetimepicker-widget td.day:hover,
+.bootstrap-datetimepicker-widget td.hour:hover,
+.bootstrap-datetimepicker-widget td.minute:hover,
+.bootstrap-datetimepicker-widget td.second:hover {
+  background: #ccc !important;
+}
+.datepicker table tr td{
+	border-radius:0;
+}
+.bootstrap-datetimepicker-widget td.today:before {
+  display:none !important;
+}
+.bootstrap-datetimepicker-widget .dow {
+    color: #0083ff !important;
+    border-bottom: 1px solid #ddd  !important;
+}
+.datepicker table tr td.new, .bootstrap-datetimepicker-widget td.new {
+    color: #454c68;
+}
+.datepicker table tr td.old.disabled, .datepicker table tr td.today.disabled, .datepicker table tr td.today.disabled:hover, .datepicker table tr td.disabled, .datepicker table tr td.disabled:hover{
+	background:#fff !important;
+	color:#999999 !important;
+	text-shadow: none !important;
+}
+
+
+.add-attachments{
+	width:100%;
+	display:table;
+}
+.add-attachments, .new-auction, .new-deal{
+	.panel{
+		.panel-heading{
+			background:none;
+			border-bottom:0;
+			padding:0;
+		}
+		.list-group{
+			clear: both;
+		    width: 100%;
+		    display: table;
+		    margin: 1em 0 3em;
+			.list-group-item{
+				width:50%;
+				float:left;
+				border-bottom:0;
+				border-top:0;
+				.btn{
+					border-radius:2em !important;
+					span{
+						font-size:10px;
+					}
+				}
+				.btn.autoform-remove-item{
+					background:#cd0000;
+					border:1px solid #cd0000;
+					opacity:.7;
+				}
+				.btn.autoform-remove-item:hover{
+					opacity:1;
+				}
+				.btn.autoform-add-item:after{
+					content: ' add another';
+				}
+				.img-fileUpload-thumbnail{
+					height:70px;
+					width:auto;
+				}
+				button.autoform-add-item{
+					border: 0;
+					background: #333;
+				}
+			}
+		}
+	}
+}
+.primary-image{
+	.img-fileUpload-thumbnail {
+	    max-width: none;
+	    width: 100%;
+	    padding:0;
+	    border-radius:0;
+	    border:0;
+	}
+}
+.clear{
+	clear:both;
+}
+
+.note-editor.note-frame.panel.panel-default{
+	margin-top:0;
+	.note-toolbar.panel-heading{
+		padding-top:0;
+	}
+}
+
+.toggle-options{
+	.af-radio-group{
+		width:100%;
+		.btn{
+			width:50%;
+		    padding: .4em !important;
+		}
+		.active{
+			background:#08ce54;
+			color:#fff;
+		}
+	}
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button,
+input::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.required{
+	.form-group{
+		.control-label{
+			color:#01649e;
+		}
+		.control-label:after{
+			content: ' *';
+			font-size: 2em;
+		    line-height: 0;
+		    position: absolute;
+		    margin: .3em 1em 0 .2em;
+		}
+	}
+}
+
+
+
+
+
+
+//CHECKBOX AND RADIO STYLING
+// Style the checkbox-label if it has text inside
+.checkbox-label {
+  display: inline-block;
+  font-size: .9em;
+  line-height: 1.4em;
+  color: #333;
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input[type="checkbox"] {
+  // Hide the navtive checkbox, but don't remove it form the DOM to make sure tabbing works, styling goes on the label
+  &.checkbox {
+    opacity: 0;
+    position: absolute;
+  }
+  // Create the checkbox
+  + .checkbox-label {
+    &:before {
+			      font-family: 'iconicfill', sans-serif;
+      content: '';
+      font-size: 1em;
+      background: #fff;
+      border: 1px solid #ccc;
+      display: inline-block;
+      width: 1.4em;
+      height: 1.4em;
+      margin-right: 1em;
+      vertical-align: top;
+      cursor: pointer;
+      text-align: center;
+    }
+  }
+  &:checked {
+    + .checkbox-label {
+      &:before {
+        content: "\2713";
+        color: #3498db;
+      }
+    }
+  }
+  &:focus {
+    + .checkbox-label {
+      &:before {
+        outline: none;
+        border-color: #3498db;
+      }
+    }
+  }
+  + .checkbox-label {
+    &:empty {
+      &:before {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+// Radio button
+// Style the radio if it has text inside
+.radio-label {
+  display: inline-block;
+  font-size: .9em;
+  line-height: 1.4em;
+  color: #333;
+  position: relative;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+input[type="radio"] {
+  // Hide the navtive radio, styling goes on the label
+  &.radio {
+    opacity: 0;
+    position: absolute;
+  }
+  // Create the radio
+  + .radio-label {
+    &:before {
+      content: '';
+      background: #fff;
+      border-radius: 100%;
+      border: 1px solid #ccc;
+      display: inline-block;
+      width: 1.4em;
+      height: 1.4em;
+      margin-right: 1em;
+      vertical-align: top;
+      cursor: pointer;
+      text-align: center;
+    }
+  }
+  &:checked {
+    + .radio-label {
+      &:before {
+        background-color: #3498db;
+        box-shadow: inset 0 0 0 4px #fff;
+      }
+    }
+  }
+  &:focus {
+    + .radio-label {
+      &:before {
+        outline: none;
+        border-color: #3498db;
+      }
+    }
+  }
+  + .radio-label {
+    &:empty {
+      &:before {
+        margin-right: 0;
+      }
+    }
+  }
+}
+.table-div{
+	display:table;
+	width:100%;
+	.table-cell{
+		display:table-cell;
+	}
+}
+.transparent{
+	opacity:0;
+}
+
+
+
+.noUi-horizontal{
+    height: 8px !important;
+	.noUi-handle{
+		width: 28px !important;
+		height: 28px !important;
+		top: -11px !important;
+	}
+}
+.noUi-handle {
+	border: 0 !important;
+	border-radius: 3em !important;
+    background: #333 !important;
+	box-shadow: none !important;
+	&:before, &:after {
+	    display: none !important;
+	 }
+}
+.noUi-target {
+    border-radius: 1em !important;
+	background:#D3D3D2;
+	box-shadow: none !important;
+}
+.noUi-background{
+	background:#D3D3D2 !important;
+	box-shadow: none !important;
+}
+.noUi-connect {
+    background: #286090 !important;
+    box-shadow: none !important;
+}
+
+
+.overlay {
+  position: absolute;
+  z-index: 1000;
+  width:100%;
+  top: 0;
+  right:0 ;
+  bottom: 0;
+  left: 0;
+
+  background: rgba(1,1,1, 0.6);
+
+  display:none;
+}
+
+.payment-form__is-submitting{
+	.overlay {
+	  display:block;
+	}
+}
+
+.overlay__message {
+  color: white;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+.margin-top{
+	margin-top:2em;
+}
+.demo-text{
+	color:#777;
+	margin:0 0 2em;
+}
+
+
+
+
+
+
+
+//success tick
+.checkmark {
+	width: 200px;
+	margin: 0 auto;
+	padding-top: 40px;
+	p {
+		color: #777;
+		margin: 2em auto;
+		text-align: center;
+		animation: text .5s linear .4s;
+		-webkit-animation: text .4s linear .3s;
+	}
+	.path {
+		stroke-dasharray: 1000;
+		stroke-dashoffset: 0;
+		animation: dash 2s ease-in-out;
+		-webkit-animation: dash 2s ease-in-out;
+	}
+
+	.spin {
+		animation: spin 2s;
+		-webkit-animation: spin 2s;
+		transform-origin: 50% 50%;
+		-webkit-transform-origin: 50% 50%;
+	}
+}
+@-webkit-keyframes dash {
+	0% {
+	  stroke-dashoffset: 1000;
+	}
+	100% {
+	  stroke-dashoffset: 0;
+	}
+}
+
+@keyframes dash {
+	0% {
+	  stroke-dashoffset: 1000;
+	}
+	100% {
+	  stroke-dashoffset: 0;
+	}
+}
+
+@-webkit-keyframes spin {
+	0% {
+	  -webkit-transform: rotate(0deg);
+	}
+	100% {
+	  -webkit-transform: rotate(360deg);
+	}
+}
+
+@keyframes spin {
+	0% {
+	  -webkit-transform: rotate(0deg);
+	}
+	100% {
+	  -webkit-transform: rotate(360deg);
+	}
+}
+
+@-webkit-keyframes text {
+	0% {
+	  opacity: 0;
+	}
+	100% {
+	  opacity: 1;
+	}
+}
+@keyframes text {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

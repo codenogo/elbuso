@@ -1,0 +1,31 @@
+<template name="userLayout">
+	<div class="insidepages user">
+		{{> preloader}}
+		{{> headerBarInside}}
+		<main class="menufy-main-content">
+			{{#if userIsDeactivated}}
+				<h1 class="centered-placeholder">
+				<br />
+				<br />
+				<br />
+				<br />
+					Your account has been deactivated
+				</h1>
+			{{else}}
+				{{> verifyEmailFixed}}
+				<div class="menu-wrap mobile-only">
+					<nav class="menu">
+						{{> userSidebar}}
+					</nav>
+				</div>
+				<div class="sidebar col-md-3">
+					{{> userSidebar}}
+				</div>
+				<div class="main-content col-md-9">
+					{{> profilePreview}}
+					{{> Template.dynamic template=main}}
+				</div>
+			{{/if}}
+		</main>
+	</div>
+</template>

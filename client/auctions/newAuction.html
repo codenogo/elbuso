@@ -1,0 +1,107 @@
+<template name="newAuction">
+	<div class="data-container">
+		<h1>
+			NEW AUCTION
+		</h1>
+		{{#if stepOne}}
+			{{> dealStepOne}}
+		{{else}}
+			<div class="new-auction">
+				<!-- {{> quickForm collection="Auctions" type="insert" id="insertAuctionForm" class="new-auction-form" buttonContent="create this auction"}} -->
+				<h1 class="no-underline">create the auction</h1>
+				<div class="category-choice">
+					<ul class="cat-choice-list">
+						{{#if subParentId}}
+							{{#if rootParentId}}
+								<li>{{rootParentName}}</li>
+							{{/if}}
+							<li>{{subParentName}}</li>
+						{{/if}}
+						<li class="bold">{{categoryName}} <a class="label label-sm label-black step-two-trigger">back</a></li>
+					</ul>
+				</div>
+				{{#autoForm collection="Auctions" id="insertAuctionForm" type="insert" class="new-auction-form" validation="blur"}}
+				    <fieldset>
+				    	{{> afQuickField name='name'}}
+						{{> afQuickField name='category' value=selectedCatId}}
+						
+				    	<h1>pricing and users</h1>
+						<div class="reservation-fee">
+							<div class="notes">
+								<span>The reservation fee rate which will be retained by Elbuso will be :</span>
+							</div>
+							<div class="fee">
+								<span>{{categoryFee}}%</span>
+							</div>
+						</div>
+				    	{{> afQuickField name='currency'}}
+				    	{{> afQuickField name='minimumPrice'}}
+				    	{{> afQuickField name='maximumPrice' min=minValue defaultValue=minValue}}
+				    	{{> afQuickField name='StartRate'}}
+				    	{{> afQuickField name='targetted'}}
+
+						<h1>bidders and redeeming</h1>
+				    	{{> afQuickField name='maximumValue' min=calcValue value=calcValue class="hidden"}}
+				    	<div class="form-group">
+						    <input type="number" disabled value="{{calcValue}}" class="form-control">
+						</div>
+				    	{{> afQuickField name='Bidders'}}
+				    	{{> afQuickField name='reservationFee' defaultValue=categoryFee}}
+
+						<h1>details</h1>
+
+				    	{{> afQuickField name='image'}}
+				    	{{> afQuickField name='secondaryImage'}}
+				    	{{> afQuickField name='description'}}
+				    	{{> afQuickField name='attachments'}}
+
+
+
+				    	<h1>timelines</h1>
+				    	<div class="toggle-options">
+				    		{{> afQuickField name='selectLive' template="buttonGroup"}}
+				    	</div>
+				    	<!--if the value of the radio group above is custom show the date field for go live-->
+				    	{{#if afFieldValueIs name="selectLive" value="custom"}}
+							<div class="live-date">
+					    		{{> afQuickField name='goingLiveDate' defaultValue=""}}
+					    	</div>
+					    {{/if}}
+					    {{#if afFieldValueIs name="selectLive" value="immediately"}}
+					    	<div class="live-date hidden">
+					    		{{> afQuickField name='goingLiveDate' value=dateNow}}
+					    	</div>
+						{{/if}}
+
+
+
+				    	<div class="closing-date hidden">
+				    		{{> afQuickField name='closingDate'}}
+				    	</div>
+						<div class="redeem-date hidden">
+					    	<div class="toggle-options">
+					    		{{> afQuickField name='redeemMoreToggle' template="buttonGroup"}}
+					    	</div>
+					    	<!--same as comment above-->
+					    	{{#if afFieldValueIs name="redeemMoreToggle" value="yes"}}
+						    	<div class="">
+						    		{{> afQuickField name='finalRedeemDate' defaultValue=""}}
+						    	</div>
+						    {{/if}}
+						    {{#if afFieldValueIs name="redeemMoreToggle" value="no"}}
+						    	<div class="hidden">
+						    		{{> afQuickField name='finalRedeemDate' value=closeDate}}
+						    	</div>
+							{{/if}}
+						</div>
+
+						<div class="collection-date hidden">
+				    		{{> afQuickField name='finalCollectionDate'}}
+				    	</div>
+				    </fieldset>
+				    <button type="submit" class="btn btn-primary btn-sm">create this auction</button>
+			    {{/autoForm}}
+			</div>
+		{{/if}}
+	</div>
+</template>
